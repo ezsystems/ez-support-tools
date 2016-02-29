@@ -1,0 +1,18 @@
+{% trans_default_domain "systeminfo" %}
+
+<p class="ez-platform-version">
+    {% if infoProviders.packages.info['ezsystems/platform-ui-bundle'] is defined %}
+    {{ 'ez.platform.version'|trans }} <strong>{{ infoProviders.packages.info['ezsystems/platform-ui-bundle'].version }}</strong>
+    {{ 'kernel.running'|trans }} <strong>{{ infoProviders.packages.info['ezsystems/ezpublish-kernel'].version }}</strong>
+{% else %}
+    {{ 'ez.platform.version'|trans }} <strong>{{ infoProvider.info.version }}</strong>
+    {% endif %},
+    {{ 'symfony.based'|trans }} <strong>{{ infoProvider.info.symfony }}</strong>
+</p>
+
+<h2>{{ 'bundles'|trans }}</h2>
+<ul>
+    {% for bundle, ns in infoProvider.info.bundles %}
+        <li><strong>{{ bundle }}</strong> (<tt>{{ ns }}</tt>)</li>
+    {% endfor %}
+</ul>

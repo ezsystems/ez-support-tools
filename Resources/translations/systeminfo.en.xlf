@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="34cebbd8a2d90255fd1317160dedb480" resname="system.information">
+        <source>system.information</source>
+        <target>System information</target>
+      </trans-unit>
+      <trans-unit id="cf1e8c14e54505f60aa10ceb8d5d8ab3" resname="server">
+        <source>server</source>
+        <target>Server</target>
+      </trans-unit>
+      <trans-unit id="2bb22b8c875ccf10e0f0c19eb7503cc6" resname="packages">
+        <source>packages</source>
+        <target>Packages</target>
+      </trans-unit>
+      <trans-unit id="35ab991adc09aa1295fc07c0e9ab49a1" resname="packages.empty">
+        <source>packages.empty</source>
+        <target>Could not find any packages, composer.lock file missing?</target>
+      </trans-unit>
+      <trans-unit id="27fe419d5eb953490a9fd3132c79aa2e" resname="ez.platform.version">
+        <source>ez.platform.version</source>
+        <target>You are using eZ Platform version</target>
+      </trans-unit>
+      <trans-unit id="8a1ce0ddfe57e402219493e0f982eb66" resname="kernel.running">
+        <source>kernel.running</source>
+        <target>running on kernel</target>
+      </trans-unit>
+      <trans-unit id="611211b34660182d3f34da6e5c43eb96" resname="symfony.based">
+        <source>symfony.based</source>
+        <target>based on Symfony</target>
+      </trans-unit>
+      <trans-unit id="9e21e19f42862a3b26cd7aae135a3f74" resname="bundles">
+        <source>bundles</source>
+        <target>Bundles</target>
+      </trans-unit>
+      <trans-unit id="f9fa10ba956cacf91d7878861139efb9" resname="software">
+        <source>software</source>
+        <target>Software</target>
+      </trans-unit>
+      <trans-unit id="e6af26ba39fdc3369b5804257897dced" resname="php.info">
+        <source>php.info</source>
+        <target>PHP info</target>
+      </trans-unit>
+      <trans-unit id="e3795f946f7319f25955fb7b91a64da5" resname="php.accelerator">
+        <source>php.accelerator</source>
+        <target>PHP Accelerator</target>
+      </trans-unit>
+      <trans-unit id="075ae3d2fc31640504f814f60e5ef713" resname="disabled">
+        <source>disabled</source>
+        <target>Disabled</target>
+      </trans-unit>
+      <trans-unit id="8accff232e270b80124b788767fc9534" resname="php.accelerator.not.found">
+        <source>php.accelerator.not.found</source>
+        <target>No PHP Accelerator found.</target>
+      </trans-unit>
+      <trans-unit id="3ca14c518d1bf901acc339e7c9cd6d7f" resname="hardware">
+        <source>hardware</source>
+        <target>Hardware</target>
+      </trans-unit>
+      <trans-unit id="d9747e2da342bdb995f6389533ad1a3d" resname="cpu">
+        <source>cpu</source>
+        <target>CPU</target>
+      </trans-unit>
+      <trans-unit id="ddfbb7f02c38f62bf39d7a4f8f80c5f3" resname="mhz">
+        <source>mhz</source>
+        <target>MHz</target>
+      </trans-unit>
+      <trans-unit id="cd69b4957f06cd818d7bf3d61980e291" resname="memory">
+        <source>memory</source>
+        <target>Memory</target>
+      </trans-unit>
+      <trans-unit id="11e0eed8d3696c0a632f822df385ab3c" resname="database">
+        <source>database</source>
+        <target>Database</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

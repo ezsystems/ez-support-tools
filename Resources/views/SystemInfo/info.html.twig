@@ -1,0 +1,35 @@
+{% extends "eZPlatformUIBundle::pjax_admin.html.twig" %}
+
+{% trans_default_domain "systeminfo" %}
+
+{% block header_breadcrumbs %}
+    {% set breadcrumb_items = [
+        {link: path('admin_dashboard'), label: 'dashboard.title'|trans({}, 'dashboard')},
+        {link: '', label: 'system.information'|trans({}, 'systeminfo') },
+    ] %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block header_title %}
+    <h1 class="ez-page-header-name" data-icon="&#xe617">{{ 'system.information'|trans }}</h1>
+{% endblock %}
+
+{% block content %}
+    <section class="ez-tabs ez-serverside-content">
+        <ul class="ez-tabs-list">
+            {% for infoProviderKey, infoProvider in infoProviders %}
+                <li class="ez-tabs-label{% if loop.first %} is-tab-selected{% endif %}"><a href="#ez-tabs-{{ infoProviderKey }}">{{ infoProviderKey|trans }}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="ez-tabs-panels">
+            {% for infoProviderKey, infoProvider in infoProviders %}
+            <div class="ez-tabs-panel{% if loop.first %} is-tab-selected{% endif %}" id="ez-tabs-{{ infoProviderKey }}">
+                {% include infoProvider.template %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block title %}{{'system.information'|trans }}{% endblock %}

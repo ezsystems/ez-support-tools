@@ -1,0 +1,18 @@
+{% trans_default_domain "systeminfo" %}
+
+<h2>{{ 'packages'|trans }}</h2>
+
+{% if infoProvider.info is empty %}
+    <p>{{ 'packages.empty'|trans }}</p>
+{% else %}
+    <dl>
+        {% for packageName, packageInfo in infoProvider.info %}
+            {% if packageInfo.homepage is empty %}
+                <dt>{{ packageName }}</dt>
+            {% else %}
+                <dt><a href="{{ packageInfo.homepage }}" target="_blank">{{ packageName }}</a></dt>
+            {% endif %}
+            <dd>{{ packageInfo.version }} <tt>({{ packageInfo.time }}, {{ packageInfo.reference | slice(0, 5) }})</tt></dd>
+        {% endfor %}
+    </dl>
+{% endif %}

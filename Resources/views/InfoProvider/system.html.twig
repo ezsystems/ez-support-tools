@@ -1,0 +1,37 @@
+{% trans_default_domain "systeminfo" %}
+
+<h2>{{ 'software'|trans }}</h2>
+<dl>
+    <dt>PHP</dt>
+    <dd>
+        {{ infoProvider.info.phpVersion }}
+        (<a href="{{ path( 'admin_phpinfo' ) }}" target="_blank">{{ 'php.info'|trans }}</a>)
+    </dd>
+    <dt>{{ 'php.accelerator'|trans }}</dt>
+    <dd>
+        {% if infoProvider.info.phpAccelerator %}
+            {% if not infoProvider.info.phpAccelerator.enabled %}
+                <strong>{{ 'disabled'|trans }}</strong>
+            {% endif %}
+            <a href="{{ infoProvider.info.phpAccelerator.url }}" target="_blank">{{ infoProvider.info.phpAccelerator.name }} ({{ infoProvider.info.phpAccelerator.versionString }})</a>
+        {% else %}
+            {{ 'php.accelerator.not.found'|trans }}
+        {% endif %}
+    </dd>
+    {%set db = infoProvider.info.database %}
+    <dt>{{ 'database'|trans }}</dt>
+    <dd>{{ db.type }} (<tt>{{ db.type }}://{{ db.username }}@{{ db.host }}/{{ db.name }}</tt>)</dd>
+</dl>
+
+<h2>{{ 'hardware'|trans }}</h2>
+<dl>
+    <dt>{{ 'cpu'|trans }}</dt>
+    <dd>
+        {{ infoProvider.info.cpuType }}
+        {% if infoProvider.info.cpuSpeed %}
+            ({{ infoProvider.info.cpuCount }}x{{ infoProvider.info.cpuSpeed }}&nbsp;{{ 'mhz'|trans }})
+        {% endif %}
+    </dd>
+    <dt>{{ 'memory'|trans }}</dt>
+    <dd>{{ infoProvider.info.memorySize|ez_file_size( 1 ) }}</dd>
+</dl>

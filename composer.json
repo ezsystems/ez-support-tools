@@ -1,0 +1,24 @@
+{
+    "name": "ezsystems/ez-support-tools",
+    "description": "Providing information about the system eZ Platform/Studio is running on",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Gunnstein Lye",
+            "email": "gunnstein.lye@ez.no"
+        }
+    ],
+    "require": {
+        "ezsystems/platform-ui-bundle": "~1.2.0@dev",
+    },
+    "autoload": {
+        "psr-4": {
+            "EzSystems\\EzSupportTools\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
