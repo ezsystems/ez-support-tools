@@ -1,7 +1,7 @@
 <?php
 
 /**
- * File containing the EzSupportToolsController class.
+ * File containing the SystemInfoController class.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -12,7 +12,7 @@ use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
 use EzSystems\PlatformUIBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class EzSupportToolsController extends Controller
+class SystemInfoController extends Controller
 {
     /**
      * @var \EzSystems\EzSupportTools\InfoProvider\InfoProviderInterface[] Info providers

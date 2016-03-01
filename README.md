@@ -9,7 +9,7 @@ The `InfoProviderInterface` allows extensible info providers.
 
 Add a Command which provides CLI/file output, using the same InfoProviders.
 
-`EzSupportToolsController` uses a variadic constructor, to allow a variable number of InfoProviders. I'm
+`SystemInfoController` uses a variadic constructor, to allow a variable number of InfoProviders. I'm
 pretty sure this is the wrong way to do this.
 
 The frontend isn't working. To test it, edit PlatformUI `services.yml` and `routing_pjax.yml`, and replace

@@ -1,11 +1,11 @@
 admin_systeminfo:
     path: /sysinfo
     defaults:
-        _controller: ezsystems.systeminfo.controller.systeminfo:infoAction
+        _controller: ezsystems.ezsupporttools.controller.systeminfo:infoAction
     methods: [GET]
 
 admin_phpinfo:
     path: /sysinfo/phpinfo
     defaults:
-        _controller: ezsystems.systeminfo.controller.systeminfo:phpinfoAction
+        _controller: ezsystems.ezsupporttools.controller.systeminfo:phpinfoAction
     methods: [GET]
