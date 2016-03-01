@@ -1,17 +1,17 @@
 <?php
 
 /**
- * File containing the EzSystemsEzSupportTools class.
+ * File containing the EzSystemsEzSupportToolsBundle class.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzSupportTools;
+namespace EzSystems\EzSupportToolsBundle;
 
-use EzSystems\EzSupportTools\DependencyInjection\EzSystemsEzSupportToolsExtension;
+use EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class EzSystemsEzSupportTools extends Bundle
+class EzSystemsEzSupportToolsBundle extends Bundle
 {
     protected $name = 'eZSupportTools';
 

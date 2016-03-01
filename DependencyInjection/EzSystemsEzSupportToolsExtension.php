@@ -6,7 +6,7 @@
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzSupportTools\DependencyInjection;
+namespace EzSystems\EzSupportToolsBundle\DependencyInjection;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
 use Symfony\Component\Config\FileLocator;
@@ -37,7 +37,7 @@ class EzSystemsEzSupportToolsExtension extends Extension
     {
         // make sure Assetic can handle the assets (mainly the CSS files)
         $container->prependExtensionConfig( 'assetic', array( 'bundles' => array( 'EzSystemsEzSupportTools' ) ) );
-        // prepend the yui.yml and the css.yml from EzSystemsEzSupportTools.php
+        // prepend the yui.yml and the css.yml from EzSystemsEzSupportToolsBundle.php
         // of course depending on your needs you can remove the handling of yui.yml or css.yml
         $this->prependYui( $container );
 //        $this->prependCss( $container );
