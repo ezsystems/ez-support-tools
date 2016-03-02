@@ -1,14 +1,16 @@
 <?php
 
 /**
- * File containing the ComposerInfoProvider class.
+ * File containing the Composer class.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzSupportToolsBundle\InfoProvider;
+namespace EzSystems\EzSupportToolsBundle\InfoProvider\Providers;
 
-class ComposerInfoProvider extends InfoProvider
+use EzSystems\EzSupportToolsBundle\InfoProvider\InfoProvider;
+
+class Composer extends InfoProvider
 {
     /**
      * @var string Installation root directory

@@ -1,17 +1,18 @@
 <?php
 
 /**
- * File containing the SystemInfoProvider class.
+ * File containing the System class.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzSupportToolsBundle\InfoProvider;
+namespace EzSystems\EzSupportToolsBundle\InfoProvider\Providers;
 
+use EzSystems\EzSupportToolsBundle\InfoProvider\InfoProvider;
 use Doctrine\DBAL\Connection;
 use ezcSystemInfo;
 
-class SystemInfoProvider extends InfoProvider
+class System extends InfoProvider
 {
     /**
      * The database connection, only used to retrieve some information on the database itself.

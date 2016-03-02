@@ -9,19 +9,20 @@
 namespace EzSystems\EzSupportToolsBundle\Controller;
 
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
+use EzSystems\EzSupportToolsBundle\InfoProvider\InfoProviderCollection;
 use EzSystems\PlatformUIBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 class SystemInfoController extends Controller
 {
     /**
-     * @var \EzSystems\EzSupportTools\InfoProvider\InfoProviderInterface[] Info providers
+     * @var \EzSystems\EzSupportToolsBundle\InfoProvider\InfoProviderCollection
      */
-    protected $infoProviders;
+    protected $infoProviderCollection;
 
-    public function __construct(...$infoProviders) // TODO pretty sure this isn't the way to do this
+    public function __construct(InfoProviderCollection $infoProviderCollection)
     {
-        $this->infoProviders = $infoProviders;
+        $this->infoProviderCollection = $infoProviderCollection;
     }
 
     public function performAccessChecks()
@@ -38,7 +39,7 @@ class SystemInfoController extends Controller
     public function infoAction()
     {
         $infoArray = ['infoProviders' => []];
-        foreach ($this->infoProviders as $infoProvider) {
+        foreach ($this->infoProviderCollection->infoProviders() as $infoProvider) {
             $infoArray['infoProviders'][$infoProvider->getIdentifier()] = [
                 'template' => $infoProvider->getTemplate(),
                 'info' => $infoProvider->getInfo(),

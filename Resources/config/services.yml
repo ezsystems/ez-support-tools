@@ -1,32 +1,46 @@
 parameters:
+    ezsystems.ezsupporttools.command.systeminfo.class: EzSystems\EzSupportToolsBundle\Command\SystemInfoCommand
     ezsystems.ezsupporttools.controller.systeminfo.class: EzSystems\EzSupportToolsBundle\Controller\SystemInfoController
-    ezsystems.ezsupporttools.infoprovider.composer_infoprovider.class: EzSystems\EzSupportToolsBundle\InfoProvider\ComposerInfoProvider
-    ezsystems.ezsupporttools.infoprovider.ezplatform_infoprovider.class: EzSystems\EzSupportToolsBundle\InfoProvider\eZPlatformInfoProvider
-    ezsystems.ezsupporttools.infoprovider.system_infoprovider.class: EzSystems\EzSupportToolsBundle\InfoProvider\SystemInfoProvider
+    ezsystems.ezsupporttools.infoprovider.infoprovider_collection.class: EzSystems\EzSupportToolsBundle\InfoProvider\InfoProviderCollection
+    ezsystems.ezsupporttools.infoprovider.providers.composer.class: EzSystems\EzSupportToolsBundle\InfoProvider\Providers\Composer
+    ezsystems.ezsupporttools.infoprovider.providers.ezplatform.class: EzSystems\EzSupportToolsBundle\InfoProvider\Providers\eZPlatform
+    ezsystems.ezsupporttools.infoprovider.providers.system.class: EzSystems\EzSupportToolsBundle\InfoProvider\Providers\System
 
 services:
-    ezsystems.ezsupporttools.infoprovider.composer_infoprovider:
-        class: %ezsystems.ezsupporttools.infoprovider.composer_infoprovider.class%
+    ezsystems.ezsupporttools.command.systeminfo:
+        class: %ezsystems.ezsupporttools.command.systeminfo.class%
         arguments:
-            - 'eZSupportTools:InfoProvider:composer.html.twig'
-            - "%kernel.root_dir%/../"
-
-    ezsystems.ezsupporttools.infoprovider.ezplatform_infoprovider:
-        class: %ezsystems.ezsupporttools.infoprovider.ezplatform_infoprovider.class%
-        arguments:
-            - 'eZSupportTools:InfoProvider:ezplatform.html.twig'
-            - %kernel.bundles%
-
-    ezsystems.ezsupporttools.infoprovider.system_infoprovider:
-        class: %ezsystems.ezsupporttools.infoprovider.system_infoprovider.class%
-        arguments:
-            - 'eZSupportTools:InfoProvider:system.html.twig'
-            - @database_connection
+            - @ezsystems.ezsupporttools.infoprovider.infoprovider_collection
+        tags:
+            - { name: console.command }
 
     ezsystems.ezsupporttools.controller.systeminfo:
         class: %ezsystems.ezsupporttools.controller.systeminfo.class%
         arguments:
-            - @ezsystems.ezsupporttools.infoprovider.ezplatform_infoprovider
-            - @ezsystems.ezsupporttools.infoprovider.system_infoprovider
-            - @ezsystems.ezsupporttools.infoprovider.composer_infoprovider
+            - @ezsystems.ezsupporttools.infoprovider.infoprovider_collection
         parent: ezsystems.platformui.controller.base
+
+    ezsystems.ezsupporttools.infoprovider.infoprovider_collection:
+        class: %ezsystems.ezsupporttools.infoprovider.infoprovider_collection.class%
+        arguments:
+            - @ezsystems.ezsupporttools.infoprovider.providers.ezplatform
+            - @ezsystems.ezsupporttools.infoprovider.providers.system
+            - @ezsystems.ezsupporttools.infoprovider.providers.composer
+
+    ezsystems.ezsupporttools.infoprovider.providers.composer:
+        class: %ezsystems.ezsupporttools.infoprovider.providers.composer.class%
+        arguments:
+            - 'eZSupportTools:InfoProvider:composer.html.twig'
+            - "%kernel.root_dir%/../"
+
+    ezsystems.ezsupporttools.infoprovider.providers.ezplatform:
+        class: %ezsystems.ezsupporttools.infoprovider.providers.ezplatform.class%
+        arguments:
+            - 'eZSupportTools:InfoProvider:ezplatform.html.twig'
+            - %kernel.bundles%
+
+    ezsystems.ezsupporttools.infoprovider.providers.system:
+        class: %ezsystems.ezsupporttools.infoprovider.providers.system.class%
+        arguments:
+            - 'eZSupportTools:InfoProvider:system.html.twig'
+            - @database_connection

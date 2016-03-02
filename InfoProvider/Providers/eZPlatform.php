@@ -1,16 +1,17 @@
 <?php
 
 /**
- * File containing the eZPlatformInfoProvider class.
+ * File containing the eZPlatform class.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace EzSystems\EzSupportToolsBundle\InfoProvider;
+namespace EzSystems\EzSupportToolsBundle\InfoProvider\Providers;
 
+use EzSystems\EzSupportToolsBundle\InfoProvider\InfoProvider;
 use Symfony\Component\HttpKernel\Kernel;
 
-class eZPlatformInfoProvider extends InfoProvider
+class eZPlatform extends InfoProvider
 {
     /**
      * An array containing the active bundles (keys) and the corresponding namespace.
