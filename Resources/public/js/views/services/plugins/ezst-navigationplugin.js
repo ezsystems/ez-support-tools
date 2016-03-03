@@ -1,13 +1,13 @@
-YUI.add('ezconf-navigationplugin', function (Y) {
+YUI.add('ezst-navigationplugin', function (Y) {
     // Good practices:
-    // * use a custom namespace 'eZConf' here
+    // * use a custom namespace 'eZST' here
     // * put the plugins in a 'Plugin' sub namespace
-    Y.namespace('eZConf.Plugin');
+    Y.namespace('eZST.Plugin');
 
     // view service plugins must extend Y.eZ.Plugin.ViewServiceBase
     // Y.eZ.Plugin.ViewServiceBase provides several method allowing to deeply
     // hook into the view service behaviour
-    Y.eZConf.Plugin.NavigationPlugin = Y.Base.create('ezconfNavigationPlugin', Y.eZ.Plugin.ViewServiceBase, [], {
+    Y.eZST.Plugin.NavigationPlugin = Y.Base.create('ezstNavigationPlugin', Y.eZ.Plugin.ViewServiceBase, [], {
         initializer: function () {
             var service = this.get('host'); // the plugged object is called host
 
@@ -19,21 +19,21 @@ YUI.add('ezconf-navigationplugin', function (Y) {
                 Constructor: Y.eZ.NavigationItemView,
                 config: {
                     title: "System information SNAFU",
-                    identifier: "ezconf-system-info",
+                    identifier: "ezst-system-info",
                     route: {
-                        name: "eZConfSysInfo" // same route name of the one added in the app plugin
+                        name: "eZSTSysInfo" // same route name of the one added in the app plugin
                     }
                 }
             }, 'admin'); // identifier of the zone called "Admin Panel" in the UI
         },
     }, {
-        NS: 'ezconfNavigation'
+        NS: 'ezstNavigation'
     });
 
     // registering the plugin for the service
     // with that, the plugin is automatically instantiated and plugged in
     // 'navigationHubViewService' component.
     Y.eZ.PluginRegistry.registerPlugin(
-        Y.eZConf.Plugin.NavigationPlugin, ['navigationHubViewService']
+        Y.eZST.Plugin.NavigationPlugin, ['navigationHubViewService']
     );
 });

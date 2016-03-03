@@ -1,18 +1,17 @@
-YUI.add('ezconf-sysinfoview', function (Y) {
-    // Good practice: use a custom namespace 'eZConf' here
-    Y.namespace('eZConf');
+YUI.add('ezst-sysinfoview', function (Y) {
+    Y.namespace('eZST');
 
     // Make sure the first parameter of Y.Base.create() (internal name) is unique
     // it is used for 3 things in PlatformUI:
     // * to identify the view if one wants to write a plugin for it
     // * to find the corresponding template
     // * to generate a CSS class on its container to ease styling
-    Y.eZConf.SysInfoView = Y.Base.create('ezconfSysInfoView', Y.eZ.ServerSideView, [], {
+    Y.eZST.SysInfoView = Y.Base.create('ezstSysInfoView', Y.eZ.ServerSideView, [], {
         // this is YUI View mechanic to subscribe to DOM events (click, submit,
         // ...) and synthetic event (some custom event provided by YUI) like
         // 'tap' here.
         events: {
-            '.ezconf-list-location': {
+            '.ezst-list-location': {
                 // tap is 'fast click' (touch friendly)
                 'tap': '_navigateToLocation'
             },
@@ -20,7 +19,7 @@ YUI.add('ezconf-sysinfoview', function (Y) {
 
         initializer: function () {
             console.log("Hey, I'm the list view");
-            this.containerTemplate = '<div class="ez-view-ezconflistview"/>';
+            this.containerTemplate = '<div class="ez-view-ezstlistview"/>';
         },
 
         _navigateToLocation: function (e) {

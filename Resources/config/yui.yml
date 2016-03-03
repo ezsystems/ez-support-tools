@@ -2,17 +2,17 @@ system:
     default:
         yui:
             modules:
-                ezconf-sysinfoappplugin:
-                    requires: ['ez-pluginregistry', 'plugin', 'base', 'ezconf-sysinfoview', 'ezconf-sysinfoviewservice'] # depends on the plugin code
+                ezst-sysinfoappplugin:
+                    requires: ['ez-pluginregistry', 'plugin', 'base', 'ezst-sysinfoview', 'ezst-sysinfoviewservice'] # depends on the plugin code
                     dependencyOf: ['ez-platformuiapp']
-                    path: %system_info.public_dir%/js/apps/plugins/ezconf-sysinfoappplugin.js
-                ezconf-navigationplugin:
+                    path: %system_info.public_dir%/js/apps/plugins/ezst-sysinfoappplugin.js
+                ezst-navigationplugin:
                     requires: ['ez-pluginregistry', 'ez-viewservicebaseplugin', 'ez-navigationitemview']
                     dependencyOf: ['ez-navigationhubviewservice']
-                    path: %system_info.public_dir%/js/views/services/plugins/ezconf-navigationplugin.js
-                ezconf-sysinfoviewservice:
+                    path: %system_info.public_dir%/js/views/services/plugins/ezst-navigationplugin.js
+                ezst-sysinfoviewservice:
                     requires: ['ez-serversideviewservice']
-                    path: %system_info.public_dir%/js/views/services/ezconf-sysinfoviewservice.js
-                ezconf-sysinfoview:
+                    path: %system_info.public_dir%/js/views/services/ezst-sysinfoviewservice.js
+                ezst-sysinfoview:
                     requires: ['ez-serversideview']
-                    path: %system_info.public_dir%/js/views/ezconf-sysinfoview.js
+                    path: %system_info.public_dir%/js/views/ezst-sysinfoview.js
