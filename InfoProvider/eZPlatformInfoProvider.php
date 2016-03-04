@@ -38,17 +38,17 @@ class eZPlatformInfoProvider extends InfoProvider
     /**
      * Returns information about eZ Platform, including installed bundles.
      *
-     * @return array
+     * @return Value\eZPlatform
      */
     public function getInfo()
     {
-        $info = [
-            'version' => 'dev',
-            'symfony' => Kernel::VERSION,
-            'bundles' => $this->bundles,
-        ];
-        ksort($info['bundles'], SORT_FLAG_CASE | SORT_STRING);
+        $sortedBundles = $this->bundles;
+        ksort($sortedBundles, SORT_FLAG_CASE | SORT_STRING);
 
-        return $info;
+        return new Value\eZPlatform([
+            'eZPlatformVersion' => 'dev',
+            'symfonyVersion' => Kernel::VERSION,
+            'bundles' => $sortedBundles,
+        ]);
     }
 }

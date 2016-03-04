@@ -27,7 +27,7 @@ interface InfoProviderInterface
     /**
      * Returns system information.
      *
-     * @return array
+     * @return Value
      */
     public function getInfo();
 }

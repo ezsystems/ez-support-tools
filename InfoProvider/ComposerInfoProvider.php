@@ -34,12 +34,12 @@ class ComposerInfoProvider extends InfoProvider
     /**
      * Returns information about installed composer packages.
      *
-     * @return array
+     * @return Value\eZPlatform
      */
     public function getInfo()
     {
         if (!file_exists($this->installDir . 'composer.lock')) {
-            return [];
+            return new Value\Composer([]); // @TODO something more informative?
         }
 
         $packages = [];
@@ -55,6 +55,8 @@ class ComposerInfoProvider extends InfoProvider
 
         ksort($packages, SORT_FLAG_CASE | SORT_STRING);
 
-        return $packages;
+        return new Value\Composer([
+            'packages' => $packages,
+        ]);
     }
 }

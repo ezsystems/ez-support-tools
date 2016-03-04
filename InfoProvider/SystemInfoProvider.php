@@ -44,7 +44,7 @@ class SystemInfoProvider extends InfoProvider
      *  - php accelerator info
      *  - database related info.
      *
-     * @return array
+     * @return Value\System
      */
     public function getInfo()
     {
@@ -59,7 +59,7 @@ class SystemInfoProvider extends InfoProvider
             ];
         }
 
-        return [
+        return new Value\System([
             'cpuType' => $info->cpuType,
             'cpuSpeed' => $info->cpuSpeed,
             'cpuCount' => $info->cpuCount,
@@ -72,6 +72,6 @@ class SystemInfoProvider extends InfoProvider
                 'host' => $this->connection->getHost(),
                 'username' => $this->connection->getUsername(),
             ],
-        ];
+        ]);
     }
 }

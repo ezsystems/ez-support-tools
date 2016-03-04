@@ -35,7 +35,7 @@ abstract class InfoProvider implements InfoProviderInterface
     /**
      * Returns system information.
      *
-     * @return array
+     * @return Value
      */
     abstract public function getInfo();
 }
