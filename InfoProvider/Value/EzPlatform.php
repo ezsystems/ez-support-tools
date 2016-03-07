@@ -1,7 +1,7 @@
 <?php
 
 /**
- * File containing the eZPlatform class.
+ * File containing the EzPlatform class.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -13,7 +13,7 @@ use EzSystems\EzSupportToolsBundle\InfoProvider\Value;
 /**
  * Value for information about eZ Platform.
  */
-class eZPlatform extends Value
+class EzPlatform extends Value
 {
     /**
      * eZ Platform version.

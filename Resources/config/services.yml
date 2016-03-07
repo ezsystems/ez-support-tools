@@ -1,7 +1,7 @@
 parameters:
     ezsystems.ezsupporttools.controller.systeminfo.class: EzSystems\EzSupportToolsBundle\Controller\SystemInfoController
     ezsystems.ezsupporttools.infoprovider.composer_infoprovider.class: EzSystems\EzSupportToolsBundle\InfoProvider\ComposerInfoProvider
-    ezsystems.ezsupporttools.infoprovider.ezplatform_infoprovider.class: EzSystems\EzSupportToolsBundle\InfoProvider\eZPlatformInfoProvider
+    ezsystems.ezsupporttools.infoprovider.ezplatform_infoprovider.class: EzSystems\EzSupportToolsBundle\InfoProvider\EzPlatformInfoProvider
     ezsystems.ezsupporttools.infoprovider.system_infoprovider.class: EzSystems\EzSupportToolsBundle\InfoProvider\SystemInfoProvider
 
 services:

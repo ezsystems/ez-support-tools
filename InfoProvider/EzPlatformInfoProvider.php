@@ -1,7 +1,7 @@
 <?php
 
 /**
- * File containing the eZPlatformInfoProvider class.
+ * File containing the EzPlatformInfoProvider class.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -10,7 +10,7 @@ namespace EzSystems\EzSupportToolsBundle\InfoProvider;
 
 use Symfony\Component\HttpKernel\Kernel;
 
-class eZPlatformInfoProvider extends InfoProvider
+class EzPlatformInfoProvider extends InfoProvider
 {
     /**
      * An array containing the active bundles (keys) and the corresponding namespace.
@@ -45,7 +45,7 @@ class eZPlatformInfoProvider extends InfoProvider
         $sortedBundles = $this->bundles;
         ksort($sortedBundles, SORT_FLAG_CASE | SORT_STRING);
 
-        return new Value\eZPlatform([
+        return new Value\EzPlatform([
             'eZPlatformVersion' => 'dev',
             'symfonyVersion' => Kernel::VERSION,
             'bundles' => $sortedBundles,
