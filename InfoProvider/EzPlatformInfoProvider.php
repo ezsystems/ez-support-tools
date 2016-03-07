@@ -38,7 +38,7 @@ class EzPlatformInfoProvider extends InfoProvider
     /**
      * Returns information about eZ Platform, including installed bundles.
      *
-     * @return Value\eZPlatform
+     * @return Value\EzPlatform
      */
     public function getInfo()
     {

@@ -34,7 +34,7 @@ class ComposerInfoProvider extends InfoProvider
     /**
      * Returns information about installed composer packages.
      *
-     * @return Value\eZPlatform
+     * @return Value\Composer
      */
     public function getInfo()
     {
