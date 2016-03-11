@@ -18,14 +18,43 @@ class PhpSystemInfo extends ValueObject implements SystemInfo
     /**
      * PHP version.
      *
+     * Example: 5.6.7-1
+     *
      * @var string
      */
-    public $phpVersion;
+    public $version;
 
     /**
-     * PHP accelerator.
+     * True if an accelerator is enabled.
      *
-     * @var mixed
+     * @var bool
      */
-    public $phpAccelerator;
+    public $acceleratorEnabled;
+
+    /**
+     * PHP accelerator name, or null if no accelerator is enabled.
+     *
+     * Example: Zend OPcache
+     *
+     * @var string|null
+     */
+    public $acceleratorName;
+
+    /**
+     * PHP accelerator URL, or null if no accelerator is enabled.
+     *
+     * Example: http://www.php.net/opcache
+     *
+     * @var string|null
+     */
+    public $acceleratorURL;
+
+    /**
+     * PHP accelerator version, or null if no accelerator is enabled.
+     *
+     * Example: 7.0.4-devFE
+     *
+     * @var string|null
+     */
+    public $acceleratorVersion;
 }

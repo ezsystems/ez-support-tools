@@ -37,19 +37,23 @@ class EzcPhpSystemInfoCollector implements SystemInfoCollector
      */
     public function build()
     {
-        $accelerator = false;
+        $properties = [
+            'version' => phpversion(),
+            'acceleratorEnabled' => false,
+        ];
+
         if ($this->ezcSystemInfo->phpAccelerator) {
-            $accelerator = [
-                'name' => $this->ezcSystemInfo->phpAccelerator->name,
-                'url' => $this->ezcSystemInfo->phpAccelerator->url,
-                'enabled' => $this->ezcSystemInfo->phpAccelerator->isEnabled,
-                'versionString' => $this->ezcSystemInfo->phpAccelerator->versionString,
-            ];
+            $properties = array_merge(
+                $properties,
+                [
+                    'acceleratorEnabled' => $this->ezcSystemInfo->phpAccelerator->isEnabled,
+                    'acceleratorName' => $this->ezcSystemInfo->phpAccelerator->name,
+                    'acceleratorURL' => $this->ezcSystemInfo->phpAccelerator->url,
+                    'acceleratorVersion' => $this->ezcSystemInfo->phpAccelerator->versionString,
+                ]
+            );
         }
 
-        return new Value\PhpSystemInfo([
-            'phpVersion' => phpversion(),
-            'phpAccelerator' => $accelerator,
-        ]);
+        return new Value\PhpSystemInfo($properties);
     }
 }

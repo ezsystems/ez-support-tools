@@ -51,13 +51,11 @@ class EzcPhpSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
 
         self::assertEquals(
             new PhpSystemInfo([
-                'phpVersion' => $this->ezcSystemInfoMock->phpVersion,
-                'phpAccelerator' => [
-                    'name' => $this->ezcSystemInfoMock->phpAccelerator->name,
-                    'url' => $this->ezcSystemInfoMock->phpAccelerator->url,
-                    'enabled' => $this->ezcSystemInfoMock->phpAccelerator->isEnabled,
-                    'versionString' => $this->ezcSystemInfoMock->phpAccelerator->versionString,
-                ],
+                'version' => $this->ezcSystemInfoMock->phpVersion,
+                'acceleratorEnabled' => $this->ezcSystemInfoMock->phpAccelerator->isEnabled,
+                'acceleratorName' => $this->ezcSystemInfoMock->phpAccelerator->name,
+                'acceleratorURL' => $this->ezcSystemInfoMock->phpAccelerator->url,
+                'acceleratorVersion' => $this->ezcSystemInfoMock->phpAccelerator->versionString,
             ]),
             $value
         );
