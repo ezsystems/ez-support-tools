@@ -28,7 +28,7 @@ class EzcPhpSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->ezcSystemInfoMock = $this->getMockBuilder('ezcSystemInfo')->disableOriginalConstructor()->getMock();
-        $this->ezcSystemInfoMock->phpVersion = '5.6.7-1';
+        $this->ezcSystemInfoMock->phpVersion = phpversion();
 
         $this->ezcSystemInfoMock->phpAccelerator = $this
             ->getMockBuilder('ezcSystemInfoAccelerator')
