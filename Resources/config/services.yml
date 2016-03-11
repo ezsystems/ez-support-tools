@@ -1,3 +1,12 @@
 parameters:
+    support_tools.info_collectors.ezc_hardware.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcHardwareSystemInfoCollector
 
 services:
+    support_tools.info_collectors.ezc_hardware:
+        class: %support_tools.info_collectors.ezc_hardware.class%
+        arguments:
+            - @support_tools.info_collector.system_info.ezc_system_info
+
+    support_tools.info_collector.system_info.ezc_system_info:
+        class: ezcSystemInfo
+        factory: [EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoFactory, buildEzcSystemInfo]

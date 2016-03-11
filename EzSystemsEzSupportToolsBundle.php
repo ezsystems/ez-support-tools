@@ -8,7 +8,6 @@
  */
 namespace EzSystems\EzSupportToolsBundle;
 
-use EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class EzSystemsEzSupportToolsBundle extends Bundle

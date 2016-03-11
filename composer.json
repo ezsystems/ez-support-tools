@@ -9,10 +9,12 @@
         }
     ],
     "require": {
+        "ezsystems/ezpublish-kernel": "^6.2",
+        "zetacomponents/system-information": "^1.1"
     },
     "autoload": {
         "psr-4": {
-            "EzSystems\\EzSupportTools\\": ""
+            "EzSystems\\EzSupportToolsBundle\\": ""
         }
     },
     "extra": {
