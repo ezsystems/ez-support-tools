@@ -1,7 +1,7 @@
 <?php
 
 /**
- * File containing the EzcHardwareTest class.
+ * File containing the EzcHardwareSystemInfoCollectorTest class.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -13,7 +13,7 @@ use EzSystems\EzSupportToolsBundle\SystemInfo\Value\HardwareSystemInfo;
 use ezcSystemInfo;
 use PHPUnit_Framework_TestCase;
 
-class EzcHardwareTest extends PHPUnit_Framework_TestCase
+class EzcHardwareSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var ezcSystemInfo|\PHPUnit_Framework_MockObject_MockObject

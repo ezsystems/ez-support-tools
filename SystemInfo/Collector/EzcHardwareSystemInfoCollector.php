@@ -8,7 +8,6 @@
  */
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
-use Doctrine\DBAL\Connection;
 use ezcSystemInfo;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value;
 
