@@ -42,10 +42,11 @@ services:
 
     support_tools.system_info.collector.database.doctrine:
         class: %support_tools.system_info.collector.database.doctrine.class%
-        arguments:
-            - @database_connection
+        calls:
+            - [setSiteAccess, [@ezpublish.siteaccess]]
+            - [setDatabaseList, [@doctrine]]
         tags:
-            - { name: "support_tools.system_info.collector", identifier: "database" }
+             - { name: "support_tools.system_info.collector", identifier: "database" }
 
     support_tools.system_info.collector.hardware.ezc:
         class: %support_tools.system_info.collector.hardware.ezc.class%

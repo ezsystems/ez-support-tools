@@ -9,6 +9,8 @@
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\Bundle\DoctrineBundle\Registry as DoctrineRegistry;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value;
 
 /**
@@ -16,17 +18,22 @@ use EzSystems\EzSupportToolsBundle\SystemInfo\Value;
  */
 class DoctrineDatabaseSystemInfoCollector implements SystemInfoCollector
 {
+   /**
+     * @var SiteAccess
+     */
+    private $siteAccess;
+
+    /**
+     * @var \Doctrine\DBAL\Connection[]
+     */
+    private $connectionList;
+
     /**
      * The database connection, only used to retrieve some information on the database itself.
      *
      * @var \Doctrine\DBAL\Connection
      */
     private $connection;
-
-    public function __construct(Connection $db)
-    {
-        $this->connection = $db;
-    }
 
     /**
      * Collects information about the database eZ Platform is using.
@@ -39,11 +46,24 @@ class DoctrineDatabaseSystemInfoCollector implements SystemInfoCollector
      */
     public function collect()
     {
+        $this->connection = $this->connectionList[$this->siteAccess->name];
+
         return new Value\DatabaseSystemInfo([
             'type' => $this->connection->getDatabasePlatform()->getName(),
             'name' => $this->connection->getDatabase(),
             'host' => $this->connection->getHost(),
             'username' => $this->connection->getUsername(),
         ]);
+    }
+
+    public function setSiteAccess(SiteAccess $siteAccess = null)
+    {
+        $this->siteAccess = $siteAccess;
+        $this->defaultScope = $siteAccess->name;
+    }
+
+    public function setDatabaseList( DoctrineRegistry $databaseList )
+    {
+        $this->connectionList = $databaseList->getConnections();
     }
 }
