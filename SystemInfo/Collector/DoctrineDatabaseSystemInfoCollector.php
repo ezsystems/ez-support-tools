@@ -18,7 +18,7 @@ use EzSystems\EzSupportToolsBundle\SystemInfo\Value;
  */
 class DoctrineDatabaseSystemInfoCollector implements SystemInfoCollector
 {
-   /**
+    /**
      * @var SiteAccess
      */
     private $siteAccess;
