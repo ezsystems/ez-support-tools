@@ -59,7 +59,6 @@ class DoctrineDatabaseSystemInfoCollector implements SystemInfoCollector
     public function setSiteAccess(SiteAccess $siteAccess = null)
     {
         $this->siteAccess = $siteAccess;
-        $this->defaultScope = $siteAccess->name;
     }
 
     public function setDatabaseList(DoctrineRegistry $databaseList)
