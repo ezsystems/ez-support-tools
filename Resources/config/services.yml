@@ -43,7 +43,8 @@ services:
     support_tools.system_info.collector.database.doctrine:
         class: %support_tools.system_info.collector.database.doctrine.class%
         arguments:
-            - @database_connection
+            - @ezpublish.persistence.connection
+        lazy: true
         tags:
             - { name: "support_tools.system_info.collector", identifier: "database" }
 
