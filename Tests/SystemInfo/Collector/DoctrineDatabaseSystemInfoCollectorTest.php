@@ -36,7 +36,7 @@ class DoctrineDatabaseSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
         $this->dbalConnectionMock = $this->getMockBuilder('Doctrine\DBAL\Connection')->disableOriginalConstructor()->getMock();
         $this->dbalPlatformMock = $this->getMockBuilder('Doctrine\DBAL\Platforms\MySqlPlatform')->getMock();
 
-        $this->databaseCollector = new DoctrineDatabaseSystemInfoCollector($this->dbalConnectionMock);
+        $this->databaseCollector = new DoctrineDatabaseSystemInfoCollector();
     }
 
     /**
