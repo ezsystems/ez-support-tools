@@ -13,58 +13,58 @@ parameters:
 
 services:
     support_tools.command.dump_info:
-        class: %support_tools.command.dump_info.class%
+        class: "%support_tools.command.dump_info.class%"
         arguments:
             - "@support_tools.system_info.collector_registry"
         tags:
             - { name: console.command }
 
     support_tools.system_info.collector_registry:
-        class: %support_tools.system_info.collector_registry.class%
+        class: "%support_tools.system_info.collector_registry.class%"
 
     support_tools.system_info.ezc:
         class: ezcSystemInfo
         factory: ["@support_tools.system_info.ezc.factory", buildEzcSystemInfo]
 
     support_tools.system_info.ezc.factory:
-        class: %support_tools.system_info.ezc.factory.class%
+        class: "%support_tools.system_info.ezc.factory.class%"
         lazy: true
 
 
     # SystemInfoCollectors
 
     support_tools.system_info.collector.composer.lock_file:
-        class: %support_tools.system_info.collector.composer.lock_file.class%
+        class: "%support_tools.system_info.collector.composer.lock_file.class%"
         arguments:
             - "%kernel.root_dir%/../composer.lock"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "composer" }
 
     support_tools.system_info.collector.database.doctrine:
-        class: %support_tools.system_info.collector.database.doctrine.class%
+        class: "%support_tools.system_info.collector.database.doctrine.class%"
         arguments:
             - "@database_connection"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "database" }
 
     support_tools.system_info.collector.hardware.ezc:
-        class: %support_tools.system_info.collector.hardware.ezc.class%
+        class: "%support_tools.system_info.collector.hardware.ezc.class%"
         arguments:
             - "@support_tools.system_info.ezc"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "hardware" }
 
     support_tools.system_info.collector.php.ezc:
-        class: %support_tools.system_info.collector.php.ezc.class%
+        class: "%support_tools.system_info.collector.php.ezc.class%"
         arguments:
             - "@support_tools.system_info.ezc"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "php" }
 
     support_tools.system_info.collector.symfony.kernel.config:
-        class: %support_tools.system_info.collector.symfony.kernel.config.class%
+        class: "%support_tools.system_info.collector.symfony.kernel.config.class%"
         arguments:
             - "@kernel"
-            - %kernel.bundles%
+            - "%kernel.bundles%"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "symfony_kernel" }
