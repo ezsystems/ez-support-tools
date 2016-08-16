@@ -2,21 +2,21 @@ services:
     support_tools.view.system_info_view_builder:
         class: EzSystems\EzSupportToolsBundle\View\SystemInfoViewBuilder
         arguments:
-            - @ezpublish.view.configurator
-            - @support_tools.system_info.collector_registry
+            - "@ezpublish.view.configurator"
+            - "@support_tools.system_info.collector_registry"
 
     support_tools.view.controller:
         class: EzSystems\EzSupportToolsBundle\Controller\SystemInfoController
 
     support_tools.view.system_info.provider:
         class: %ezpublish.view_provider.configured.class%
-        arguments: [@support_tools.view.matcher_factory]
+        arguments: ["@support_tools.view.matcher_factory"]
         tags:
             - {name: ezpublish.view_provider, type: 'EzSystems\EzSupportToolsBundle\View\SystemInfoView', priority: 10}
 
     support_tools.view.matcher_factory:
         class: %ezpublish.view.matcher_factory.class%
-        arguments: [@ezpublish.api.repository, 'EzSystems\EzSupportToolsBundle\View\Matcher']
+        arguments: ["@ezpublish.api.repository", 'EzSystems\EzSupportToolsBundle\View\Matcher']
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ["@service_container"]]
             - [setMatchConfig, [$system_info_view$]]
