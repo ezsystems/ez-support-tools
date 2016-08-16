@@ -10,7 +10,9 @@
         convertWarningsToExceptions="true"
         colors="false"
         >
-
+    <php>
+        <ini name="error_reporting" value="-1" />
+    </php>
     <testsuites>
         <testsuite name="eZ Support Tools tests suite">
             <directory suffix="Test.php">./Tests</directory>
