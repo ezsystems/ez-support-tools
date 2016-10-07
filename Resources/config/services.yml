@@ -25,10 +25,10 @@ services:
     support_tools.system_info.ezc:
         class: ezcSystemInfo
         factory: ["@support_tools.system_info.ezc.factory", buildEzcSystemInfo]
+        lazy: true
 
     support_tools.system_info.ezc.factory:
         class: "%support_tools.system_info.ezc.factory.class%"
-        lazy: true
 
 
     # SystemInfoCollectors
