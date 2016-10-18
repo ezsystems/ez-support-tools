@@ -5,6 +5,7 @@ parameters:
     support_tools.command.dump_info.class: EzSystems\EzSupportToolsBundle\Command\SystemInfoDumpCommand
     support_tools.system_info.collector_registry.class: EzSystems\EzSupportToolsBundle\SystemInfo\Registry\IdentifierBased
     support_tools.system_info.ezc.factory.class: EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoFactory
+    support_tools.system_info.ezc.wrapper.class: EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper
     support_tools.system_info.collector.composer.lock_file.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector
     support_tools.system_info.collector.database.doctrine.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\DoctrineDatabaseSystemInfoCollector
     support_tools.system_info.collector.hardware.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcHardwareSystemInfoCollector
@@ -22,8 +23,8 @@ services:
     support_tools.system_info.collector_registry:
         class: "%support_tools.system_info.collector_registry.class%"
 
-    support_tools.system_info.ezc:
-        class: ezcSystemInfo
+    support_tools.system_info.ezc.wrapper:
+        class: "%support_tools.system_info.ezc.wrapper.class%"
         factory: ["@support_tools.system_info.ezc.factory", buildEzcSystemInfo]
         lazy: true
 
@@ -50,14 +51,14 @@ services:
     support_tools.system_info.collector.hardware.ezc:
         class: "%support_tools.system_info.collector.hardware.ezc.class%"
         arguments:
-            - "@support_tools.system_info.ezc"
+            - "@support_tools.system_info.ezc.wrapper"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "hardware" }
 
     support_tools.system_info.collector.php.ezc:
         class: "%support_tools.system_info.collector.php.ezc.class%"
         arguments:
-            - "@support_tools.system_info.ezc"
+            - "@support_tools.system_info.ezc.wrapper"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "php" }
 

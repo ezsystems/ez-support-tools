@@ -8,8 +8,6 @@
  */
 namespace EzSystems\EzSupportToolsBundle\SystemInfo;
 
-use ezcSystemInfo;
-
 /**
  * Factory for zetacomponents/sysinfo. Used here to simplify testing.
  */
@@ -17,6 +15,6 @@ class EzcSystemInfoFactory
 {
     public static function buildEzcSystemInfo()
     {
-        return ezcSystemInfo::getInstance();
+        return new EzcSystemInfoWrapper();
     }
 }

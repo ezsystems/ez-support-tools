@@ -8,7 +8,7 @@
  */
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
-use ezcSystemInfo;
+use EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value;
 
 /**
@@ -17,13 +17,11 @@ use EzSystems\EzSupportToolsBundle\SystemInfo\Value;
 class EzcPhpSystemInfoCollector implements SystemInfoCollector
 {
     /**
-     * ezcSystemInfo from eZ Components
-     *
-     * @var \ezcSystemInfo
+     * @var \EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper
      */
     private $ezcSystemInfo;
 
-    public function __construct(ezcSystemInfo $ezcSystemInfo)
+    public function __construct(EzcSystemInfoWrapper $ezcSystemInfo)
     {
         $this->ezcSystemInfo = $ezcSystemInfo;
     }
