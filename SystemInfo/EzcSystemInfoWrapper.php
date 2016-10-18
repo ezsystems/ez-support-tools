@@ -9,6 +9,7 @@
 namespace EzSystems\EzSupportToolsBundle\SystemInfo;
 
 use ezcSystemInfo;
+use ezcSystemInfoReaderCantScanOSException;
 
 /**
  * This wraps zetacomponents/sysinfo, exposing its magic properties as public properties.
@@ -54,7 +55,12 @@ class EzcSystemInfoWrapper
 
     public function __construct()
     {
-        $ezcSystemInfo = ezcSystemInfo::getInstance();
+        try {
+            $ezcSystemInfo = ezcSystemInfo::getInstance();
+        } catch(ezcSystemInfoReaderCantScanOSException $e) {
+            // Leave properties as null: https://github.com/zetacomponents/SystemInformation/pull/9
+            return;
+        }
 
         $this->osType = $ezcSystemInfo->osType;
         $this->osName = $ezcSystemInfo->osName;
