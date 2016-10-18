@@ -10,13 +10,12 @@ namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Collector;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcPhpSystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\PhpSystemInfo;
-use ezcSystemInfo;
 use PHPUnit_Framework_TestCase;
 
 class EzcPhpSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var ezcSystemInfo|\PHPUnit_Framework_MockObject_MockObject
+     * @var \EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper|\PHPUnit_Framework_MockObject_MockObject
      */
     private $ezcSystemInfoMock;
 
@@ -27,7 +26,10 @@ class EzcPhpSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->ezcSystemInfoMock = $this->getMockBuilder('ezcSystemInfo')->disableOriginalConstructor()->getMock();
+        $this->ezcSystemInfoMock = $this
+            ->getMockBuilder('EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper')
+            ->disableOriginalConstructor()
+            ->getMock();
         $this->ezcSystemInfoMock->phpVersion = phpversion();
 
         $this->ezcSystemInfoMock->phpAccelerator = $this

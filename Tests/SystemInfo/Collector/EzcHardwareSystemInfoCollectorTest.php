@@ -10,13 +10,12 @@ namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Collector;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcHardwareSystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\HardwareSystemInfo;
-use ezcSystemInfo;
 use PHPUnit_Framework_TestCase;
 
 class EzcHardwareSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var ezcSystemInfo|\PHPUnit_Framework_MockObject_MockObject
+     * @var \EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper|\PHPUnit_Framework_MockObject_MockObject
      */
     private $ezcSystemInfoMock;
 
@@ -27,7 +26,10 @@ class EzcHardwareSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->ezcSystemInfoMock = $this->getMockBuilder('ezcSystemInfo')->disableOriginalConstructor()->getMock();
+        $this->ezcSystemInfoMock = $this
+            ->getMockBuilder('EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper')
+            ->disableOriginalConstructor()
+            ->getMock();
         $this->ezcSystemInfoMock->cpuType = 'Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz';
         $this->ezcSystemInfoMock->cpuSpeed = '2591.9000000000001';
         $this->ezcSystemInfoMock->cpuCount = '1';
