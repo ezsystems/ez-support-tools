@@ -62,17 +62,8 @@ class EzcSystemInfoWrapper
             return;
         }
 
-        $this->osType = $ezcSystemInfo->osType;
-        $this->osName = $ezcSystemInfo->osName;
-        $this->fileSystemType = $ezcSystemInfo->fileSystemType;
-        $this->cpuCount = $ezcSystemInfo->cpuCount;
-        $this->cpuType = $ezcSystemInfo->cpuType;
-        $this->cpuSpeed = $ezcSystemInfo->cpuSpeed;
-        $this->memorySize = $ezcSystemInfo->memorySize;
-        $this->lineSeparator = $ezcSystemInfo->lineSeparator;
-        $this->backupFileName = $ezcSystemInfo->backupFileName;
-        $this->phpVersion = $ezcSystemInfo->phpVersion;
-        $this->phpAccelerator = $ezcSystemInfo->phpAccelerator;
-        $this->isShellExecution = $ezcSystemInfo->isShellExecution;
+        foreach (array_keys(get_object_vars($this)) as $var) {
+            $this->$var = $ezcSystemInfo->$var;
+        }
     }
 }
