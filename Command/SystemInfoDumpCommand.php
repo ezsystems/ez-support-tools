@@ -73,17 +73,19 @@ EOD
             foreach ($this->registry->getIdentifiers() as $identifier) {
                 $output->writeln("  $identifier", true);
             }
-        } else if ($input->getArgument('info-collectors')) {
-            $identifiers = $input->getArgument('info-collectors');
         } else {
-            $identifiers = $this->registry->getIdentifiers();
-        }
+            if ($input->getArgument('info-collectors')) {
+                $identifiers = $input->getArgument('info-collectors');
+            } else {
+                $identifiers = $this->registry->getIdentifiers();
+            }
 
-        $collectedInfo = [];
-        foreach ($identifiers as $identifier) {
-            $collectedInfo[$identifier] = $this->registry->getItem($identifier)->collect();
-        }
+            $collectedInfo = [];
+            foreach ($identifiers as $identifier) {
+                $collectedInfo[$identifier] = $this->registry->getItem($identifier)->collect();
+            }
 
-        $output->writeln(json_encode($collectedInfo, JSON_PRETTY_PRINT));
+            $output->writeln(json_encode($collectedInfo, JSON_PRETTY_PRINT));
+        }
     }
 }
