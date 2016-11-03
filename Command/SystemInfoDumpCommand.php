@@ -73,36 +73,19 @@ EOD
             foreach ($this->registry->getIdentifiers() as $identifier) {
                 $output->writeln("  $identifier", true);
             }
-        } else if ($identifiers = $input->getArgument('info-collectors')) {
-            foreach ($identifiers as $identifier) {
-                $this->outputInfo(
-                    $this->registry->getItem($identifier),
-                    $output
-                );
-            }
         } else {
-            foreach ($this->registry->getIdentifiers() as $identifier) {
-                $this->outputInfo($this->registry->getItem($identifier), $output);
+            if ($input->getArgument('info-collectors')) {
+                $identifiers = $input->getArgument('info-collectors');
+            } else {
+                $identifiers = $this->registry->getIdentifiers();
             }
+
+            $collectedInfo = [];
+            foreach ($identifiers as $identifier) {
+                $collectedInfo[$identifier] = $this->registry->getItem($identifier)->collect();
+            }
+
+            $output->writeln(json_encode($collectedInfo, JSON_PRETTY_PRINT));
         }
-    }
-
-    /**
-     * Output info collected by the given collector.
-     *
-     * @param $infoCollector SystemInfoCollector
-     * @param $output OutputInterface
-     */
-    private function outputInfo(SystemInfoCollector $infoCollector, OutputInterface $output)
-    {
-        $infoValue = $infoCollector->collect();
-
-        $outputArray = [];
-        // attributes() is deprecated, and getProperties() is protected. TODO add a toArray() or similar.
-        foreach ($infoValue->attributes() as $property) {
-            $outputArray[$property] = $infoValue->$property;
-        }
-
-        $output->writeln(var_export($outputArray, true));
     }
 }
