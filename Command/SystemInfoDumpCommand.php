@@ -24,7 +24,7 @@ class SystemInfoDumpCommand extends ContainerAwareCommand
      *
      * @var \EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry
      */
-    private $registry;
+    private $systemInfoCollectorRegistry;
 
     /**
      * Output format registry.
@@ -33,9 +33,9 @@ class SystemInfoDumpCommand extends ContainerAwareCommand
      */
     private $outputFormatRegistry;
 
-    public function __construct(SystemInfoCollectorRegistry $registry, OutputFormatRegistry $outputFormatRegistry)
+    public function __construct(SystemInfoCollectorRegistry $systemInfoCollectorRegistry, OutputFormatRegistry $outputFormatRegistry)
     {
-        $this->registry = $registry;
+        $this->systemInfoCollectorRegistry = $systemInfoCollectorRegistry;
         $this->outputFormatRegistry = $outputFormatRegistry;
 
         parent::__construct();
@@ -85,7 +85,7 @@ EOD
      {
          if ($input->getOption('list-info-collectors')) {
              $output->writeln('Available info collectors:', true);
-             foreach ($this->registry->getIdentifiers() as $identifier) {
+             foreach ($this->systemInfoCollectorRegistry->getIdentifiers() as $identifier) {
                  $output->writeln("  $identifier", true);
              }
              return;
@@ -98,13 +98,13 @@ EOD
          if ($input->getArgument('info-collectors')) {
              $identifiers = $input->getArgument('info-collectors');
          } else {
-             $identifiers = $this->registry->getIdentifiers();
+             $identifiers = $this->systemInfoCollectorRegistry->getIdentifiers();
          }
 
          // Collect info for the given identifiers.
          $collectedInfoArray = [];
          foreach ($identifiers as $identifier) {
-             $collectedInfoArray[$identifier] = $this->registry->getItem($identifier)->collect();
+             $collectedInfoArray[$identifier] = $this->systemInfoCollectorRegistry->getItem($identifier)->collect();
          }
 
          $output->writeln(
