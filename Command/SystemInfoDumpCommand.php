@@ -88,27 +88,28 @@ EOD
              foreach ($this->registry->getIdentifiers() as $identifier) {
                  $output->writeln("  $identifier", true);
              }
-         } else {
-             if ($input->getArgument('info-collectors')) {
-                 $identifiers = $input->getArgument('info-collectors');
-             } else {
-                 $identifiers = $this->registry->getIdentifiers();
-             }
-
-             $outputFormatter = $this->outputFormatRegistry->getItem(
-                $input->getOption('format')
-             );
-
-             // Collect info for the given identifiers.
-             $collectedInfoArray = [];
-             foreach ($identifiers as $identifier) {
-                 $collectedInfoArray[$identifier] = $this->registry->getItem($identifier)->collect();
-             }
-
-             $output->writeln(
-                 $outputFormatter->format($collectedInfoArray)
-             );
+             return;
          }
+
+         $outputFormatter = $this->outputFormatRegistry->getItem(
+            $input->getOption('format')
+         );
+
+         if ($input->getArgument('info-collectors')) {
+             $identifiers = $input->getArgument('info-collectors');
+         } else {
+             $identifiers = $this->registry->getIdentifiers();
+         }
+
+         // Collect info for the given identifiers.
+         $collectedInfoArray = [];
+         foreach ($identifiers as $identifier) {
+             $collectedInfoArray[$identifier] = $this->registry->getItem($identifier)->collect();
+         }
+
+         $output->writeln(
+             $outputFormatter->format($collectedInfoArray)
+         );
      }
 
 }
