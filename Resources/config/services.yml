@@ -4,28 +4,33 @@ imports:
 parameters:
     support_tools.command.dump_info.class: EzSystems\EzSupportToolsBundle\Command\SystemInfoDumpCommand
     support_tools.system_info.collector_registry.class: EzSystems\EzSupportToolsBundle\SystemInfo\Registry\IdentifierBased
+    support_tools.system_info.output_registry.class: EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormatRegistry
     support_tools.system_info.ezc.wrapper.class: EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper
     support_tools.system_info.collector.composer.lock_file.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector
     support_tools.system_info.collector.database.doctrine.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\DoctrineDatabaseSystemInfoCollector
     support_tools.system_info.collector.hardware.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcHardwareSystemInfoCollector
     support_tools.system_info.collector.php.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcPhpSystemInfoCollector
     support_tools.system_info.collector.symfony.kernel.config.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ConfigurationSymfonyKernelSystemInfoCollector
+    support_tools.system_info.output_format.json.class: EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormat\JsonOutputFormat
 
 services:
     support_tools.command.dump_info:
         class: "%support_tools.command.dump_info.class%"
         arguments:
             - "@support_tools.system_info.collector_registry"
+            - "@support_tools.system_info.output_registry"
         tags:
             - { name: console.command }
 
     support_tools.system_info.collector_registry:
         class: "%support_tools.system_info.collector_registry.class%"
 
+    support_tools.system_info.output_registry:
+        class: "%support_tools.system_info.output_registry.class%"
+
     support_tools.system_info.ezc.wrapper:
         class: "%support_tools.system_info.ezc.wrapper.class%"
         lazy: true
-
 
     # SystemInfoCollectors
 
@@ -64,3 +69,10 @@ services:
             - "%kernel.bundles%"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "symfony_kernel" }
+
+    # SystemInfoOutputFormats
+
+    support_tools.system_info.output_format.json:
+        class: "%support_tools.system_info.output_format.json.class%"
+        tags:
+            - { name: "support_tools.system_info.output_format", identifier: "json" }

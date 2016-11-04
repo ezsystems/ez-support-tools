@@ -9,6 +9,7 @@
 namespace EzSystems\EzSupportToolsBundle;
 
 use EzSystems\EzSupportToolsBundle\DependencyInjection\Compiler\SystemInfoCollectorPass;
+use EzSystems\EzSupportToolsBundle\DependencyInjection\Compiler\SystemInfoOutputFormatPass;
 use EzSystems\EzSupportToolsBundle\DependencyInjection\Compiler\ViewBuilderPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -19,6 +20,7 @@ class EzSystemsEzSupportToolsBundle extends Bundle
     {
         parent::build($container);
         $container->addCompilerPass(new SystemInfoCollectorPass());
+        $container->addCompilerPass(new SystemInfoOutputFormatPass());
         $container->addCompilerPass(new ViewBuilderPass());
     }
 }

@@ -10,6 +10,7 @@ namespace EzSystems\EzSupportToolsBundle\Command;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry;
+use EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormatRegistry;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -25,9 +26,17 @@ class SystemInfoDumpCommand extends ContainerAwareCommand
      */
     private $registry;
 
-    public function __construct(SystemInfoCollectorRegistry $registry)
+    /**
+     * Output format registry.
+     *
+     * @var \EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormatRegistry
+     */
+    private $outputFormatRegistry;
+
+    public function __construct(SystemInfoCollectorRegistry $registry, OutputFormatRegistry $outputFormatRegistry)
     {
         $this->registry = $registry;
+        $this->outputFormatRegistry = $outputFormatRegistry;
 
         parent::__construct();
     }
@@ -52,6 +61,12 @@ EOD
                 InputOption::VALUE_NONE,
                 'List all available information collectors, and exit.'
             )
+            ->addOption(
+                'format',
+                'json',
+                InputOption::VALUE_OPTIONAL,
+                'Output format (currently only JSON)'
+            )
             ->addArgument(
                 'info-collectors',
                 InputArgument::IS_ARRAY,
@@ -66,43 +81,34 @@ EOD
      * @param $input InputInterface
      * @param $output OutputInterface
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        if ($input->getOption('list-info-collectors')) {
-            $output->writeln('Available info collectors:', true);
-            foreach ($this->registry->getIdentifiers() as $identifier) {
-                $output->writeln("  $identifier", true);
-            }
-        } else if ($identifiers = $input->getArgument('info-collectors')) {
-            foreach ($identifiers as $identifier) {
-                $this->outputInfo(
-                    $this->registry->getItem($identifier),
-                    $output
-                );
-            }
-        } else {
-            foreach ($this->registry->getIdentifiers() as $identifier) {
-                $this->outputInfo($this->registry->getItem($identifier), $output);
-            }
-        }
-    }
+     protected function execute(InputInterface $input, OutputInterface $output)
+     {
+         if ($input->getOption('list-info-collectors')) {
+             $output->writeln('Available info collectors:', true);
+             foreach ($this->registry->getIdentifiers() as $identifier) {
+                 $output->writeln("  $identifier", true);
+             }
+         } else {
+             if ($input->getArgument('info-collectors')) {
+                 $identifiers = $input->getArgument('info-collectors');
+             } else {
+                 $identifiers = $this->registry->getIdentifiers();
+             }
 
-    /**
-     * Output info collected by the given collector.
-     *
-     * @param $infoCollector SystemInfoCollector
-     * @param $output OutputInterface
-     */
-    private function outputInfo(SystemInfoCollector $infoCollector, OutputInterface $output)
-    {
-        $infoValue = $infoCollector->collect();
+             $outputFormatter = $this->outputFormatRegistry->getItem(
+                $input->getOption('format')
+             );
 
-        $outputArray = [];
-        // attributes() is deprecated, and getProperties() is protected. TODO add a toArray() or similar.
-        foreach ($infoValue->attributes() as $property) {
-            $outputArray[$property] = $infoValue->$property;
-        }
+             // Collect info for the given identifiers.
+             $collectedInfoArray = [];
+             foreach ($identifiers as $identifier) {
+                 $collectedInfoArray[$identifier] = $this->registry->getItem($identifier)->collect();
+             }
 
-        $output->writeln(var_export($outputArray, true));
-    }
+             $output->writeln(
+                 $outputFormatter->format($collectedInfoArray)
+             );
+         }
+     }
+
 }
