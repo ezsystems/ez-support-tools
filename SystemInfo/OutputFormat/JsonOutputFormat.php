@@ -11,7 +11,7 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormat;
 use EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormat as SystemInfoOutputFormat;
 
 /**
- * Collects hardware system information using zetacomponents/sysinfo.
+ * Implements the JSON output format.
  */
 class JsonOutputFormat implements SystemInfoOutputFormat
 {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * File containing the SystemInfoCollectorPass class.
+ * File containing the OutputFormatPass class.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -12,10 +12,10 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-class SystemInfoOutputFormatPass implements CompilerPassInterface
+class OutputFormatPass implements CompilerPassInterface
 {
     /**
-     * Registers the SystemInfoCollector into the system info collector registry.
+     * Registers the OutputFormat tagged services into the output format registry.
      *
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
@@ -25,16 +25,16 @@ class SystemInfoOutputFormatPass implements CompilerPassInterface
             return;
         }
 
-        $infoCollectorsTagged = $container->findTaggedServiceIds('support_tools.system_info.output_format');
+        $outputFormattersTagged = $container->findTaggedServiceIds('support_tools.system_info.output_format');
 
-        $infoCollectors = [];
-        foreach ($infoCollectorsTagged as $id => $tags) {
+        $outputFormatters = [];
+        foreach ($outputFormattersTagged as $id => $tags) {
             foreach ($tags as $attributes) {
-                $infoCollectors[$attributes['identifier']] = new Reference($id);
+                $outputFormatters[$attributes['identifier']] = new Reference($id);
             }
         }
 
-        $infoCollectorRegistryDef = $container->findDefinition('support_tools.system_info.output_registry');
-        $infoCollectorRegistryDef->setArguments([$infoCollectors]);
+        $outputFormatRegistryDef = $container->findDefinition('support_tools.system_info.output_registry');
+        $outputFormatRegistryDef->setArguments([$outputFormatters]);
     }
 }

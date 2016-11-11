@@ -63,9 +63,10 @@ EOD
             )
             ->addOption(
                 'format',
-                'json',
+                'f',
                 InputOption::VALUE_OPTIONAL,
-                'Output format (currently only JSON)'
+                'Output format (currently only JSON)',
+                'json'
             )
             ->addArgument(
                 'info-collectors',
