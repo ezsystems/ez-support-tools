@@ -30,7 +30,7 @@ class OutputFormatPass implements CompilerPassInterface
         $outputFormatters = [];
         foreach ($outputFormattersTagged as $id => $tags) {
             foreach ($tags as $attributes) {
-                $outputFormatters[$attributes['identifier']] = new Reference($id);
+                $outputFormatters[$attributes['format']] = new Reference($id);
             }
         }
 

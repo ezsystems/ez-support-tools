@@ -75,4 +75,4 @@ services:
     support_tools.system_info.output_format.json:
         class: "%support_tools.system_info.output_format.json.class%"
         tags:
-            - { name: "support_tools.system_info.output_format", identifier: "json" }
+            - { name: "support_tools.system_info.output_format", format: "json" }
