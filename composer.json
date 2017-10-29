@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "ezsystems/ezpublish-kernel": "^6.2",
+        "ezsystems/ezpublish-kernel": "^6.2 || ^7.0",
         "ocramius/proxy-manager": "~1.0|~2.0",
         "symfony/proxy-manager-bridge": "*",
         "zetacomponents/system-information": "^1.1"
