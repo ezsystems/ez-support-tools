@@ -41,7 +41,7 @@ class OutputFormatRegistry
             return $this->registry[$identifier];
         }
 
-        throw new NotFoundException("A SystemInfo output format could not be found.", $identifier);
+        throw new NotFoundException('A SystemInfo output format could not be found.', $identifier);
     }
 
     /**

@@ -26,7 +26,7 @@ class EzcSystemInfoWrapper
     /** @var string */
     public $fileSystemType;
 
-    /** @var integer */
+    /** @var int */
     public $cpuCount;
 
     /** @var string */
@@ -35,7 +35,7 @@ class EzcSystemInfoWrapper
     /** @var float */
     public $cpuSpeed;
 
-    /** @var integer */
+    /** @var int */
     public $memorySize;
 
     /** @var string */
@@ -57,7 +57,7 @@ class EzcSystemInfoWrapper
     {
         try {
             $ezcSystemInfo = ezcSystemInfo::getInstance();
-        } catch(ezcSystemInfoReaderCantScanOSException $e) {
+        } catch (ezcSystemInfoReaderCantScanOSException $e) {
             // Leave properties as null: https://github.com/zetacomponents/SystemInformation/pull/9
             return;
         }

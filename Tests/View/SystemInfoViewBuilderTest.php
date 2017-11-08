@@ -4,8 +4,6 @@
  */
 namespace EzSystems\EzSupportToolsBundle\Tests\View;
 
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry;
 use EzSystems\EzSupportToolsBundle\View\SystemInfoViewBuilder;
 
 class SystemInfoViewBuilderTest extends \PHPUnit_Framework_TestCase

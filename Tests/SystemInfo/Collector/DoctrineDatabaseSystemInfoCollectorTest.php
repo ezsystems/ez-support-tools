@@ -8,8 +8,6 @@
  */
 namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Collector;
 
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Platforms\MySqlPlatform;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\DoctrineDatabaseSystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\DatabaseSystemInfo;
 use PHPUnit_Framework_TestCase;

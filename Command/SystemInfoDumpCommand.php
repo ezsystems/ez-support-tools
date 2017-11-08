@@ -8,7 +8,6 @@
  */
 namespace EzSystems\EzSupportToolsBundle\Command;
 
-use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry;
 use EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormatRegistry;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -82,35 +81,35 @@ EOD
      * @param $input InputInterface
      * @param $output OutputInterface
      */
-     protected function execute(InputInterface $input, OutputInterface $output)
-     {
-         if ($input->getOption('list-info-collectors')) {
-             $output->writeln('Available info collectors:', true);
-             foreach ($this->systemInfoCollectorRegistry->getIdentifiers() as $identifier) {
-                 $output->writeln("  $identifier", true);
-             }
-             return;
-         }
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        if ($input->getOption('list-info-collectors')) {
+            $output->writeln('Available info collectors:', true);
+            foreach ($this->systemInfoCollectorRegistry->getIdentifiers() as $identifier) {
+                $output->writeln("  $identifier", true);
+            }
 
-         $outputFormatter = $this->outputFormatRegistry->getItem(
+            return;
+        }
+
+        $outputFormatter = $this->outputFormatRegistry->getItem(
             $input->getOption('format')
          );
 
-         if ($input->getArgument('info-collectors')) {
-             $identifiers = $input->getArgument('info-collectors');
-         } else {
-             $identifiers = $this->systemInfoCollectorRegistry->getIdentifiers();
-         }
+        if ($input->getArgument('info-collectors')) {
+            $identifiers = $input->getArgument('info-collectors');
+        } else {
+            $identifiers = $this->systemInfoCollectorRegistry->getIdentifiers();
+        }
 
-         // Collect info for the given identifiers.
-         $collectedInfoArray = [];
-         foreach ($identifiers as $identifier) {
-             $collectedInfoArray[$identifier] = $this->systemInfoCollectorRegistry->getItem($identifier)->collect();
-         }
+        // Collect info for the given identifiers.
+        $collectedInfoArray = [];
+        foreach ($identifiers as $identifier) {
+            $collectedInfoArray[$identifier] = $this->systemInfoCollectorRegistry->getItem($identifier)->collect();
+        }
 
-         $output->writeln(
+        $output->writeln(
              $outputFormatter->format($collectedInfoArray)
          );
-     }
-
+    }
 }

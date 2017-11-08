@@ -6,7 +6,6 @@ namespace EzSystems\EzSupportToolsBundle\View;
 
 use eZ\Publish\Core\MVC\Symfony\View\Builder\ViewBuilder;
 use eZ\Publish\Core\MVC\Symfony\View\Configurator;
-use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry;
 
 class SystemInfoViewBuilder implements ViewBuilder

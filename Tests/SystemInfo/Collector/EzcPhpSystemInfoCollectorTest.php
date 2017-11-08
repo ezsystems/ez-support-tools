@@ -30,16 +30,19 @@ class EzcPhpSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
             ->getMockBuilder('EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper')
             ->disableOriginalConstructor()
             ->getMock();
-        $this->ezcSystemInfoMock->phpVersion = phpversion();
+        $this->ezcSystemInfoMock->phpVersion = PHP_VERSION;
 
         $this->ezcSystemInfoMock->phpAccelerator = $this
             ->getMockBuilder('ezcSystemInfoAccelerator')
-            ->setConstructorArgs([
-                'Zend OPcache',
-                'http://www.php.net/opcache',
-                true,
-                false,
-                '7.0.4-devFE'])
+            ->setConstructorArgs(
+                [
+                    'Zend OPcache',
+                    'http://www.php.net/opcache',
+                    true,
+                    false,
+                    '7.0.4-devFE',
+                ]
+            )
             ->getMock();
 
         $this->ezcPhpCollector = new EzcPhpSystemInfoCollector($this->ezcSystemInfoMock);

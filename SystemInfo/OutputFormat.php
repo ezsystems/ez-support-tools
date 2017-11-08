@@ -11,7 +11,7 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo;
 interface OutputFormat
 {
     /**
-     * Format an array of collected information data, and return it as string
+     * Format an array of collected information data, and return it as string.
      *
      * @param array $collectedInfo
      * @return string

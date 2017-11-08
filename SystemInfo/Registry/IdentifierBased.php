@@ -42,7 +42,7 @@ class IdentifierBased implements SystemInfoCollectorRegistry
             return $this->registry[$identifier];
         }
 
-        throw new NotFoundException("A SystemInfo collector could not be found.", $identifier);
+        throw new NotFoundException('A SystemInfo collector could not be found.', $identifier);
     }
 
     /**

@@ -33,7 +33,7 @@ class DoctrineDatabaseSystemInfoCollector implements SystemInfoCollector
      *  - type
      *  - name
      *  - host
-     *  - username
+     *  - username.
      *
      * @return Value\DatabaseSystemInfo
      */
