@@ -5,6 +5,7 @@ matrix:
         - php: 5.6
         - php: 7.0
         - php: 7.1
+          env: CHECK_CS=true
 
 # test only master (+ Pull requests)
 branches:
@@ -19,7 +20,9 @@ before_script:
     - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
     - travis_retry composer install --prefer-dist --no-interaction
 
-script: php bin/phpunit --coverage-text
+script:
+    - php bin/phpunit --coverage-text
+    - if [ "$CHECK_CS" == "true" ]; then bin/php-cs-fixer fix -v --dry-run --diff --show-progress=estimating; fi
 
 notifications:
     email: false
