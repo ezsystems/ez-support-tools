@@ -18,11 +18,12 @@ before_script:
     - travis_retry composer selfupdate
     # Avoid memory issues on composer install
     - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+    # Install packages
     - travis_retry composer install --prefer-dist --no-interaction
 
 script:
     - php bin/phpunit --coverage-text
-    - if [ "$CHECK_CS" == "true" ]; then bin/php-cs-fixer fix -v --dry-run --diff --show-progress=estimating; fi
+    - if [ "$CHECK_CS" == "true" ]; then phpenv config-rm xdebug.ini && bin/php-cs-fixer fix -v --dry-run --diff --show-progress=estimating; fi
 
 notifications:
     email: false
