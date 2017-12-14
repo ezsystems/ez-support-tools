@@ -58,9 +58,9 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
             $packages[$packageData['name']] = new Value\ComposerPackage([
                 'name' => $packageData['name'],
                 'version' => $packageData['version'],
-                'dateTime' => new \DateTime($packageData['time']),
+                'dateTime' => isset($packageData['time']) ? new \DateTime($packageData['time']) : null,
                 'homepage' => isset($packageData['homepage']) ? $packageData['homepage'] : '',
-                'reference' => $packageData['source']['reference'],
+                'reference' => isset($packageData['source']) ? $packageData['source']['reference'] : null,
             ]);
 
             if (isset($lockData['stability-flags'][$packageData['name']])) {
