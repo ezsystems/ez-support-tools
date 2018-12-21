@@ -1,0 +1,100 @@
+{% trans_default_domain 'dashboard' %}
+
+{# The messages here are on purpose not translated as some (+ additional) are inteded to be retrived from updates.ez.no in the future #}
+
+{% set badge = "" %}
+{% set status %}
+    {% if not ez.release %}
+        <div class="alert alert-warning" role="alert">
+            🤷 Could not find your <code>composer.lock</code> file, it's needed in order to determine information about
+            your eZ install, and recommended to be kept on project development to make sure same package versions are used across all enviroments.
+        </div>
+    {% elseif not ez.debug and ez.stability != 'stable'  %}
+        <div class="alert alert-warning" role="alert">
+            💁 Your setup is running with unstable packages.
+            {% if ez.isEnterpise %}
+                This is not supported unless told otherwise, if you need assistance <a href="https://support.ez.no">get in touch</a>.
+            {% else  %}
+                This is not recommended, unless for testing updates.
+            {% endif %}
+        </div>
+    {% elseif ez.isTrial %}
+        {% if ez.isEndOfLife %}
+            {% set badge = '<span class="badge badge-pill badge-danger">Trial</span>' %}
+            <div class="alert alert-danger" role="alert">
+                ⚠️ Unfortunately your trial has expired and your <a target="_blank" href="https://ez.no/About-our-Software/Licenses-and-agreements/eZ-Trial-and-Test-License-Agreement-eZ-TTL-v2.1">TTL license</a>
+                is no longer valid. Check <a target="_blank" href="https://doc.ezplatform.com/en/{{ ez.release }}/getting_started/install_ez_enterprise/">online doc</a>
+                and <a target="_blank" href="https://ez.no/About-eZ/Contact-Us">contact eZ</a> to setup a subscription.
+            </div>
+        {% elseif ez.isEndOfMaintenance %}
+            {% set badge = '<span class="badge badge-pill badge-warning">Trial</span>' %}
+            <div class="alert alert-warning" role="alert">
+                💁 Your trial period is comming to an end. Check <a target="_blank" href="https://doc.ezplatform.com/en/{{ ez.release }}/getting_started/install_ez_enterprise/">online doc</a> on how to change,
+                and <a target="_blank" href="https://ez.no/About-eZ/Contact-Us">contact eZ or it's partners</a> in order to get a subscription.
+            </div>
+        {% else %}
+            {% set badge = '<span class="badge badge-pill badge-info">Trial</span>' %}
+            <div class="alert alert-info" role="alert">
+                🚀 Welcome to {{ ez.name }}, check <a target="_blank" href="https://doc.ezplatform.com">online doc</a>
+                and contact <a target="_blank" href="https://ez.no/About-eZ/Contact-Us">eZ</a> for <a target="_blank" href="https://ez.no/Services/Consulting">Consulting</a>
+                or <a target="_blank" href="https://ez.no/Services/Training">Training</a> in order to get the most out of your trial.
+            </div>
+        {% endif %}
+    {% elseif not ez.isEnterpise %}
+        {# Want to edit these messages? If you are on GPL like any other modications make sure to share your modifcations(/exensions).
+           But to make sure everyone benefits please consider contributing it to ezsystems/ez-support-tools  #}
+        {% if ez.isEndOfMaintenance %}
+            {# In the future with retrival of info from updates.ez.no we can detect missing security fixes and make error for that when public #}
+            {% set badge = '<span class="badge badge-pill badge-warning">GPL</span>' %}
+            <div class="alert alert-warning" role="alert">
+                ⚠️ Unfortunately {{ ez.release }} open source version has reached end of life, <a target="_blank" href="https://doc.ezplatform.com/en/latest/releases/updating_ez_platform/">please upgrade</a>.
+
+                {# Display some options on what might give value when dealing with upgrades #}
+                <em>
+                {% set rand = random(3) %}
+                {% if rand == 0 %}
+                    If you are in need of assistance, eZ Services like <a target="_blank" href="https://ez.no/Services/Consulting">Consulting</a>
+                    and <a target="_blank" href="https://ez.no/Services/Training">Training</a> helps you get the most out your install.
+                {% elseif rand == 1 %}
+                    To simplify the work involved in upgrading, <a target="_blank" href="https://ez.no/Products/eZ-Platform-Cloud">eZ Platform Cloud</a> might be a good option.
+                {% elseif rand == 2 %}
+                    Wondering about adding commerce capabilities while upgrading? <a target="_blank" href="https://ez.no/Products/eZ-Commerce">eZ Commerce</a> could be what you need.
+                {% else %}
+                    If you upgrade to eZ Platform Enterprise you'll get access to:
+                    <a target="_blank" href="https://ez.no/About-our-Software/Licenses-and-agreements">A business friendly license</a>,
+                    <a target="_blank" href="https://ez.no/Products/eZ-Platform-Enterprise-Edition">several productivity features</a>,
+                    <a target="_blank" href="https://ez.no/Services/Support-Maintenance">professional Support</a> and
+                    <a target="_blank" href="https://support.ez.no/Public/Service-Life">longer maintenance of your release</a>.
+                {% endif %}
+                </em>
+            </div>
+        {% else  %}
+            {% set badge = '<span class="badge badge-pill badge-light">GPL</span>' %}
+            <div class="alert alert-info" role="alert">
+                🚀 Welcome to the open source {{ ez.release }} release. Using the community friendly
+                <a target="_blank" href="https://ez.no/About-our-Software/Licenses-and-agreements">GPL</a> license,
+                <a target="_blank" href="https://www.gnu.org/licenses/old-licenses/gpl-2.0-faq.en.html#GPLModuleLicense">sharing code</a>
+                is what it's ❤️ about.
+            </div>
+        {% endif %}
+    {% elseif ez.isEndOfLife %}
+        {# As we don't yet here know if subscription has expired this is a warning and not a error (subscription expiry on BUL would be a license violation, so similar like on TTL) #}
+        <div class="alert alert-warning" role="alert">
+            ⚠️ Unfortunately {{ ez.release }} has reached <a href="https://support.ez.no/Public/Service-Life">end of life</a>,
+            please plan to upgrade. If you are in need of assistance, don't hesitate to <a href="https://support.ez.no">get in touch</a>.
+        </div>
+    {% endif %}
+{% endset %}
+
+
+
+<div class="mb-4">
+    <br>
+    <h2 class="mb-3">
+        {{ ez.name }}&nbsp;
+        {{ ez.release }}{% if ez.stability != 'stable' %}{{ ez.release ? '-' : '' }}{{ ez.stability }}{% endif %}
+        {{ badge|raw }}
+    </h2>
+
+    {{ status|raw }}
+</div>

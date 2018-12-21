@@ -21,7 +21,7 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
      *
      * Needed as long as we don't want to depend on Composer.
      */
-    private $stabilities = [
+    CONST STABILITIES = [
         0 => 'stable',
         5 => 'RC',
         10 => 'beta',
@@ -81,8 +81,8 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
             if (isset($lockData['stability-flags'][$package->name])) {
                 $stabilityFlag = (int)$lockData['stability-flags'][$package->name];
 
-                if (isset($this->stabilities[$stabilityFlag])) {
-                    $package->stability = $this->stabilities[$stabilityFlag];
+                if (isset(self::STABILITIES[$stabilityFlag])) {
+                    $package->stability = self::STABILITIES[$stabilityFlag];
                 }
             }
 
