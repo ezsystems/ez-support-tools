@@ -34,6 +34,11 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
      */
     private $lockFile;
 
+    /**
+     * @var Value\ComposerSystemInfo The collected value, cached in case info is collected by other collectors.
+     */
+    private $value;
+
     public function __construct($lockFile)
     {
         $this->lockFile = $lockFile;
@@ -48,6 +53,10 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
      */
     public function collect()
     {
+        if ($this->value) {
+            return $this->value;
+        }
+
         if (!file_exists($this->lockFile)) {
             throw new Exception\ComposerLockFileNotFoundException($this->lockFile);
         }
@@ -90,7 +99,7 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
 
         ksort($packages, SORT_FLAG_CASE | SORT_STRING);
 
-        return new Value\ComposerSystemInfo([
+        return $this->value = new Value\ComposerSystemInfo([
             'packages' => $packages,
             'minimumStability' => isset($lockData['minimum-stability']) ? $lockData['minimum-stability'] : null,
         ]);
