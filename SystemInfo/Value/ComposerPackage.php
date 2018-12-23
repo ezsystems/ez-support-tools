@@ -25,13 +25,44 @@ class ComposerPackage extends ValueObject implements SystemInfo
     public $name;
 
     /**
-     * Version.
+     * Tag or Branch.
      *
-     * Example: v2.7.10
+     * Examples: v2.7.10, dev-master
+     *
+     * @var string
+     */
+    public $branch;
+
+    /**
+     * Alias.
+     *
+     * Examples: v2.7.x-dev
+     *
+     * @var string|null
+     */
+    public $alias = null;
+
+    /**
+     * Normilized version number.
+     *
+     * Uses root-alias or package-aliases if present to try to provide a version number even on branches.
+     *
+     * Examples: 2.7.10, 2.8.x
      *
      * @var string
      */
     public $version;
+
+    /**
+     * License string.
+     *
+     * Only contains the first license on the package, if set.
+     *
+     * Examples: 'TTL-2.0', 'GPL-2.0-only'
+     *
+     * @var string|null
+     */
+    public $license = null;
 
     /**
      * Stability.
