@@ -7,7 +7,7 @@
     {% if not ez.release %}
         <div class="alert alert-warning" role="alert">
             🤷 Could not find your <code>composer.lock</code> file, it's needed in order to determine information about
-            your eZ install, and recommended to be kept on project development to make sure same package versions are used across all enviroments.
+             your eZ install, and recommended to be kept on project development to make sure same package versions are used across all environments.
         </div>
     {% elseif not ez.debug and ez.stability != 'stable'  %}
         <div class="alert alert-warning" role="alert">
