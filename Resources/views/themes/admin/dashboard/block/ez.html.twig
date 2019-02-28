@@ -9,13 +9,13 @@
 {% set badge = "" %}
 {% set severity = 0 %}
 {% set levels = {0: "info", 1: "warning", 2: "danger"} %}
-{% set icons = {0: "", 1: "&#9888;", 2: "&#9873;"} %}
+{% set icons = {0: "", 1: "&#9888;", 2: "&#9888;"} %}
 {% set status %}
 {% spaceless %}
     {% if not ez.release %}
         {% set severity = 1 %}
         <div class="alert alert-warning collapse" role="alert" id="systemInfoCollapse">
-            Could not find your <code>composer.lock</code> file, it's needed in order to determine information about
+            The system could not find your <code>composer.lock</code> file, it's needed in order to determine information about
             your eZ install, and recommended to be kept on project development to make sure same package versions are used across all environments.
         </div>
     {% elseif ez.isTrial %}
@@ -23,22 +23,23 @@
         {% if ez.isEndOfLife %}
             {% set severity = 2 %}
             <div class="alert alert-danger collapse" role="alert" id="systemInfoCollapse">
-                Unfortunately your trial has expired and your <a target="_blank" href="https://ez.no/About-our-Software/Licenses-and-agreements/eZ-Trial-and-Test-License-Agreement-eZ-TTL-v2.1">TTL license</a>
-                is no longer valid. Check <a target="_blank" href="https://doc.ezplatform.com/en/{{ ez.release }}/getting_started/install_ez_enterprise/">online doc</a>
-                and <a target="_blank" href="https://ez.no/About-eZ/Contact-Us">contact eZ</a> to set up a subscription.
+                Unfortunately your trial period has expired and your <a target="_blank" href="https://ez.no/About-our-Software/Licenses-and-agreements/eZ-Trial-and-Test-License-Agreement-eZ-TTL-v2.1">TTL license</a>
+                is no longer valid. <a target="_blank" href="https://ez.no/About-eZ/Contact-Us">Contact eZ or its partner(s)</a>
+                to purchase a subscription and follow the <a target="_blank" href="https://doc.ezplatform.com/en/{{ ez.release }}/getting_started/install_ez_enterprise/">online documentation</a>
+                to configure your project.
             </div>
         {% elseif ez.isEndOfMaintenance %}
             {% set severity = 1 %}
             <div class="alert alert-warning collapse" role="alert" id="systemInfoCollapse">
-                 Your trial period is coming to an end. Check <a target="_blank" href="https://doc.ezplatform.com/en/{{ ez.release }}/getting_started/install_ez_enterprise/">online doc</a> on how to change,
-                 and <a target="_blank" href="https://ez.no/About-eZ/Contact-Us">contact eZ or its partners</a> in order to get a subscription.
+                Your trial period is coming to an end. <a target="_blank" href="https://ez.no/About-eZ/Contact-Us">Contact eZ or its partner(s)</a>
+                to purchase a subscription and follow the <a target="_blank" href="https://doc.ezplatform.com/en/{{ ez.release }}/getting_started/install_ez_enterprise/">online documentation</a> to configure your project.
             </div>
         {% else %}
             {% set severity = 0 %}
             <div class="alert alert-info collapse" role="alert" id="systemInfoCollapse">
-                Welcome to {{ ez.name }}, check <a target="_blank" href="https://doc.ezplatform.com">online doc</a>,
-                and contact <a target="_blank" href="https://ez.no/About-eZ/Contact-Us">eZ</a> for <a target="_blank" href="https://ez.no/Services/Consulting">Consulting</a>
-                or <a target="_blank" href="https://ez.no/Services/Training">Training</a> in order to get the most out of your trial.
+                Welcome to {{ ez.name }}, check our <a target="_blank" href="https://doc.ezplatform.com">online documentation</a>,
+                and <a target="_blank" href="https://ez.no/About-eZ/Contact-Us">Contact eZ</a> for <a target="_blank" href="https://ez.no/Services/Consulting">consulting service</a>
+                or <a target="_blank" href="https://ez.no/Services/Training">trainings</a> in order to get the most out of your trial.
             </div>
         {% endif %}
     {% elseif not ez.isEnterpise %}
@@ -60,7 +61,7 @@
             {% set severity = 0 %}
             <div class="alert alert-info collapse" role="alert" id="systemInfoCollapse">
                 Welcome to the open source {{ ez.release }} release. Using the community friendly
-                <a target="_blank" href="https://ez.no/About-our-Software/Licenses-and-agreements">GPL</a> license,
+                <a target="_blank" href="https://ez.no/About-our-Software/Licenses-and-agreements">GPL license</a>,
                 <a target="_blank" href="https://www.gnu.org/licenses/old-licenses/gpl-2.0-faq.en.html#GPLModuleLicense">sharing your code</a>
                 is what it's all about.
             </div>
@@ -70,16 +71,16 @@
         {% set severity = 1 %}
         {% set badge = 'End of Life' %}
         <div class="alert alert-warning collapse" role="alert" id="systemInfoCollapse">
-            Unfortunately {{ ez.release }} has reached <a href="https://support.ez.no/Public/Service-Life">end of life</a>,
-            please upgrade. If you are in need of assistance, don't hesitate to <a href="https://support.ez.no">get in touch</a>.
+            Unfortunately {{ ez.release }} has reached <a target="_blank" href="https://support.ez.no/Public/Service-Life">end of life</a>,
+            please plan to upgrade. If you need assistance, don't hesitate to <a target="_blank" href="https://ez.no/About-eZ/Contact-Us">contact eZ</a>.
         </div>
     {% elseif not ez.debug and ez.stability != 'stable'  %}
         {% set severity = 1 %}
         {% set badge = 'Development' %}
         <div class="alert alert-warning collapse" role="alert" id="systemInfoCollapse">
-            Your setup is running with unstable packages, his is not recommended besides testing updates.
+            Your setup is running with unstable packages, this is not recommended besides when testing updates.
             {% if ez.isEnterpise %}
-                if you need assistance <a href="https://support.ez.no">get in touch</a>.
+                If you need assistance <a target="_blank" href="https://support.ez.no">get in touch with us</a>.
             {% endif %}
         </div>
     {% endif %}
@@ -94,7 +95,7 @@
         {{ ez.name }}&nbsp;
         {{ ez.release }}{% if ez.stability != 'stable' %}{{ ez.release ? '-' : '' }}{{ ez.stability }}{% endif %}
         {% if status %}
-          <a class="badge badge-pill badge-{{ levels[severity] }}" data-toggle="collapse" href="#systemInfoCollapse">{{ icons[severity]|raw }} {{ badge }}</a>
+          <a class="badge badge-{{ levels[severity] }}" data-toggle="collapse" href="#systemInfoCollapse">{{ icons[severity]|raw }} {{ badge }}</a>
         {% endif %}
     </h2>
 
