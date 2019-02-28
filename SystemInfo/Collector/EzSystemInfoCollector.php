@@ -11,6 +11,7 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
+use DateTime;
 
 /**
  * Collects information about the eZ installation.
@@ -28,7 +29,7 @@ class EzSystemInfoCollector implements SystemInfoCollector
     /**
      * Estimated release dates for given releases.
      *
-     * Mainly for usage for $isFreshRelease flag, for first 14 days.
+     * Mainly for usage for trail to calculate TTL expiry.
      */
     const RELEASES = [
         '2.0' => '2017-12-20T23:59:59+00:00',
@@ -37,6 +38,8 @@ class EzSystemInfoCollector implements SystemInfoCollector
         '2.3' => '2018-09-20T23:59:59+00:00',
         '2.4' => '2018-12-20T23:59:59+00:00',
         '2.5' => '2019-03-20T23:59:59+00:00',// Estimate at time of writing
+        '3.0' => '2019-06-20T23:59:59+00:00',// Estimate at time of writing
+        '3.1' => '2019-09-20T23:59:59+00:00',// Estimate at time of writing
     ];
 
     /**
@@ -59,6 +62,8 @@ class EzSystemInfoCollector implements SystemInfoCollector
         '2.3' => '2018-12-20T23:59:59+00:00',
         '2.4' => '2019-03-20T23:59:59+00:00',
         '2.5' => '2022-03-20T23:59:59+00:00',// Estimate at time of writing
+        '3.0' => '2019-09-20T23:59:59+00:00',// Estimate at time of writing
+        '3.1' => '2019-12-20T23:59:59+00:00',// Estimate at time of writing
     ];
 
     /**
@@ -74,11 +79,13 @@ class EzSystemInfoCollector implements SystemInfoCollector
         '2.2' => '2019-03-20T23:59:59+00:00',// Extended
         '2.3' => '2019-03-20T23:59:59+00:00',
         '2.4' => '2019-06-20T23:59:59+00:00',
-        '2.5' => '2023-03-20T23:59:59+00:00',// Estimate at time of writing
+        '2.5' => '2024-03-20T23:59:59+00:00',// Estimate at time of writing
+        '3.0' => '2019-12-20T23:59:59+00:00',// Estimate at time of writing
+        '3.1' => '2020-03-20T23:59:59+00:00',// Estimate at time of writing
     ];
 
     /**
-     * Vendors we watch for stability and more.
+     * Vendors we watch for stability (and potentially more).
      */
     const PACKAGE_WATCH_REGEX = '/^(doctrine|ezsystems|silversolutions|symfony)\//';
 
@@ -148,15 +155,21 @@ class EzSystemInfoCollector implements SystemInfoCollector
             $ez->name = 'eZ Commerce';
         }
 
-        if (isset(self::EOM[$ez->release])) {
-            $ez->isEndOfMaintenance = strtotime(self::EOM[$ez->release]) < time();
-        }
+        if ($ez->isTrial && isset(self::RELEASES[$ez->release])) {
+            $months = (new DateTime(self::RELEASES[$ez->release]))->diff(new DateTime())->m;
+            $ez->isEndOfMaintenance = $months > 3;
+            $ez->isEndOfLife = $months > 6;
+        } else {
+            if (isset(self::EOM[$ez->release])) {
+                $ez->isEndOfMaintenance = strtotime(self::EOM[$ez->release]) < time();
+            }
 
-        if (isset(self::EOL[$ez->release])) {
-            if (!$ez->isEnterpise) {
-                $ez->isEndOfLife = $ez->isEndOfMaintenance;
-            } else {
-                $ez->isEndOfLife = strtotime(self::EOL[$ez->release]) < time();
+            if (isset(self::EOL[$ez->release])) {
+                if (!$ez->isEnterpise) {
+                    $ez->isEndOfLife = $ez->isEndOfMaintenance;
+                } else {
+                    $ez->isEndOfLife = strtotime(self::EOL[$ez->release]) < time();
+                }
             }
         }
 
