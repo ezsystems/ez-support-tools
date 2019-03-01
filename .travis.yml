@@ -17,7 +17,7 @@ matrix:
         - php: 7.2
         - php: 7.3
 
-# test only master (+ Pull requests)
+# test only on matching branches (+ Pull requests)
 branches:
     only:
         - master
