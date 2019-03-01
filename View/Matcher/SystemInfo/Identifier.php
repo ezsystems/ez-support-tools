@@ -48,7 +48,7 @@ class Identifier implements ViewMatcherInterface
 
     private function toIdentifier($object)
     {
-        $className = get_class($object);
+        $className = \get_class($object);
         $className = substr($className, strrpos($className, '\\') + 1);
         $className = str_replace('SystemInfo', '', $className);
 
