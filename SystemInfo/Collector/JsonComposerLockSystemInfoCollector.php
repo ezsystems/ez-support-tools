@@ -68,6 +68,8 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
             $rootAliases[$alias['package']] = $alias['alias'];
         }
 
+        // For PHP 5.6, add variable locally to be able to use isset() on it.
+        $stabilities = self::STABILITIES;
         foreach ($lockData['packages'] as $packageData) {
             $package = new Value\ComposerPackage([
                 'name' => $packageData['name'],
@@ -81,8 +83,8 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
             if (isset($lockData['stability-flags'][$package->name])) {
                 $stabilityFlag = (int)$lockData['stability-flags'][$package->name];
 
-                if (isset(self::STABILITIES[$stabilityFlag])) {
-                    $package->stability = self::STABILITIES[$stabilityFlag];
+                if (isset($stabilities[$stabilityFlag])) {
+                    $package->stability = $stabilities[$stabilityFlag];
                 }
             }
 
