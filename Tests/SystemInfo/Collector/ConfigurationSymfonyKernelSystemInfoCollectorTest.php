@@ -10,10 +10,10 @@ namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Collector;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ConfigurationSymfonyKernelSystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\SymfonyKernelSystemInfo;
-use PHPUnit\Framework\TestCase as PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Kernel;
 
-class ConfigurationSymfonyKernelSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
+class ConfigurationSymfonyKernelSystemInfoCollectorTest extends TestCase
 {
     /**
      * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ConfigurationSymfonyKernelSystemInfoCollector::collect()

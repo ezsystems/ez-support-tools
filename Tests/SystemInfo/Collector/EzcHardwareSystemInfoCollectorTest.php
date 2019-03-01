@@ -10,9 +10,9 @@ namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Collector;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcHardwareSystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\HardwareSystemInfo;
-use PHPUnit\Framework\TestCase as PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class EzcHardwareSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
+class EzcHardwareSystemInfoCollectorTest extends TestCase
 {
     /**
      * @var \EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper|\PHPUnit_Framework_MockObject_MockObject

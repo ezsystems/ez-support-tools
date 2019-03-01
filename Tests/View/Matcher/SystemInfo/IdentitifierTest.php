@@ -8,9 +8,9 @@ use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\HardwareSystemInfo;
 use EzSystems\EzSupportToolsBundle\View\Matcher\SystemInfo\Identifier;
 use EzSystems\EzSupportToolsBundle\View\SystemInfoView;
-use PHPUnit\Framework\TestCase as PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class IdentitifierTest extends PHPUnit_Framework_TestCase
+class IdentitifierTest extends TestCase
 {
     public function testMatch()
     {

@@ -11,9 +11,9 @@ namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Collector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerPackage;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
-use PHPUnit\Framework\TestCase as PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class JsonComposerLockSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
+class JsonComposerLockSystemInfoCollectorTest extends TestCase
 {
     /**
      * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::collect()
