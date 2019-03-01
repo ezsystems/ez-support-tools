@@ -1,6 +1,6 @@
 {
     "name": "ezsystems/ez-support-tools",
-    "description": "Providing information about the system eZ Platform/Enterpise/Commerce is running on, and eZ install itself",
+    "description": "Providing information about the system eZ Platform/Enterprise/Commerce is running on, and eZ install itself",
     "license": "GPL-2.0",
     "type": "ezplatform-bundle",
     "authors": [
