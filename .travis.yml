@@ -33,7 +33,7 @@ before_script:
 
 script:
     - php vendor/bin/phpunit
-    - if [ "$CHECK_CS" = "true" ]; then bin/php-cs-fixer fix -v --dry-run --diff --show-progress=estimating; fi
+    - if [ "$CHECK_CS" = "true" ]; then vendor/bin/php-cs-fixer fix -v --dry-run --diff --show-progress=estimating; fi
 
 notifications:
     email: false
