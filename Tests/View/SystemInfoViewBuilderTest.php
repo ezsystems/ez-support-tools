@@ -4,9 +4,11 @@
  */
 namespace EzSystems\EzSupportToolsBundle\Tests\View;
 
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\SystemInfo;
 use EzSystems\EzSupportToolsBundle\View\SystemInfoViewBuilder;
+use PHPUnit\Framework\TestCase;
 
-class SystemInfoViewBuilderTest extends \PHPUnit_Framework_TestCase
+class SystemInfoViewBuilderTest extends TestCase
 {
     private $configuratorMock;
 
@@ -33,7 +35,7 @@ class SystemInfoViewBuilderTest extends \PHPUnit_Framework_TestCase
             $this->getRegistryMock()
         );
 
-        $systemInfo = $this->getMock('SystemInfo');
+        $systemInfo = $this->createMock(SystemInfo::class);
 
         $this->getRegistryMock()
             ->method('getItem')
@@ -55,7 +57,7 @@ class SystemInfoViewBuilderTest extends \PHPUnit_Framework_TestCase
     protected function getConfiguratorMock()
     {
         if (!isset($this->configuratorMock)) {
-            $this->configuratorMock = $this->getMock('eZ\Publish\Core\MVC\Symfony\View\Configurator');
+            $this->configuratorMock = $this->createMock('eZ\Publish\Core\MVC\Symfony\View\Configurator');
         }
 
         return $this->configuratorMock;
@@ -67,7 +69,7 @@ class SystemInfoViewBuilderTest extends \PHPUnit_Framework_TestCase
     protected function getRegistryMock()
     {
         if (!isset($this->registryMock)) {
-            $this->registryMock = $this->getMock('EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry');
+            $this->registryMock = $this->createMock('EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry');
         }
 
         return $this->registryMock;
@@ -79,7 +81,7 @@ class SystemInfoViewBuilderTest extends \PHPUnit_Framework_TestCase
     protected function getCollectorMock()
     {
         if (!isset($this->collectorMock)) {
-            $this->collectorMock = $this->getMock('EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector');
+            $this->collectorMock = $this->createMock('EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector');
         }
 
         return $this->collectorMock;

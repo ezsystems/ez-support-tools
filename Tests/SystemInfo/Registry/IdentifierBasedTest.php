@@ -9,8 +9,9 @@
 namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Registry;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Registry\IdentifierBased;
+use PHPUnit\Framework\TestCase;
 
-class IdentifierBasedTest extends \PHPUnit_Framework_TestCase
+class IdentifierBasedTest extends TestCase
 {
     /**
      * @var \EzSystems\EzSupportToolsBundle\SystemInfo\Registry\IdentifierBasedEzcPhpSystemInfoCollector
@@ -25,8 +26,8 @@ class IdentifierBasedTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->testItems = [
-            'foo' => $this->getMock('EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector'),
-            'bar' => $this->getMock('EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector'),
+            'foo' => $this->createMock('EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector'),
+            'bar' => $this->createMock('EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector'),
         ];
 
         $this->registry = new IdentifierBased();
@@ -67,7 +68,7 @@ class IdentifierBasedTest extends \PHPUnit_Framework_TestCase
         $this->registry = new IdentifierBased($this->testItems);
 
         $replaceItems = [
-            'foo' => $this->getMock('EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector'),
+            'foo' => $this->createMock('EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector'),
         ];
 
         $this->registry = new IdentifierBased($replaceItems);

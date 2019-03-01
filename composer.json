@@ -1,19 +1,23 @@
 {
     "name": "ezsystems/ez-support-tools",
-    "description": "Providing information about the system eZ Platform/Studio is running on",
+    "description": "Providing information about the system eZ Platform/Enterpise/Commerce is running on, and eZ install itself",
     "license": "GPL-2.0",
     "type": "ezplatform-bundle",
     "authors": [
         {
-            "name": "Gunnstein Lye",
-            "email": "gunnstein.lye@ez.no"
+            "name": "eZ Systems",
+            "email": "dev-team@ez.no"
         }
     ],
     "require": {
-        "ezsystems/ezpublish-kernel": "^6.2 || ^7.0",
-        "ocramius/proxy-manager": "~1.0|~2.0",
-        "symfony/proxy-manager-bridge": "*",
-        "zetacomponents/system-information": "^1.1"
+        "ezsystems/ezpublish-kernel": "~6.7.8 || ~6.13.4 || ^7.0",
+        "ocramius/proxy-manager": "~1.0 || ~2.0",
+        "symfony/proxy-manager-bridge": "^2.8.40 || ^3.4.11",
+        "zetacomponents/system-information": "^1.1.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "~2.7.5",
+        "phpunit/phpunit": "^5.7.27 || ^6.5.14"
     },
     "autoload": {
         "psr-4": {
@@ -25,14 +29,7 @@
             "dev-master": "0.2.x-dev"
         }
     },
-    "config": {
-        "bin-dir": "bin"
-    },
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "~2.7.1",
-        "phpunit/phpunit": "^4.7"
-    },
     "scripts": {
-        "fix-cs": "@php ./bin/php-cs-fixer fix -v --show-progress=estimating"
+        "fix-cs": "@php ./vendor/bin/php-cs-fixer fix -v --show-progress=estimating"
     }
 }

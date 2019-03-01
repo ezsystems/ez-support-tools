@@ -10,7 +10,7 @@ namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Collector;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcPhpSystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\PhpSystemInfo;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase as PHPUnit_Framework_TestCase;
 
 class EzcPhpSystemInfoCollectorTest extends PHPUnit_Framework_TestCase
 {

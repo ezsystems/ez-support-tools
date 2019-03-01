@@ -1,29 +1,40 @@
+dist: xenial
+sudo: required
+
 language: php
 
+cache:
+    directories:
+        - $HOME/.composer/cache/files
+
+
 matrix:
+    fast_finish: true
     include:
         - php: 5.6
         - php: 7.0
         - php: 7.1
           env: CHECK_CS=true
+        - php: 7.2
+        - php: 7.3
 
 # test only master (+ Pull requests)
 branches:
     only:
         - master
+        - /^\d.\d+$/
 
 before_script:
-    # re-enable when / if coverage is disabled for faster test runs
-    #- phpenv config-rm xdebug.ini
     - travis_retry composer selfupdate
     # Avoid memory issues on composer install
+    - phpenv config-rm xdebug.ini
     - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
     # Install packages
     - travis_retry composer install --prefer-dist --no-interaction
 
 script:
-    - php bin/phpunit --coverage-text
-    - if [ "$CHECK_CS" == "true" ]; then phpenv config-rm xdebug.ini && bin/php-cs-fixer fix -v --dry-run --diff --show-progress=estimating; fi
+    - php bin/phpunit
+    - if [ "$CHECK_CS" = "true" ]; then bin/php-cs-fixer fix -v --dry-run --diff --show-progress=estimating; fi
 
 notifications:
     email: false
