@@ -10,7 +10,6 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo;
-use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
 use DateTime;
 
 /**
@@ -37,9 +36,9 @@ class EzSystemInfoCollector implements SystemInfoCollector
         '2.2' => '2018-06-20T23:59:59+00:00',
         '2.3' => '2018-09-20T23:59:59+00:00',
         '2.4' => '2018-12-20T23:59:59+00:00',
-        '2.5' => '2019-03-20T23:59:59+00:00',// Estimate at time of writing
-        '3.0' => '2019-06-20T23:59:59+00:00',// Estimate at time of writing
-        '3.1' => '2019-09-20T23:59:59+00:00',// Estimate at time of writing
+        '2.5' => '2019-03-20T23:59:59+00:00', // Estimate at time of writing
+        '3.0' => '2019-06-20T23:59:59+00:00', // Estimate at time of writing
+        '3.1' => '2019-09-20T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
@@ -61,9 +60,9 @@ class EzSystemInfoCollector implements SystemInfoCollector
         '2.2' => '2018-09-20T23:59:59+00:00',
         '2.3' => '2018-12-20T23:59:59+00:00',
         '2.4' => '2019-03-20T23:59:59+00:00',
-        '2.5' => '2022-03-20T23:59:59+00:00',// Estimate at time of writing
-        '3.0' => '2019-09-20T23:59:59+00:00',// Estimate at time of writing
-        '3.1' => '2019-12-20T23:59:59+00:00',// Estimate at time of writing
+        '2.5' => '2022-03-20T23:59:59+00:00', // Estimate at time of writing
+        '3.0' => '2019-09-20T23:59:59+00:00', // Estimate at time of writing
+        '3.1' => '2019-12-20T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
@@ -76,12 +75,12 @@ class EzSystemInfoCollector implements SystemInfoCollector
     const EOL = [
         '2.0' => '2018-06-20T23:59:59+00:00',
         '2.1' => '2018-09-20T23:59:59+00:00',
-        '2.2' => '2019-03-20T23:59:59+00:00',// Extended
+        '2.2' => '2019-03-20T23:59:59+00:00', // Extended
         '2.3' => '2019-03-20T23:59:59+00:00',
         '2.4' => '2019-06-20T23:59:59+00:00',
-        '2.5' => '2024-03-20T23:59:59+00:00',// Estimate at time of writing
-        '3.0' => '2019-12-20T23:59:59+00:00',// Estimate at time of writing
-        '3.1' => '2020-03-20T23:59:59+00:00',// Estimate at time of writing
+        '2.5' => '2024-03-20T23:59:59+00:00', // Estimate at time of writing
+        '3.0' => '2019-12-20T23:59:59+00:00', // Estimate at time of writing
+        '3.1' => '2020-03-20T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
@@ -95,14 +94,14 @@ class EzSystemInfoCollector implements SystemInfoCollector
     const ENTERPISE_PACKAGES = [
         'ezsystems/ezplatform-page-builder',
         'ezsystems/flex-workflow',
-        'ezsystems/landing-page-fieldtype-bundle'
+        'ezsystems/landing-page-fieldtype-bundle',
     ];
 
     /**
      * Packages that identifies install as Commerce install.
      */
     const COMMERCE_PACKAGES = [
-        'silversolutions/silver.e-shop'
+        'silversolutions/silver.e-shop',
     ];
 
     /**
@@ -140,7 +139,7 @@ class EzSystemInfoCollector implements SystemInfoCollector
         // The most reliable way to get version is from kernel
         // future updates should make sure to detect when kernel version selector is wrong compare to other packages
         if (isset($this->composerInfo->packages['ezsystems/ezpublish-kernel'])) {
-            $ez->release = (string)(((float)$this->composerInfo->packages['ezsystems/ezpublish-kernel']->version) -5);
+            $ez->release = (string)(((float)$this->composerInfo->packages['ezsystems/ezpublish-kernel']->version) - 5);
         }
 
         if ($package = $this->getFirstPackage(self::ENTERPISE_PACKAGES)) {
@@ -178,7 +177,6 @@ class EzSystemInfoCollector implements SystemInfoCollector
         return $ez;
     }
 
-
     private function getStability()
     {
         $stabilityFlags = array_flip(JsonComposerLockSystemInfoCollector::STABILITIES);
@@ -190,11 +188,11 @@ class EzSystemInfoCollector implements SystemInfoCollector
 
         // Check if any of the watche packages has lower stability then root
         foreach ($this->composerInfo->packages as $name => $package) {
-            if (!preg_match(self::PACKAGE_WATCH_REGEX,$name)) {
+            if (!preg_match(self::PACKAGE_WATCH_REGEX, $name)) {
                 continue;
             }
 
-            if ($package->stability === 'stable' || $package->stability === null ) {
+            if ($package->stability === 'stable' || $package->stability === null) {
                 continue;
             }
 

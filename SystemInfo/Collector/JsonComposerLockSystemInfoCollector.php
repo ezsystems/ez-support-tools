@@ -21,7 +21,7 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
      *
      * Needed as long as we don't want to depend on Composer.
      */
-    CONST STABILITIES = [
+    const STABILITIES = [
         0 => 'stable',
         5 => 'RC',
         10 => 'beta',
