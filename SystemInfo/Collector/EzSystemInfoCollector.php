@@ -127,7 +127,7 @@ class EzSystemInfoCollector implements SystemInfoCollector
     /**
      * Collects information about the eZ distrobution and version.
      *
-     * @return Value\EzSystemInfo
+     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo
      */
     public function collect()
     {

@@ -13,6 +13,20 @@ parameters:
     support_tools.system_info.collector.php.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcPhpSystemInfoCollector
     support_tools.system_info.collector.symfony.kernel.config.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ConfigurationSymfonyKernelSystemInfoCollector
     support_tools.system_info.output_format.json.class: EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormat\JsonOutputFormat
+    support_tools.ez_url_list:
+        contact: "https://ez.no/About-eZ/Contact-Us"
+        license: "https://ez.no/About-our-Software/Licenses-and-agreements"
+        ttl: "https://ez.no/About-our-Software/Licenses-and-agreements/eZ-Trial-and-Test-License-Agreement-eZ-TTL-v2.1"
+        service_life: "https://support.ez.no/Public/Service-Life"
+        support_service: "https://ez.no/Services/Support-Maintenance"
+        training_service: "https://ez.no/Services/Training"
+        consulting_service: "https://ez.no/Services/Consulting"
+        ee_product: "https://ez.no/Products/eZ-Platform-Enterprise-Edition"
+        install_ee: "https://doc.ezplatform.com/en/#{ez.release}/getting_started/install_ez_enterprise/"
+        doc: "https://doc.ezplatform.com"
+        update: "https://doc.ezplatform.com/en/latest/releases/updating_ez_platform/"
+        gpl_faq: "https://www.gnu.org/licenses/old-licenses/gpl-2.0-faq.en.html#GPLModuleLicense"
+        support: "https://support.ez.no"
 
 services:
     support_tools.command.dump_info:
@@ -89,10 +103,11 @@ services:
             - { name: "support_tools.system_info.output_format", format: "json" }
 
     # Dashboard
-    ezplatform.adminui.dashboard.ez:
-      parent: EzSystems\EzPlatformAdminUi\Component\TwigComponent
-      arguments:
-        $template: '@@ezdesign/dashboard/block/ez.html.twig'
-        $parameters: { ez: "@=service('support_tools.system_info.collector.system.ez').collect()" }
-      tags:
-        - { name: ezplatform.admin_ui.component, group: 'dashboard-blocks', priority: 200 }
+    EzSystems\EzSupportToolsBundle\AdminUi\Component\EzInfoTwigComponent:
+        autowire: true
+        arguments:
+            $template: '@@ezdesign/dashboard/block/ez.html.twig'
+            $ezSystemInfo: "@=service('support_tools.system_info.collector.system.ez').collect()"
+            $urlList: '%support_tools.ez_url_list%'
+        tags:
+            - { name: ezplatform.admin_ui.component, group: 'dashboard-blocks', priority: 200 }

@@ -11,60 +11,42 @@
 {% set levels = {0: "info", 1: "warning", 2: "danger"} %}
 {% set icons = {0: "", 1: "&#9888;", 2: "&#9888;"} %}
 {% set status %}
-{% set urls = {
-    'contact': "https://ez.no/About-eZ/Contact-Us",
-    'license': "https://ez.no/About-our-Software/Licenses-and-agreements",
-    'ttl': "https://ez.no/About-our-Software/Licenses-and-agreements/eZ-Trial-and-Test-License-Agreement-eZ-TTL-v2.1",
-    'service_life': "https://support.ez.no/Public/Service-Life",
-    'support_service': "https://ez.no/Services/Support-Maintenance",
-    'training_service': "https://ez.no/Services/Training",
-    'consulting_service': "https://ez.no/Services/Consulting",
-    'ee_product': "https://ez.no/Products/eZ-Platform-Enterprise-Edition",
-} %}
-{% spaceless %}
+    {% spaceless %}
     {% if not ez.release %}
         {% set severity = 1 %}
         <div class="alert alert-warning collapse" role="alert" id="systemInfoCollapse">
-            {% trans %}
-                The system could not find your <code>composer.lock</code> file. It's needed to determine information about
-                your eZ install, and recommended to be kept on project development to make sure same package versions are used across all environments.
-            {% endtrans %}
+            {{ 'dashboard.ez_version.release_not_determined'|trans|desc("The system could not find your <code>composer.lock</code> file. It's needed to determine information about
+            your eZ install, and recommended to be kept on project development to make sure same package versions are used across all environments.")}}
         </div>
     {% elseif ez.isTrial %}
         {% set badge = 'Trial' %}
         {% if ez.isEndOfLife %}
             {% set severity = 2 %}
             <div class="alert alert-danger collapse" role="alert" id="systemInfoCollapse">
-                {% trans with {'%ttl_url%': urls['ttl']} %}
-                    Unfortunately your trial period has expired and your <a target="_blank" href="%ttl_url%">TTL license</a> is no longer valid.
-                {% endtrans %}
-                {% trans with {'%contact_url%': urls['contact'], '%install_ee_url%': "https://doc.ezplatform.com/en/#{ez.release}/getting_started/install_ez_enterprise/"} %}
-                    <a target="_blank" href="%contact_url%">Contact eZ or its partner(s)</a> to purchase a subscription
-                    and follow the <a target="_blank" href="%install_ee_url%">online documentation</a> to configure your project.
-                {% endtrans %}
+                {{ 'dashboard.ez_version.trial_expired'|trans({'%ttl_url%': urls['ttl']})|desc("Unfortunately your trial period has expired and your <a target=\"_blank\" href=\"%ttl_url%\">TTL license</a> is no longer valid.")|raw }}
+                {{ 'dashboard.ez_version.trial_expired_contant'|trans({'%contact_url%': urls['contact'], '%install_ee%': urls['install_ee']})|desc("<a target=\"_blank\" href=\"%contact_url%\">Contact eZ or its partner(s)</a> to purchase a subscription
+                    and follow the <a target=\"_blank\" href=\"%install_ee%\">online documentation</a> to configure your project.")|raw }}
             </div>
         {% elseif ez.isEndOfMaintenance %}
             {% set severity = 1 %}
             <div class="alert alert-warning collapse" role="alert" id="systemInfoCollapse">
-                {% trans with {'%contact_url%': urls['contact'], '%install_ee_url%': "https://doc.ezplatform.com/en/#{ez.release}/getting_started/install_ez_enterprise/"} %}
-                    Your trial period is coming to an end.
-                {% endtrans %}
-                {% trans with {'%contact_url%': urls['contact'], '%install_ee_url%': "https://doc.ezplatform.com/en/#{ez.release}/getting_started/install_ez_enterprise/"} %}
-                    <a target="_blank" href="%contact_url%">Contact eZ or its partner(s)</a> to purchase a subscription
-                    and follow the <a target="_blank" href="%install_ee_url%">online documentation</a> to configure your project.
-                {% endtrans %}
+                {{ 'dashboard.ez_version.end_of_maintenance'|trans|desc("Your trial period is coming to an end.")}}
+                {{ 'dashboard.ez_version.end_of_maintenance_contanct'|trans({'%contact_url%': urls['contact'], '%install_ee%': urls['install_ee']})
+                |desc("<a target=\"_blank\" href=\"%contact_url%\">Contact eZ or its partner(s)</a> to purchase a subscription
+                    and follow the <a target=\"_blank\" href=\"%install_ee%\">online documentation</a> to configure your project.")
+                |raw }}
             </div>
         {% else %}
             {% set severity = 0 %}
             <div class="alert alert-info collapse" role="alert" id="systemInfoCollapse">
-                {% trans with {'%name%': ez.name, '%doc_url%': 'https://doc.ezplatform.com', '%consulting_url%': urls['consulting_service'], '%training_url%': urls['training_service']} %}
-                    Welcome to %name%, check our <a target="_blank" href="%doc_url%">online documentation</a>, <a target="_blank" href="%consulting_url%">consulting</a>
-                    or <a target="_blank" href="%training_url%">training</a> services in order to get the most out of your trial.
-                {% endtrans %}
-                {% trans with {'%contact_url%': urls['contact'], '%install_ee_url%': "https://doc.ezplatform.com/en/#{ez.release}/getting_started/install_ez_enterprise/"} %}
-                    <a target="_blank" href="%contact_url%">Contact eZ or its partner(s)</a> to purchase a subscription
-                    and follow the <a target="_blank" href="%install_ee_url%">online documentation</a> to configure your project.
-                {% endtrans %}
+                {{ 'dashboard.ez_version.severity_non'|trans({'%name%': ez.name, '%doc_url%': urls['doc'], '%consulting_url%': urls['consulting_service'], '%training_url%': urls['training_service']})
+                |desc('Welcome to %name%, check our <a target=\"_blank\" href=\"%doc_url%\">online documentation</a>, <a target=\"_blank\" href=\"%consulting_url%\">consulting</a>
+                    or <a target=\"_blank\" href=\"%training_url%\">training</a> services in order to get the most out of your trial.')
+                |raw }}
+                {{ 'dashboard.ez_version.severity_non_contant'|trans({'%contact_url%': urls['contact'], '%install_ee%': urls['install_ee']})
+                |desc("<a target=\"_blank\" href=\"%contact_url%\">Contact eZ or its partner(s)</a> to purchase a subscription
+                    and follow the <a target=\"_blank\" href=\"%install_ee%\">online documentation</a> to configure your project.")
+                |raw }}
             </div>
         {% endif %}
     {% elseif not ez.isEnterpise %}
@@ -73,27 +55,34 @@
             {# In the future with retrival of info from updates.ez.no we can detect missing (public) security fixes and then let this become an error #}
             {% set severity = 1 %}
             <div class="alert alert-warning collapse" role="alert" id="systemInfoCollapse">
-                {% trans with {'%release%': ez.release, '%update_url%': 'https://doc.ezplatform.com/en/latest/releases/updating_ez_platform/'} %}
-                    Unfortunately %release% open source version has reached end of life, <a target="_blank" href="%update_url%">please upgrade</a>.
-                {% endtrans %}
-                &nbsp;
+                {{ 'dashboard.ez_version.community_end_of_maintenance'|trans({'%release%': ez.release, '%update_url%': urls['update_url']})
+                |desc("Unfortunately %release% open source version has reached end of life, <a target=\"_blank\" href=\"%update_url%\">please upgrade</a>.")}}
                 <em>
-                    {% trans with {'%license_url%': urls['license'], '%ee_product_url%': urls['ee_product'], '%support_service_url%': urls['support_service'], '%service_life_url%': urls['service_life']} %}
-                        Tip: If you upgrade to eZ Platform Enterprise you'll get access to:
-                        <a target="_blank" href="%license_url%">A business friendly license</a>,
-                        <a target="_blank" href="%ee_product_url%">several productivity features</a>,
-                        <a target="_blank" href="%support_service_url%">professional Support</a> and
-                        <a target="_blank" href="%service_life_url%">longer maintenance periode of your release</a>.
-                    {% endtrans %}
+                    {{ 'dashboard.ez_version.community_end_of_maintenance_upgrade'|trans({
+                        '%license_url%': urls['license'],
+                        '%ee_product_url%': urls['ee_product'],
+                        '%support_service_url%': urls['support_service'],
+                        '%service_life_url%': urls['service_life']
+                    })
+                    |desc("Tip: If you upgrade to eZ Platform Enterprise you'll get access to:
+                        <a target=\"_blank\" href=\"%license_url%\">A business friendly license</a>,
+                        <a target=\"_blank\" href=\"%ee_product_url%\">several productivity features</a>,
+                        <a target=\"_blank\" href=\"%support_service_url%\">professional Support</a> and
+                        <a target=\"_blank\" href=\"%service_life_url%\">longer maintenance periode of your release</a>.")
+                    |raw }}
                 </em>
             </div>
         {% else  %}
             {% set severity = 0 %}
             <div class="alert alert-info collapse" role="alert" id="systemInfoCollapse">
-                {% trans with {'%release%': ez.release, '%license_url%': urls['license'], '%gpl_faq_url%': 'https://www.gnu.org/licenses/old-licenses/gpl-2.0-faq.en.html#GPLModuleLicense'} %}
-                    Welcome to the open source %release% release. Using the community friendly <a target="_blank" href="%license_url%">GPL license</a>,
-                    <a target="_blank" href="%gpl_faq_url%">sharing your code</a> is what it's all about.
-                {% endtrans %}
+                {{ 'dashboard.ez_version.community_severity_non'|trans({
+                    '%release%': ez.release,
+                    '%license_url%': urls['license'],
+                    '%gpl_faq_url%': urls['gpl_faq'],
+                })
+                |desc("Welcome to the open source %release% release. Using the community friendly <a target=\"_blank\" href=\"%license_url%\">GPL license</a>,
+                    <a target=\"_blank\" href=\"%gpl_faq_url%\">sharing your code</a> is what it's all about.")
+                |raw }}
             </div>
         {% endif %}
     {% elseif ez.isEndOfLife %}
@@ -101,23 +90,30 @@
         {% set severity = 1 %}
         {% set badge = 'End of Life' %}
         <div class="alert alert-warning collapse" role="alert" id="systemInfoCollapse">
-            {% trans with {'%release%': ez.release,'%service_life_url%': urls['service_life'], '%contact_url%': urls['contact']} %}
-                Unfortunately %release% has reached <a target="_blank" href="%service_life_url%">end of life</a>,
-                please plan to upgrade. If you need assistance, don't hesitate to <a target="_blank" href="%contact_url%">contact eZ</a>.
-            {% endtrans %}
+            {{ 'dashboard.ez_version.end_of_life'|trans({
+                '%release%': urls['license'],
+                '%license_url%': urls['ee_product'],
+                '%gpl_faq_url%': urls['gpl_faq'],
+            })
+            |desc("Welcome to the open source %release% release. Using the community friendly <a target=\"_blank\" href=\"%license_url%\">GPL license</a>,
+                    <a target=\"_blank\" href=\"%gpl_faq_url%\">sharing your code</a> is what it's all about.")
+            |raw }}
+            {{ 'dashboard.ez_version.end_of_life_upgrade'|trans({
+                '%release%': urls['license'],
+                '%service_life_url%': urls['service_life'],
+                '%contact_url%': urls['contact'],
+            })
+            |desc("Unfortunately %release% has reached <a target=\"_blank\" href=\"%service_life_url%\">end of life</a>,
+                please plan to upgrade. If you need assistance, don't hesitate to <a target=\"_blank\" href=\"%contact_url%\">contact eZ</a>.")
+            |raw }}
         </div>
     {% elseif not ez.debug and ez.stability != 'stable'  %}
         {% set severity = 1 %}
         {% set badge = 'Development' %}
         <div class="alert alert-warning collapse" role="alert" id="systemInfoCollapse">
-            {% trans %}
-                Your setup is running with unstable packages, this is not recommended besides when testing updates.
-            {% endtrans %}
-
+            {{ 'dashboard.ez_version.non_stable'|trans|desc("Your setup is running with unstable packages, this is not recommended besides when testing updates.") }}
             {% if ez.isEnterpise %}
-                {% trans with {'%support_url%': 'https://support.ez.no'} %}
-                    If you need assistance, don't hesitate to <a target="_blank" href="%support_url%">get in touch with eZ support</a>.
-                {% endtrans %}
+                {{ 'dashboard.ez_version.non_stable_ee'|trans({'%support_url%': urls['support']})|desc("If you need assistance, don't hesitate to <a target=\"_blank\" href=\"%support_url%\">get in touch with eZ support</a>.")|raw }}
             {% endif %}
         </div>
     {% endif %}

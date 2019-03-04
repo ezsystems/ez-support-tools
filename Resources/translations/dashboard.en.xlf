@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="1710718593a511e351e6da36e3bb280e532bb768" resname="dashboard.ez_version.community_end_of_maintenance">
+        <source><![CDATA[Unfortunately %release% open source version has reached end of life, <a target="_blank" href="%update_url%">please upgrade</a>.]]></source>
+        <target state="new"><![CDATA[Unfortunately %release% open source version has reached end of life, <a target="_blank" href="%update_url%">please upgrade</a>.]]></target>
+        <note>key: dashboard.ez_version.community_end_of_maintenance</note>
+      </trans-unit>
+      <trans-unit id="c0d043ecd29c0bdfa32e8bb7faee57111d5ddaf7" resname="dashboard.ez_version.community_end_of_maintenance_upgrade">
+        <source><![CDATA[Tip: If you upgrade to eZ Platform Enterprise you'll get access to:
+                        <a target="_blank" href="%license_url%">A business friendly license</a>,
+                        <a target="_blank" href="%ee_product_url%">several productivity features</a>,
+                        <a target="_blank" href="%support_service_url%">professional Support</a> and
+                        <a target="_blank" href="%service_life_url%">longer maintenance periode of your release</a>.]]></source>
+        <target state="new"><![CDATA[Tip: If you upgrade to eZ Platform Enterprise you'll get access to:
+                        <a target="_blank" href="%license_url%">A business friendly license</a>,
+                        <a target="_blank" href="%ee_product_url%">several productivity features</a>,
+                        <a target="_blank" href="%support_service_url%">professional Support</a> and
+                        <a target="_blank" href="%service_life_url%">longer maintenance periode of your release</a>.]]></target>
+        <note>key: dashboard.ez_version.community_end_of_maintenance_upgrade</note>
+      </trans-unit>
+      <trans-unit id="7eb6ab2973439efa8ff820310952e02bc81209cb" resname="dashboard.ez_version.community_severity_non">
+        <source><![CDATA[Welcome to the open source %release% release. Using the community friendly <a target="_blank" href="%license_url%">GPL license</a>,
+                    <a target="_blank" href="%gpl_faq_url%">sharing your code</a> is what it's all about.]]></source>
+        <target state="new"><![CDATA[Welcome to the open source %release% release. Using the community friendly <a target="_blank" href="%license_url%">GPL license</a>,
+                    <a target="_blank" href="%gpl_faq_url%">sharing your code</a> is what it's all about.]]></target>
+        <note>key: dashboard.ez_version.community_severity_non</note>
+      </trans-unit>
+      <trans-unit id="bbddea87dd6b56fc0b4d21c28d1cbc2cfd92b754" resname="dashboard.ez_version.end_of_life">
+        <source><![CDATA[Welcome to the open source %release% release. Using the community friendly <a target="_blank" href="%license_url%">GPL license</a>,
+                    <a target="_blank" href="%gpl_faq_url%">sharing your code</a> is what it's all about.]]></source>
+        <target state="new"><![CDATA[Welcome to the open source %release% release. Using the community friendly <a target="_blank" href="%license_url%">GPL license</a>,
+                    <a target="_blank" href="%gpl_faq_url%">sharing your code</a> is what it's all about.]]></target>
+        <note>key: dashboard.ez_version.end_of_life</note>
+      </trans-unit>
+      <trans-unit id="9bad0b8d1efd71dca8071e736f332b3b4218d557" resname="dashboard.ez_version.end_of_life_upgrade">
+        <source><![CDATA[Unfortunately %release% has reached <a target="_blank" href="%service_life_url%">end of life</a>,
+                please plan to upgrade. If you need assistance, don't hesitate to <a target="_blank" href="%contact_url%">contact eZ</a>.]]></source>
+        <target state="new"><![CDATA[Unfortunately %release% has reached <a target="_blank" href="%service_life_url%">end of life</a>,
+                please plan to upgrade. If you need assistance, don't hesitate to <a target="_blank" href="%contact_url%">contact eZ</a>.]]></target>
+        <note>key: dashboard.ez_version.end_of_life_upgrade</note>
+      </trans-unit>
+      <trans-unit id="d620cc5d1f36ef74cbf6c042e07c0ad89bf47d9f" resname="dashboard.ez_version.end_of_maintenance">
+        <source>Your trial period is coming to an end.</source>
+        <target state="new">Your trial period is coming to an end.</target>
+        <note>key: dashboard.ez_version.end_of_maintenance</note>
+      </trans-unit>
+      <trans-unit id="7b47468c70176c3f6c78ca0e29b1378e2685d2e1" resname="dashboard.ez_version.end_of_maintenance_contanct">
+        <source><![CDATA[<a target="_blank" href="%contact_url%">Contact eZ or its partner(s)</a> to purchase a subscription
+                    and follow the <a target="_blank" href="%install_ee%">online documentation</a> to configure your project.]]></source>
+        <target state="new"><![CDATA[<a target="_blank" href="%contact_url%">Contact eZ or its partner(s)</a> to purchase a subscription
+                    and follow the <a target="_blank" href="%install_ee%">online documentation</a> to configure your project.]]></target>
+        <note>key: dashboard.ez_version.end_of_maintenance_contanct</note>
+      </trans-unit>
+      <trans-unit id="99cfacc8eb18b57ad83dccc62b053ad0aea20b79" resname="dashboard.ez_version.non_stable">
+        <source>Your setup is running with unstable packages, this is not recommended besides when testing updates.</source>
+        <target state="new">Your setup is running with unstable packages, this is not recommended besides when testing updates.</target>
+        <note>key: dashboard.ez_version.non_stable</note>
+      </trans-unit>
+      <trans-unit id="59967d79ef1f521fd483dbb057f15bc756b80423" resname="dashboard.ez_version.non_stable_ee">
+        <source><![CDATA[If you need assistance, don't hesitate to <a target="_blank" href="%support_url%">get in touch with eZ support</a>.]]></source>
+        <target state="new"><![CDATA[If you need assistance, don't hesitate to <a target="_blank" href="%support_url%">get in touch with eZ support</a>.]]></target>
+        <note>key: dashboard.ez_version.non_stable_ee</note>
+      </trans-unit>
+      <trans-unit id="c1fb5ba9fd547e30a49a4e1895822e69cd4a9dbc" resname="dashboard.ez_version.release_not_determined">
+        <source><![CDATA[The system could not find your <code>composer.lock</code> file. It's needed to determine information about
+            your eZ install, and recommended to be kept on project development to make sure same package versions are used across all environments.]]></source>
+        <target state="new"><![CDATA[The system could not find your <code>composer.lock</code> file. It's needed to determine information about
+            your eZ install, and recommended to be kept on project development to make sure same package versions are used across all environments.]]></target>
+        <note>key: dashboard.ez_version.release_not_determined</note>
+      </trans-unit>
+      <trans-unit id="b0b5f4a2312f9a25f310e6d5044046ce0146a9c3" resname="dashboard.ez_version.severity_non">
+        <source><![CDATA[Welcome to %name%, check our <a target="_blank" href="%doc_url%">online documentation</a>, <a target="_blank" href="%consulting_url%">consulting</a>
+                    or <a target="_blank" href="%training_url%">training</a> services in order to get the most out of your trial.]]></source>
+        <target state="new"><![CDATA[Welcome to %name%, check our <a target="_blank" href="%doc_url%">online documentation</a>, <a target="_blank" href="%consulting_url%">consulting</a>
+                    or <a target="_blank" href="%training_url%">training</a> services in order to get the most out of your trial.]]></target>
+        <note>key: dashboard.ez_version.severity_non</note>
+      </trans-unit>
+      <trans-unit id="977ad02930ea5e0ae86eab268d0628786ad6b909" resname="dashboard.ez_version.severity_non_contant">
+        <source><![CDATA[<a target="_blank" href="%contact_url%">Contact eZ or its partner(s)</a> to purchase a subscription
+                    and follow the <a target="_blank" href="%install_ee%">online documentation</a> to configure your project.]]></source>
+        <target state="new"><![CDATA[<a target="_blank" href="%contact_url%">Contact eZ or its partner(s)</a> to purchase a subscription
+                    and follow the <a target="_blank" href="%install_ee%">online documentation</a> to configure your project.]]></target>
+        <note>key: dashboard.ez_version.severity_non_contant</note>
+      </trans-unit>
+      <trans-unit id="10afa9a6e250d82f948ea1e6cbcdf7aac8bd7a4b" resname="dashboard.ez_version.trial_expired">
+        <source><![CDATA[Unfortunately your trial period has expired and your <a target="_blank" href="%ttl_url%">TTL license</a> is no longer valid.]]></source>
+        <target state="new"><![CDATA[Unfortunately your trial period has expired and your <a target="_blank" href="%ttl_url%">TTL license</a> is no longer valid.]]></target>
+        <note>key: dashboard.ez_version.trial_expired</note>
+      </trans-unit>
+      <trans-unit id="fad8721d93ef0b882327327f52921f656a8e206b" resname="dashboard.ez_version.trial_expired_contant">
+        <source><![CDATA[<a target="_blank" href="%contact_url%">Contact eZ or its partner(s)</a> to purchase a subscription
+                    and follow the <a target="_blank" href="%install_ee%">online documentation</a> to configure your project.]]></source>
+        <target state="new"><![CDATA[<a target="_blank" href="%contact_url%">Contact eZ or its partner(s)</a> to purchase a subscription
+                    and follow the <a target="_blank" href="%install_ee%">online documentation</a> to configure your project.]]></target>
+        <note>key: dashboard.ez_version.trial_expired_contant</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
