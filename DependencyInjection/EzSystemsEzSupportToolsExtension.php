@@ -23,5 +23,23 @@ class EzSystemsEzSupportToolsExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
         $loader->load('default_settings.yml');
+
+        if ($this->isAdminUiBundleEnabled($container)) {
+            $loader->load('adminv2_services.yml');
+        }
+    }
+
+    /**
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     *
+     * @return bool
+     */
+    private function isAdminUiBundleEnabled(ContainerBuilder $container)
+    {
+        return $container->hasParameter('kernel.bundles')
+            && array_key_exists(
+                'EzPlatformAdminUiBundle',
+                $container->getParameter('kernel.bundles')
+            );
     }
 }

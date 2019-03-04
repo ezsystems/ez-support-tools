@@ -1,0 +1,10 @@
+services:
+    #Dashboard
+    EzSystems\EzSupportToolsBundle\AdminUi\Component\EzInfoTwigComponent:
+        autowire: true
+        arguments:
+            $template: '@@ezdesign/dashboard/block/ez.html.twig'
+            $ezSystemInfo: "@=service('support_tools.system_info.collector.system.ez').collect()"
+            $urlList: '%support_tools.ez_url_list%'
+        tags:
+            - { name: ezplatform.admin_ui.component, group: 'dashboard-blocks', priority: 200 }
