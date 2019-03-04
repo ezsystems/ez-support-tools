@@ -114,7 +114,11 @@ class EzSystemInfoCollector implements SystemInfoCollector
      */
     private $debug;
 
-    public function __construct(JsonComposerLockSystemInfoCollector $composerCollector, $debug = false)
+    /**
+     * @param \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector|\EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector $composerCollector
+     * @param bool $debug
+     */
+    public function __construct(SystemInfoCollector $composerCollector, $debug = false)
     {
         try {
             $this->composerInfo = $composerCollector->collect();

@@ -58,6 +58,7 @@ class EzInfoTwigComponent implements Renderable
     public function render(array $parameters = []): string
     {
         $urls = $this->replaceUrlPlaceholders();
+
         return $this->twig->render(
             $this->template,
             $parameters + ['urls' => $urls, 'ez' => $this->ezSystemInfo] + $this->parameters
@@ -67,7 +68,7 @@ class EzInfoTwigComponent implements Renderable
     /**
      * @return array
      */
-    private function replaceUrlPlaceholders()
+    private function replaceUrlPlaceholders(): array
     {
         $urls = $this->urlList;
         foreach ($this->urlList as $urlName => $url) {
