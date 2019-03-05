@@ -37,7 +37,7 @@ class EzSystemsEzSupportToolsExtension extends Extension
     private function isAdminUiBundleEnabled(ContainerBuilder $container)
     {
         return $container->hasParameter('kernel.bundles')
-            && array_key_exists(
+            && \array_key_exists(
                 'EzPlatformAdminUiBundle',
                 $container->getParameter('kernel.bundles')
             );
