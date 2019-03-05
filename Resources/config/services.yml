@@ -54,7 +54,7 @@ services:
         arguments:
             - "@support_tools.system_info.collector.composer.lock_file"
             - "%kernel.debug%"
-        # Can't tag this before v0.3 (2.5?) as it will blow up in admin UI for missing templates there
+        # Can't tag this before v1.0 (2.5?) as it will blow up in admin UI for missing templates there
         # And it does not look like there is anway to add it from this package, so maybe it needs to be made extensible(?)
         #tags: [{ name: "support_tools.system_info.collector", identifier: "ez" }]
 
