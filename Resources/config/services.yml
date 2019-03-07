@@ -22,7 +22,7 @@ parameters:
         training_service: "https://ez.no/Services/Training"
         consulting_service: "https://ez.no/Services/Consulting"
         ee_product: "https://ez.no/Products/eZ-Platform-Enterprise-Edition"
-        install_ee: "https://doc.ezplatform.com/en/#{ez.release}/getting_started/install_ez_enterprise/"
+        install_ee: "https://doc.ezplatform.com/en/{ez.release}/getting_started/install_ez_enterprise/"
         doc: "https://doc.ezplatform.com"
         update: "https://doc.ezplatform.com/en/latest/releases/updating_ez_platform/"
         gpl_faq: "https://www.gnu.org/licenses/old-licenses/gpl-2.0-faq.en.html#GPLModuleLicense"
