@@ -11,7 +11,7 @@
 {% set levels = {0: "info", 1: "warning", 2: "danger"} %}
 {% set icons = {0: "", 1: "&#9888;", 2: "&#9888;"} %}
 {% set status %}
-    {% spaceless %}
+{% spaceless %}
     {% if not ez.release %}
         {% set severity = 1 %}
         <div class="alert alert-warning mb-0 mt-3" role="alert">

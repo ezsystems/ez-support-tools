@@ -35,13 +35,19 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
     private $lockFile;
 
     /**
+     * @var string Composer json file with full path.
+     */
+    private $jsonFile;
+
+    /**
      * @var Value\ComposerSystemInfo The collected value, cached in case info is collected by other collectors.
      */
     private $value;
 
-    public function __construct($lockFile)
+    public function __construct($lockFile, $jsonFile)
     {
         $this->lockFile = $lockFile;
+        $this->jsonFile = $jsonFile;
     }
 
     /**
@@ -61,15 +67,33 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
             throw new Exception\ComposerLockFileNotFoundException($this->lockFile);
         }
 
+        if (!file_exists($this->jsonFile)) {
+            throw new Exception\ComposerJsonFileNotFoundException($this->jsonFile);
+        }
+
+        $lockData = json_decode(file_get_contents($this->lockFile), true);
+        $jsonData = json_decode(file_get_contents($this->jsonFile), true);
+
+        return $this->value = new Value\ComposerSystemInfo([
+            'packages' => $this->extractPackages($lockData),
+            'repositoryUrls' => $this->extractRepositoryUrls($jsonData),
+            'minimumStability' => isset($lockData['minimum-stability']) ? $lockData['minimum-stability'] : null,
+        ]);
+    }
+
+    /**
+     * @param array $lockData
+     *
+     * @return array
+     */
+    private function extractPackages(array $lockData)
+    {
         $packages = [];
         $rootAliases = [];
-        $lockData = json_decode(file_get_contents($this->lockFile), true);
         foreach ($lockData['aliases'] as $alias) {
             $rootAliases[$alias['package']] = $alias['alias'];
         }
 
-        // For PHP 5.6, add variable locally to be able to use isset() on it.
-        $stabilities = self::STABILITIES;
         foreach ($lockData['packages'] as $packageData) {
             $package = new Value\ComposerPackage([
                 'name' => $packageData['name'],
@@ -83,8 +107,8 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
             if (isset($lockData['stability-flags'][$package->name])) {
                 $stabilityFlag = (int)$lockData['stability-flags'][$package->name];
 
-                if (isset($stabilities[$stabilityFlag])) {
-                    $package->stability = $stabilities[$stabilityFlag];
+                if (isset(self::STABILITIES[$stabilityFlag])) {
+                    $package->stability = self::STABILITIES[$stabilityFlag];
                 }
             }
 
@@ -101,10 +125,26 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
 
         ksort($packages, SORT_FLAG_CASE | SORT_STRING);
 
-        return $this->value = new Value\ComposerSystemInfo([
-            'packages' => $packages,
-            'minimumStability' => isset($lockData['minimum-stability']) ? $lockData['minimum-stability'] : null,
-        ]);
+        return $packages;
+    }
+
+
+    private function extractRepositoryUrls(array $jsonData)
+    {
+        $repos = [];
+        foreach ($jsonData['repositories'] as $composerRepository) {
+            if (empty($composerRepository['type']) || $composerRepository['type'] !== 'composer') {
+                continue;
+            }
+
+            if (empty($composerRepository['url'])) {
+                continue;
+            }
+
+            $repos[] = $composerRepository['url'];
+        }
+
+        return $repos;
     }
 
     private static function setNormalizedVersion(Value\ComposerPackage $package)

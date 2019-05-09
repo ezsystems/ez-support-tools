@@ -146,15 +146,19 @@ class EzSystemInfoCollector implements SystemInfoCollector
             $ez->release = (string)(((float)$this->composerInfo->packages['ezsystems/ezpublish-kernel']->version) - 5);
         }
 
+        // In case someone switches from TTL to BUL, make sure we only identify install as Trial if this is present,
+        // as well as TTL packages
+        $hasTTLComposerRepo = in_array('https://updates.ez.no/ttl', $this->composerInfo->repositoryUrls);
+
         if ($package = $this->getFirstPackage(self::ENTERPISE_PACKAGES)) {
             $ez->isEnterpise = true;
-            $ez->isTrial = $package->license === 'TTL-2.0';
+            $ez->isTrial = $hasTTLComposerRepo && $package->license === 'TTL-2.0';
             $ez->name = 'eZ Platform Enterprise';
         }
 
         if ($package = $this->getFirstPackage(self::COMMERCE_PACKAGES)) {
             $ez->isCommerce = true;
-            $ez->isTrial = $ez->isTrial || $package->license === 'TTL-2.0';
+            $ez->isTrial = $ez->isTrial || $hasTTLComposerRepo && $package->license === 'TTL-2.0';
             $ez->name = 'eZ Commerce';
         }
 

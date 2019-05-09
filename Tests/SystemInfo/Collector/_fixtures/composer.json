@@ -1,0 +1,147 @@
+{
+    "name": "ezsystems/ezplatform-ee",
+    "description": "eZ Platform Enterprise Edition distribution",
+    "homepage": "https://github.com/ezsystems/ezplatform-ee",
+    "license": "proprietary",
+    "type": "project",
+    "authors": [
+        {
+            "name": "eZ dev-team & eZ Community",
+            "homepage": "https://github.com/ezsystems/ezplatform-ee/contributors"
+        }
+    ],
+    "repositories": [
+        { "type": "composer", "url": "https://updates.ez.no/bul" }
+    ],
+    "replace": {
+        "ezsystems/ezstudio": "*",
+        "ezsystems/ezpublish-community": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "AppBundle\\": "src/AppBundle/"
+        },
+        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
+    },
+    "autoload-dev": {
+        "psr-4": { "Tests\\": "tests/" },
+        "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
+    },
+    "require": {
+        "php": "^7.1.3",
+        "doctrine/doctrine-bundle": "^1.9.1",
+        "doctrine/orm": "^2.6.3",
+        "ezsystems/date-based-publisher": "^3.2",
+        "ezsystems/doctrine-dbal-schema": "^0.1",
+        "ezsystems/ez-support-tools": "^1.0",
+        "ezsystems/ezplatform-admin-ui": "^1.5",
+        "ezsystems/ezplatform-admin-ui-assets": "^4.1.0",
+        "ezsystems/ezplatform-admin-ui-modules": "^1.5",
+        "ezsystems/ezplatform-core": "^1.0",
+        "ezsystems/ezplatform-cron": "^2.0",
+        "ezsystems/ezplatform-design-engine": "^2.0",
+        "ezsystems/ezplatform-ee-installer": "^2.5",
+        "ezsystems/ezplatform-form-builder": "^1.2",
+        "ezsystems/ezplatform-graphql": "^1.0",
+        "ezsystems/ezplatform-http-cache": "^0.9",
+        "ezsystems/ezplatform-http-cache-fastly": "^1.1",
+        "ezsystems/ezplatform-matrix-fieldtype": "^1.0",
+        "ezsystems/ezplatform-page-builder": "^1.3",
+        "ezsystems/ezplatform-page-fieldtype": "^1.3",
+        "ezsystems/ezplatform-richtext": "^1.1",
+        "ezsystems/ezplatform-solr-search-engine": "^1.6",
+        "ezsystems/ezplatform-standard-design": "^0.2",
+        "ezsystems/ezplatform-user": "^1.0",
+        "ezsystems/ezplatform-workflow": "^1.1",
+        "ezsystems/ezpublish-kernel": "^7.5",
+        "ezsystems/flex-workflow": "^3.2",
+        "ezsystems/repository-forms": "^2.5",
+        "ezsystems/symfony-tools": "~1.0.0",
+        "friendsofsymfony/jsrouting-bundle": "^1.6.3",
+        "gregwar/captcha-bundle": "^2.0",
+        "incenteev/composer-parameter-handler": "^2.1.3",
+        "knplabs/knp-menu-bundle": "^2.2.1",
+        "leafo/scssphp": "^0.7.7",
+        "overblog/graphql-bundle": "^0.11.11",
+        "sensio/distribution-bundle": "^5.0.23",
+        "sensiolabs/security-checker": "^5.0",
+        "symfony/assetic-bundle": "^2.8.2",
+        "symfony/monolog-bundle": "^3.3.1",
+        "symfony/swiftmailer-bundle": "^3.2.4",
+        "symfony/symfony": "^3.4.18",
+        "symfony/thanks": "^1.1.0",
+        "symfony/webpack-encore-bundle": "^1.0.0",
+        "twig/extensions": "^1.5.3",
+        "twig/twig": "^2.5",
+        "white-october/pagerfanta-bundle": "^1.2.2",
+        "willdurand/js-translation-bundle": "^2.6.6"
+    },
+    "require-dev": {
+        "behat/behat": "^3.5.0",
+        "behat/mink-extension": "^2.3.1",
+        "behat/mink-goutte-driver": "^1.2.1",
+        "behat/mink-selenium2-driver": "^1.3.1",
+        "behat/symfony2-extension": "^2.1.5",
+        "bex/behat-screenshot": "^1.2.7",
+        "ezsystems/behat-screenshot-image-driver-cloudinary": "^1.1.0",
+        "ezsystems/behatbundle": "^6.5.4",
+        "overblog/graphiql-bundle": "^0.1.2",
+        "phpunit/phpunit": "^6.5.13",
+        "sensio/generator-bundle": "^3.1.7",
+        "symfony/phpunit-bridge": "^3.4.18",
+        "liuggio/fastest": "^1.6"
+    },
+    "conflict": {
+        "symfony/symfony": "3.4.9||3.4.12||3.4.16",
+        "doctrine/dbal": "2.7.0",
+        "twig/twig": "2.6.1",
+        "symfony/webpack-encore-bundle": "1.2.0||1.2.1"
+    },
+    "scripts": {
+        "symfony-scripts": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "eZ\\Bundle\\EzPublishCoreBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "@php bin/console bazinga:js-translation:dump web/assets --merge-domains",
+            "@php bin/console assetic:dump",
+            "yarn install",
+            "EzSystems\\EzPlatformEncoreBundle\\Composer\\ScriptHandler::compileAssets",
+            "@php bin/security-checker security:check"
+        ],
+        "post-install-cmd": [
+            "@symfony-scripts"
+        ],
+        "post-update-cmd": [
+            "@symfony-scripts"
+        ],
+        "post-create-project-cmd": [
+            "eZ\\Bundle\\EzPublishCoreBundle\\Composer\\ScriptHandler::installWelcomeText"
+        ],
+        "ezplatform-install": [
+            "@php bin/console ezplatform:install ezplatform-ee-clean"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin",
+        "sort-packages": true,
+        "preferred-install": {
+            "ezsystems/*": "dist"
+        }
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-bin-dir": "bin",
+        "symfony-var-dir": "var",
+        "symfony-web-dir": "web",
+        "symfony-tests-dir": "tests",
+        "symfony-assets-install": "relative",
+        "incenteev-parameters": {
+            "keep-outdated": true,
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.5.x-dev"
+        }
+    }
+}

@@ -32,4 +32,13 @@ class ComposerSystemInfo extends ValueObject implements SystemInfo
      * @var string|null
      */
     public $minimumStability;
+
+    /**
+     * Additional Composer repository urls used.
+     *
+     * Will contain urls used so would be possible to know if bul or ttl packages are used for instance.
+     *
+     * @var array
+     */
+    public $repositoryUrls = [];
 }
