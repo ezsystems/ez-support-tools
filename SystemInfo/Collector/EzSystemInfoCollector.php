@@ -148,7 +148,7 @@ class EzSystemInfoCollector implements SystemInfoCollector
 
         // In case someone switches from TTL to BUL, make sure we only identify install as Trial if this is present,
         // as well as TTL packages
-        $hasTTLComposerRepo = in_array('https://updates.ez.no/ttl', $this->composerInfo->repositoryUrls);
+        $hasTTLComposerRepo = \in_array('https://updates.ez.no/ttl', $this->composerInfo->repositoryUrls);
 
         if ($package = $this->getFirstPackage(self::ENTERPISE_PACKAGES)) {
             $ez->isEnterpise = true;

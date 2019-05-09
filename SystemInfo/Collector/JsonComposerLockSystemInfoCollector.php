@@ -128,7 +128,6 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
         return $packages;
     }
 
-
     private function extractRepositoryUrls(array $jsonData)
     {
         $repos = [];
