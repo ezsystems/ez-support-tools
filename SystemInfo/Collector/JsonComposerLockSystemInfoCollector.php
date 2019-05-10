@@ -84,9 +84,9 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
     /**
      * @param array $lockData
      *
-     * @return array
+     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerPackage[]
      */
-    private function extractPackages(array $lockData)
+    private function extractPackages(array $lockData): array
     {
         $packages = [];
         $rootAliases = [];
@@ -128,7 +128,12 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
         return $packages;
     }
 
-    private function extractRepositoryUrls(array $jsonData)
+    /**
+     * @param array $jsonData
+     *
+     * @return string[]
+     */
+    private function extractRepositoryUrls(array $jsonData): array
     {
         $repos = [];
         foreach ($jsonData['repositories'] as $composerRepository) {
@@ -146,7 +151,10 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
         return $repos;
     }
 
-    private static function setNormalizedVersion(Value\ComposerPackage $package)
+    /**
+     * @param Value\ComposerPackage $package
+     */
+    private static function setNormalizedVersion(Value\ComposerPackage $package): void
     {
         $version = $package->alias ? $package->alias : $package->branch;
         if ($version[0] === 'v') {

@@ -38,7 +38,7 @@ class ComposerSystemInfo extends ValueObject implements SystemInfo
      *
      * Will contain urls used so would be possible to know if bul or ttl packages are used for instance.
      *
-     * @var array
+     * @var string[]
      */
     public $repositoryUrls = [];
 }
