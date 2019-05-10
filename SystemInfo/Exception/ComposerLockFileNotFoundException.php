@@ -15,6 +15,6 @@ class ComposerLockFileNotFoundException extends BaseNotFoundException
 {
     public function __construct($path, Exception $previous = null)
     {
-        parent::__construct('Composer.lock file', $path, $previous);
+        parent::__construct('composer.lock file', $path, $previous);
     }
 }
