@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.2",
         "ezsystems/ezpublish-kernel": "^8.0@dev",
         "ezsystems/ezplatform-admin-ui": "^2.0@dev",
         "ocramius/proxy-manager": "^2.3",
