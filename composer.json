@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": "^7.3",
         "ezsystems/ezpublish-kernel": "^8.0@dev",
         "ezsystems/ezplatform-admin-ui": "^2.0@dev",
         "ocramius/proxy-manager": "^2.2",
@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "~2.14.2",
-        "phpunit/phpunit": "^5.7.27 || ^6.5.14"
+        "phpunit/phpunit": "^6.5"
     },
     "autoload": {
         "psr-4": {
