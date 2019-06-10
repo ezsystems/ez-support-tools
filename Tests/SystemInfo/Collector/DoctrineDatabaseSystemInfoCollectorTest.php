@@ -15,12 +15,12 @@ use PHPUnit\Framework\TestCase;
 class DoctrineDatabaseSystemInfoCollectorTest extends TestCase
 {
     /**
-     * @var \Doctrine\DBAL\Connection|\PHPUnit_Framework_MockObject_MockObject
+     * @var \Doctrine\DBAL\Connection|\PHPUnit\Framework\MockObject\MockObject
      */
     private $dbalConnectionMock;
 
     /**
-     * @var \Doctrine\DBAL\Platforms\MySqlPlatform|\PHPUnit_Framework_MockObject_MockObject
+     * @var \Doctrine\DBAL\Platforms\MySqlPlatform|\PHPUnit\Framework\MockObject\MockObject
      */
     private $dbalPlatformMock;
 
@@ -29,7 +29,7 @@ class DoctrineDatabaseSystemInfoCollectorTest extends TestCase
      */
     private $databaseCollector;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->dbalConnectionMock = $this->getMockBuilder('Doctrine\DBAL\Connection')->disableOriginalConstructor()->getMock();
         $this->dbalPlatformMock = $this->getMockBuilder('Doctrine\DBAL\Platforms\MySqlPlatform')->getMock();

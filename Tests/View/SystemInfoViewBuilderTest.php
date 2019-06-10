@@ -52,7 +52,7 @@ class SystemInfoViewBuilderTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|\eZ\Publish\Core\MVC\Symfony\View\Configurator
+     * @return \PHPUnit\Framework\MockObject\MockObject|\eZ\Publish\Core\MVC\Symfony\View\Configurator
      */
     protected function getConfiguratorMock()
     {
@@ -64,7 +64,7 @@ class SystemInfoViewBuilderTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|\EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry
+     * @return \PHPUnit\Framework\MockObject\MockObject|\EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry
      */
     protected function getRegistryMock()
     {
@@ -76,7 +76,7 @@ class SystemInfoViewBuilderTest extends TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|\EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector
+     * @return \PHPUnit\Framework\MockObject\MockObject|\EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector
      */
     protected function getCollectorMock()
     {

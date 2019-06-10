@@ -78,22 +78,22 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
 
     /**
      * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::collect()
-     *
-     * @expectedException \EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException
      */
     public function testCollectLockFileNotFound(): void
     {
+        $this->expectException(ComposerLockFileNotFoundException::class);
+
         $composerCollectorNotFound = new JsonComposerLockSystemInfoCollector(__DIR__ . '/_fixtures/snafu.lock', __DIR__ . '/_fixtures/composer.json');
         $composerCollectorNotFound->collect();
     }
 
     /**
      * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::collect()
-     *
-     * @expectedException \EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerJsonFileNotFoundException
      */
     public function testCollectJsonFileNotFound(): void
     {
+        $this->expectException(ComposerJsonFileNotFoundException::class);
+
         $composerCollectorNotFound = new JsonComposerLockSystemInfoCollector(__DIR__ . '/_fixtures/composer.lock', __DIR__ . '/_fixtures/snafu.json');
         $composerCollectorNotFound->collect();
     }

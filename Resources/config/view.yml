@@ -5,8 +5,13 @@ services:
             - "@ezpublish.view.configurator"
             - "@support_tools.system_info.collector_registry"
 
+    EzSystems\EzSupportToolsBundle\Controller\SystemInfoController:
+        tags:
+            - { name: controller.service_arguments }
+
     support_tools.view.controller:
-        class: EzSystems\EzSupportToolsBundle\Controller\SystemInfoController
+        alias: EzSystems\EzSupportToolsBundle\Controller\SystemInfoController
+        public: true
 
     support_tools.view.system_info.provider:
         class: "%ezpublish.view_provider.configured.class%"

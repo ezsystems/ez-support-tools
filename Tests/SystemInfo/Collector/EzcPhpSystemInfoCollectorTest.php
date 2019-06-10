@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 class EzcPhpSystemInfoCollectorTest extends TestCase
 {
     /**
-     * @var \EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper|\PHPUnit_Framework_MockObject_MockObject
+     * @var \EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper|\PHPUnit\Framework\MockObject\MockObject
      */
     private $ezcSystemInfoMock;
 
@@ -24,7 +24,7 @@ class EzcPhpSystemInfoCollectorTest extends TestCase
      */
     private $ezcPhpCollector;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->ezcSystemInfoMock = $this
             ->getMockBuilder('EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper')
