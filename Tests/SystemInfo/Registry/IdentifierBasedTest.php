@@ -8,6 +8,7 @@
  */
 namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Registry;
 
+use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Registry\IdentifierBased;
 use PHPUnit\Framework\TestCase;
 
@@ -19,11 +20,11 @@ class IdentifierBasedTest extends TestCase
     private $registry;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject[]|\EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector[]
+     * @var \PHPUnit\Framework\MockObject\MockObject[]|\EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector[]
      */
     private $testItems;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->testItems = [
             'foo' => $this->createMock('EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector'),
@@ -50,11 +51,10 @@ class IdentifierBasedTest extends TestCase
      * Test exception when registry item is not found.
      *
      * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Registry\IdentifierBased::getItem()
-     *
-     * @expectedException \eZ\Publish\Core\Base\Exceptions\NotFoundException
      */
     public function testGetItemNotFound()
     {
+        $this->expectException(NotFoundException::class);
         $this->registry->getItem('notfound');
     }
 
