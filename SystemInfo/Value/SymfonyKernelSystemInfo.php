@@ -56,22 +56,13 @@ class SymfonyKernelSystemInfo extends ValueObject implements SystemInfo
     public $bundles;
 
     /**
-     * Root directory.
+     * Project directory.
      *
      * Example: /srv/www/ezpublish-platform/app
      *
      * @var string
      */
-    public $rootDir;
-
-    /**
-     * Name.
-     *
-     * Example: app
-     *
-     * @var string
-     */
-    public $name;
+    public $projectDir;
 
     /**
      * Cache directory.

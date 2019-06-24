@@ -31,8 +31,7 @@ class ConfigurationSymfonyKernelSystemInfoCollectorTest extends TestCase
                 'EzPublishCoreBundle' => 'eZ\\Bundle\\EzPublishCoreBundle\\EzPublishCoreBundle',
                 'EzSystemsEzSupportToolsBundle' => 'EzSystems\\EzSupportToolsBundle\\EzSystemsEzSupportToolsBundle',
             ],
-            'rootDir' => '/srv/www/ezpublish-platform/app',
-            'name' => 'app',
+            'projectDir' => '/srv/www/ezpublish-platform/app',
             'cacheDir' => '/srv/www/ezpublish-platform/app/cache/prod',
             'logDir' => '/srv/www/ezpublish-platform/app/logs',
             'charset' => 'UTF-8',
@@ -54,13 +53,8 @@ class ConfigurationSymfonyKernelSystemInfoCollectorTest extends TestCase
 
         $kernelMock
             ->expects($this->once())
-            ->method('getRootDir')
-            ->will($this->returnValue($expected->rootDir));
-
-        $kernelMock
-            ->expects($this->once())
-            ->method('getName')
-            ->will($this->returnValue($expected->name));
+            ->method('getProjectDir')
+            ->will($this->returnValue($expected->projectDir));
 
         $kernelMock
             ->expects($this->once())
