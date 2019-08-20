@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": "^7.3",
+        "ezsystems/doctrine-dbal-schema": "^1.0@dev",
         "ezsystems/ezpublish-kernel": "^8.0@dev",
         "ezsystems/ezplatform-admin-ui": "^2.0@dev",
         "ocramius/proxy-manager": "^2.2",
