@@ -21,7 +21,9 @@ services:
 
     support_tools.view.matcher_factory:
         class: "%ezpublish.view.matcher_factory.class%"
-        arguments: ["@ezpublish.api.repository", 'EzSystems\EzSupportToolsBundle\View\Matcher']
+        arguments:
+            - '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
+            - '@ezpublish.api.repository'
+            - 'EzSystems\EzSupportToolsBundle\View\Matcher'
         calls:
-            - [setContainer, ["@service_container"]]
             - [setMatchConfig, [$system_info_view$]]
