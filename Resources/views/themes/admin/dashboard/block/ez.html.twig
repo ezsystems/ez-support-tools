@@ -25,7 +25,7 @@
             {% if ez.composerInfo.minimumStability != 'stable' %}
                 {{ 'dashboard.ez_version.unstable_minimum_stability'|trans({'%minimum_stability%': ez.composerInfo.minimumStability})|desc("Your setup is running with '%minimum_stability%' as composer.json minimum-stability, this is not recommended besides when testing updates or during development.") }}
             {% else  %}
-                {{ 'dashboard.ez_version.non_stable_packages'|trans({'%stability%': ez.stability})|desc("Your setup is running with @%stability% composer packages, this is not recommended besides when testing updates or during development.") }}
+                {{ 'dashboard.ez_version.non_stable_packages'|trans({'%stability%': ez.stability})|desc("Your setup is running with @%stability% composer packages. This is not recommended except when testing updates or during development.") }}
             {% endif %}
             {% if ez.isEnterpise %}
                 {{ 'dashboard.ez_version.non_stable_ee'|trans({'%support_url%': urls['support']})|desc("If you need assistance, don't hesitate to <a target=\"_blank\" href=\"%support_url%\">get in touch with eZ support</a>.")|raw }}
