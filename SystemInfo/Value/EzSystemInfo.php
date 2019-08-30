@@ -61,4 +61,9 @@ class EzSystemInfo extends ValueObject implements SystemInfo
      * @var bool
      */
     public $debug;
+
+    /**
+     * @var \EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo|null
+     */
+    public $composerInfo;
 }

@@ -135,7 +135,7 @@ class EzSystemInfoCollector implements SystemInfoCollector
      */
     public function collect()
     {
-        $ez = new EzSystemInfo(['debug' => $this->debug]);
+        $ez = new EzSystemInfo(['debug' => $this->debug, 'composerInfo' => $this->composerInfo]);
         if ($this->composerInfo === null) {
             return $ez;
         }

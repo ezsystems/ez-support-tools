@@ -57,10 +57,15 @@
                     and follow the <a target="_blank" href="%install_ee%">online documentation</a> to configure your project.]]></target>
         <note>key: dashboard.ez_version.end_of_maintenance_contanct</note>
       </trans-unit>
-      <trans-unit id="99cfacc8eb18b57ad83dccc62b053ad0aea20b79" resname="dashboard.ez_version.non_stable">
-        <source>Your setup is running with unstable packages, this is not recommended besides when testing updates.</source>
-        <target state="new">Your setup is running with unstable packages, this is not recommended besides when testing updates.</target>
-        <note>key: dashboard.ez_version.non_stable</note>
+      <trans-unit id="99cfacc8eb18b57ad83dccc62b053ad0aea20b79" resname="dashboard.ez_version.non_stable_packages">
+        <source>Your setup is running with @%stability% composer packages, this is not recommended besides when testing updates or during development.</source>
+        <target state="new">Your setup is running with @%stability% composer packages, this is not recommended besides when testing updates or during development.</target>
+        <note>key: dashboard.ez_version.non_stable_packages</note>
+      </trans-unit>
+      <trans-unit id="6a0387251f6e862fedb59341ccc65722f169438a" resname="dashboard.ez_version.unstable_minimum_stability">
+        <source>Your setup is running with '%minimum_stability%' as composer.json minimumStability, this is not recommended besides when testing updates or during development.</source>
+        <target state="new">Your setup is running with '%minimum_stability%' as composer.json minimumStability, this is not recommended besides when testing updates or during development.</target>
+        <note>key: dashboard.ez_version.unstable_minimum_stability</note>
       </trans-unit>
       <trans-unit id="59967d79ef1f521fd483dbb057f15bc756b80423" resname="dashboard.ez_version.non_stable_ee">
         <source><![CDATA[If you need assistance, don't hesitate to <a target="_blank" href="%support_url%">get in touch with eZ support</a>.]]></source>
