@@ -10,13 +10,13 @@ namespace EzSystems\EzSupportToolsBundle\Command;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry;
 use EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormatRegistry;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SystemInfoDumpCommand extends ContainerAwareCommand
+class SystemInfoDumpCommand extends Command
 {
     /**
      * System info collector registry.
