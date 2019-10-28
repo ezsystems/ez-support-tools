@@ -14,7 +14,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/webhdx/ezplatform-admin-ui.git"
+            "url": "https://github.com/ezsystems/ezplatform-admin-ui.git"
         }
     ],
     "require": {
