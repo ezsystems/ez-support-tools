@@ -41,5 +41,8 @@
     },
     "scripts": {
         "fix-cs": "@php ./vendor/bin/php-cs-fixer fix -v --show-progress=estimating"
+    },
+    "config": {
+        "github-protocols": ["https"]
     }
 }
