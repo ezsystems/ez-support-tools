@@ -11,10 +11,16 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/webhdx/ezplatform-admin-ui.git"
+        }
+    ],
     "require": {
         "php": "^7.3",
         "ezsystems/ezpublish-kernel": "^8.0@dev",
-        "ezsystems/ezplatform-admin-ui": "^2.0@dev",
+        "ezsystems/ezplatform-admin-ui": "dev-content_forms as ^2.0@dev",
         "ocramius/proxy-manager": "^2.2",
         "symfony/proxy-manager-bridge": "^4.3",
         "zetacomponents/system-information": "^1.1.1"
