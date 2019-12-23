@@ -114,7 +114,7 @@
         {{ ez.name }}&nbsp;
         {{ ez.release }}{% if ez.stability != 'stable' %}{{ ez.release ? '-' : '' }}{{ ez.stability }}{% endif %}
         {% if status %}
-            <a class="badge badge-{{ levels[severity] }}" data-toggle="collapse" href="#systemInfoCollapse">{{ icons[severity]|raw }} {{ badge }}</a>
+            <a class="badge badge-{{ levels[severity] }} ez-badge ez-badge--big" data-toggle="collapse" href="#systemInfoCollapse">{{ icons[severity]|raw }} {{ badge }}</a>
         {% endif %}
     </h2>
 
