@@ -13,8 +13,8 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.3",
-        "ezsystems/ezpublish-kernel": "^8.0@dev",
-        "ezsystems/ezplatform-admin-ui": "^2.0@dev",
+        "ezsystems/ezpublish-kernel": "^8.0",
+        "ezsystems/ezplatform-admin-ui": "^2.0",
         "ocramius/proxy-manager": "^2.2",
         "symfony/proxy-manager-bridge": "^4.3",
         "zetacomponents/system-information": "^1.1.1"
