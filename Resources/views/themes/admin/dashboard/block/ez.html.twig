@@ -116,10 +116,7 @@
             <a class="badge badge-{{ levels[severity] }} ez-badge ez-badge--big" data-toggle="collapse" href="#systemInfoCollapse">
                 {% if severity != 0 %}
                     <svg class="ez-icon ez-icon--small">
-                        <use
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#warning"
-                        ></use>
+                        <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#warning"></use>
                     </svg>
                 {% endif %}
                 {{ badge }}
