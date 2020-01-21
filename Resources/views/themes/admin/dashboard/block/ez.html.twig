@@ -9,7 +9,6 @@
 {% set badge = "" %}
 {% set severity = 0 %}
 {% set levels = {0: "info", 1: "warning", 2: "danger"} %}
-{% set icons = {0: "", 1: "&#9888;", 2: "&#9888;"} %}
 {% set status %}
 {% apply spaceless %}
     {% if not ez.release %}
@@ -122,7 +121,14 @@
         {{ ez.name }}&nbsp;
         {{ ez.release }}{% if ez.stability != 'stable' %}{{ ez.release ? '-' : '' }}{{ ez.stability }}{% endif %}
         {% if status %}
-            <a class="badge badge-{{ levels[severity] }}" data-toggle="collapse" href="#systemInfoCollapse">{{ icons[severity]|raw }} {{ badge }}</a>
+            <a class="badge badge-{{ levels[severity] }} ez-badge" data-toggle="collapse" href="#systemInfoCollapse">
+                {% if severity != 0 %}
+                    <svg class="ez-icon ez-icon--small">
+                        <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#warning"></use>
+                    </svg>
+                {% endif %}
+                {{ badge }}
+            </a>
         {% endif %}
     </h2>
 
