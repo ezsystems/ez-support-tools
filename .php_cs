@@ -1,11 +1,10 @@
 <?php
 
-// PHP-CS-Fixer 2.x syntax
-return PhpCsFixer\Config::create()
+$config = EzSystems\EzPlatformCodeStyle\PhpCsFixer\EzPlatformInternalConfigFactory::build();
+
+return $config
     ->setRules(
-        [
-            '@Symfony' => true,
-            '@Symfony:risky' => true,
+        $config->getRules() + [
             'concat_space' => ['spacing' => 'one'],
             'array_syntax' => false,
             'simplified_null_return' => false,

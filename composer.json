@@ -20,7 +20,8 @@
         "zetacomponents/system-information": "^1.1.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "~2.14.2",
+        "ezsystems/ezplatform-code-style": "^0.1",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "phpunit/phpunit": "^8.2"
     },
     "autoload": {
