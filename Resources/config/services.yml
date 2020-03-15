@@ -61,8 +61,8 @@ services:
     support_tools.system_info.collector.composer.lock_file:
         class: "%support_tools.system_info.collector.composer.lock_file.class%"
         arguments:
-            - "%kernel.root_dir%/../composer.lock"
-            - "%kernel.root_dir%/../composer.json"
+            - "%kernel.project_dir%/composer.lock"
+            - "%kernel.project_dir%/composer.json"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "composer" }
 
