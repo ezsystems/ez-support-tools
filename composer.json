@@ -9,11 +9,9 @@
             "email": "dev-team@ez.no"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "php": "^7.3",
-        "ezsystems/ezpublish-kernel": "dev-symfony5 as 8.0.x-dev",
+        "ezsystems/ezpublish-kernel": "^8.0@dev",
         "ocramius/proxy-manager": "^2.2",
         "symfony/proxy-manager-bridge": "^5.0",
         "zetacomponents/system-information": "^1.1.1",
