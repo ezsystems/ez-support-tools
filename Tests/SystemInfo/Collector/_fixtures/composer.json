@@ -36,7 +36,6 @@
         "ezsystems/ez-support-tools": "^1.0",
         "ezsystems/ezplatform-admin-ui": "^1.5",
         "ezsystems/ezplatform-admin-ui-assets": "^4.1.0",
-        "ezsystems/ezplatform-admin-ui-modules": "^1.5",
         "ezsystems/ezplatform-core": "^1.0",
         "ezsystems/ezplatform-cron": "^2.0",
         "ezsystems/ezplatform-design-engine": "^2.0",
