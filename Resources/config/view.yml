@@ -25,5 +25,11 @@ services:
             - '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
             - '@ezpublish.api.repository'
             - 'EzSystems\EzSupportToolsBundle\View\Matcher'
-        calls:
-            - [setMatchConfig, [$system_info_view$]]
+
+    support_tools.view.matcher_factory.dynamically_configured:
+        class: eZ\Publish\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
+        decorates: support_tools.view.matcher_factory
+        arguments:
+            $innerConfigurableMatcherFactory: '@support_tools.view.matcher_factory.dynamically_configured.inner'
+            $configResolver: '@ezpublish.config.resolver'
+            $parameterName: system_info_view
