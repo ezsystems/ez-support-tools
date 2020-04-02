@@ -129,6 +129,9 @@ class EzSystemInfoCollector implements SystemInfoCollector
         }
 
         $ez->release = EzPlatformCoreBundle::VERSION;
+        // try to extract version number, but prepare for unexpected string
+        [$majorVersion, $minorVersion] = array_pad(explode('.', $ez->release), 2, '');
+        $eZRelease = "{$majorVersion}.{$minorVersion}";
 
         // In case someone switches from TTL to BUL, make sure we only identify install as Trial if this is present,
         // as well as TTL packages
@@ -146,21 +149,21 @@ class EzSystemInfoCollector implements SystemInfoCollector
             $ez->name = 'eZ Commerce';
         }
 
-        if ($ez->isTrial && isset(self::RELEASES[$ez->release])) {
-            $months = (new DateTime(self::RELEASES[$ez->release]))->diff(new DateTime())->m;
+        if ($ez->isTrial && isset(self::RELEASES[$eZRelease])) {
+            $months = (new DateTime(self::RELEASES[$eZRelease]))->diff(new DateTime())->m;
             $ez->isEndOfMaintenance = $months > 3;
             // @todo We need to detect this in a better way, this is temporary until some of the work described in class doc is done.
             $ez->isEndOfLife = $months > 6;
         } else {
-            if (isset(self::EOM[$ez->release])) {
-                $ez->isEndOfMaintenance = strtotime(self::EOM[$ez->release]) < time();
+            if (isset(self::EOM[$eZRelease])) {
+                $ez->isEndOfMaintenance = strtotime(self::EOM[$eZRelease]) < time();
             }
 
-            if (isset(self::EOL[$ez->release])) {
+            if (isset(self::EOL[$eZRelease])) {
                 if (!$ez->isEnterpise) {
                     $ez->isEndOfLife = $ez->isEndOfMaintenance;
                 } else {
-                    $ez->isEndOfLife = strtotime(self::EOL[$ez->release]) < time();
+                    $ez->isEndOfLife = strtotime(self::EOL[$eZRelease]) < time();
                 }
             }
         }
