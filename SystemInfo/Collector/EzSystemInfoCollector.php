@@ -128,7 +128,8 @@ class EzSystemInfoCollector implements SystemInfoCollector
             return $ez;
         }
 
-        $ez->release = EzPlatformCoreBundle::VERSION;
+        $versionParts = explode('.', EzPlatformCoreBundle::VERSION);
+        $ez->release = $versionParts[0] . '.' . $versionParts[1];
 
         // In case someone switches from TTL to BUL, make sure we only identify install as Trial if this is present,
         // as well as TTL packages
