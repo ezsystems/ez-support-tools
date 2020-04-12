@@ -101,8 +101,8 @@ class EzSystemInfoCollector implements SystemInfoCollector
      * Packages that identifies install as Commerce install.
      */
     const COMMERCE_PACKAGES = [
-        'silversolutions/silver.e-shop',
         'ezsystems/ezcommerce-shop',
+        'silversolutions/silver.e-shop',
     ];
 
     /**
