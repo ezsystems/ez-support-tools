@@ -13,9 +13,7 @@ parameters:
     support_tools.system_info.collector.php.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcPhpSystemInfoCollector
     support_tools.system_info.collector.symfony.kernel.config.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ConfigurationSymfonyKernelSystemInfoCollector
     support_tools.system_info.output_format.json.class: EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormat\JsonOutputFormat
-    support_tools.promote_platform.enabled: true
-    support_tools.promote_platform.release: 'minor'
-    support_tools.promote_platform.name: ''
+    ezplatform_support_tools.system_info.powered_by.name: ''
     support_tools.ez_url_list:
         contact: "https://ez.no/About-eZ/Contact-Us"
         license: "https://ez.no/About-our-Software/Licenses-and-agreements"
@@ -36,7 +34,7 @@ services:
 
     support_tools.promote_platform.response_subscriber:
         class: EzSystems\EzSupportToolsBundle\EventSubscriber\AddXPoweredByHeader
-        arguments: ["%support_tools.promote_platform.name%"]
+        arguments: ["%ezplatform_support_tools.system_info.powered_by.name%"]
         tags:
             - { name: kernel.event_subscriber }
 

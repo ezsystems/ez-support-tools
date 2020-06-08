@@ -4,6 +4,8 @@
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+declare(strict_types=1);
+
 namespace EzSystems\EzSupportToolsBundle\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -30,7 +32,7 @@ class AddXPoweredByHeader implements EventSubscriberInterface
         return [KernelEvents::RESPONSE => 'promotePlatform'];
     }
 
-    public function promotePlatform(FilterResponseEvent $event)
+    public function promotePlatform(FilterResponseEvent $event): void
     {
         $response = $event->getResponse();
         if ($response->headers->has('X-Powered-By')) {
