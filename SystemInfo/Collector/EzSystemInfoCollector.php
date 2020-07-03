@@ -37,8 +37,8 @@ class EzSystemInfoCollector implements SystemInfoCollector
         '2.3' => '2018-09-20T23:59:59+00:00',
         '2.4' => '2018-12-20T23:59:59+00:00',
         '2.5' => '2019-03-29T16:59:59+00:00',
-        '3.0' => '2019-12-20T23:59:59+00:00', // Estimate at time of writing
-        '3.1' => '2020-03-20T23:59:59+00:00', // Estimate at time of writing
+        '3.0' => '2020-04-02T23:59:59+00:00',
+        '3.1' => '2020-07-06T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
@@ -61,8 +61,8 @@ class EzSystemInfoCollector implements SystemInfoCollector
         '2.3' => '2018-12-20T23:59:59+00:00',
         '2.4' => '2019-03-20T23:59:59+00:00',
         '2.5' => '2022-03-29T23:59:59+00:00',
-        '3.0' => '2020-03-20T23:59:59+00:00', // Estimate at time of writing
-        '3.1' => '2020-06-20T23:59:59+00:00', // Estimate at time of writing
+        '3.0' => '2020-07-10T23:59:59+00:00',
+        '3.1' => '2020-09-30T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
@@ -79,8 +79,8 @@ class EzSystemInfoCollector implements SystemInfoCollector
         '2.3' => '2019-03-20T23:59:59+00:00',
         '2.4' => '2019-06-20T23:59:59+00:00',
         '2.5' => '2024-03-29T23:59:59+00:00',
-        '3.0' => '2020-06-20T23:59:59+00:00', // Estimate at time of writing
-        '3.1' => '2020-09-20T23:59:59+00:00', // Estimate at time of writing
+        '3.0' => '2020-08-31T23:59:59+00:00',
+        '3.1' => '2020-11-30T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
