@@ -13,8 +13,10 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * Symfony extension configuration definition for ez_doctrine_schema extension.
+ *
+ * @internal
  */
-class Configuration implements ConfigurationInterface
+final class Configuration implements ConfigurationInterface
 {
     /**
      * {@inheritdoc}
@@ -42,10 +44,6 @@ class Configuration implements ConfigurationInterface
                                     ->info('Sets how much of version info is exposed in powered by. Examples: major: "2", minor: "2.5", ~: ""')
                                     ->values(['major', 'minor', null])
                                     ->defaultValue('minor')
-                                ->end()
-                                ->scalarNode('custom_name')
-                                    ->info('Optional config to override the powered by naming determined by the system, set to empty string to skip name')
-                                    ->defaultNull()
                                 ->end()
                             ->end()
                         ->end()

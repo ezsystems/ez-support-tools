@@ -32,8 +32,7 @@ parameters:
 services:
     # EventSubscriber
 
-    support_tools.promote_platform.response_subscriber:
-        class: EzSystems\EzSupportToolsBundle\EventSubscriber\AddXPoweredByHeader
+    EzSystems\EzSupportToolsBundle\EventSubscriber\AddXPoweredByHeader:
         arguments: ["%ezplatform_support_tools.system_info.powered_by.name%"]
         tags:
             - { name: kernel.event_subscriber }
