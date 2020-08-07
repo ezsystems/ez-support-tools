@@ -42,7 +42,7 @@ class EzSystemsEzSupportToolsExtension extends Extension
 
         if (isset($config['system_info']) && $config['system_info']['powered_by']['enabled']) {
             $container->setParameter(
-                'ezplatform_support_tools.system_info.powered_by.name',
+                'ezplatform.system_info.powered_by.name',
                 $this->getPoweredByName(
                     $container,
                     $config['system_info']['powered_by']['release']
@@ -65,9 +65,9 @@ class EzSystemsEzSupportToolsExtension extends Extension
 
         // Unlike in 3.x there is no constant for version in 2.5, so while this looks hard coded it reflects composer
         // requirements for this package version
-        If ($release === 'major') {
+        if ($release === 'major') {
             $name .= ' 2';
-        } else if ($release === 'minor') {
+        } elseif ($release === 'minor') {
             $name .= ' 2.5';
         }
 

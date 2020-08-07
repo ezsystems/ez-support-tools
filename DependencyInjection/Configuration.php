@@ -12,7 +12,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * Symfony extension configuration definition for ez_doctrine_schema extension.
+ * Symfony extension configuration definition for ezplatform_support_tools extension.
  *
  * @internal
  */
