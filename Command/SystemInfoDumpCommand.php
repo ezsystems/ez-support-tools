@@ -107,7 +107,9 @@ EOD
         }
 
         $output->writeln(
-             $outputFormatter->format($collectedInfoArray)
-         );
+            $outputFormatter->format($collectedInfoArray)
+        );
+
+        return Command::SUCCESS;
     }
 }
