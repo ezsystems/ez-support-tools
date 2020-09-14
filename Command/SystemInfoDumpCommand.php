@@ -87,7 +87,7 @@ EOD
                 $output->writeln("  $identifier", true);
             }
 
-            return;
+            return Command::SUCCESS;
         }
 
         $outputFormatter = $this->outputFormatRegistry->getItem(
