@@ -33,7 +33,7 @@ class EzSystemInfoCollector implements SystemInfoCollector
         '2.5' => '2019-03-29T16:59:59+00:00',
         '3.0' => '2020-04-02T23:59:59+00:00',
         '3.1' => '2020-07-15T23:59:59+00:00',
-        '3.2' => '2020-09-20T23:59:59+00:00', // Estimate at time of writing
+        '3.2' => '2020-10-20T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
@@ -52,8 +52,8 @@ class EzSystemInfoCollector implements SystemInfoCollector
     const EOM = [
         '2.5' => '2022-03-29T23:59:59+00:00',
         '3.0' => '2020-07-10T23:59:59+00:00',
-        '3.1' => '2020-09-30T23:59:59+00:00',
-        '3.2' => '2020-12-30T23:59:59+00:00', // Estimate at time of writing
+        '3.1' => '2020-11-30T23:59:59+00:00',
+        '3.2' => '2021-02-30T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
@@ -66,8 +66,8 @@ class EzSystemInfoCollector implements SystemInfoCollector
     const EOL = [
         '2.5' => '2024-03-29T23:59:59+00:00',
         '3.0' => '2020-08-31T23:59:59+00:00',
-        '3.1' => '2020-11-30T23:59:59+00:00',
-        '3.2' => '2021-03-30T23:59:59+00:00', // Estimate at time of writing
+        '3.1' => '2021-01-30T23:59:59+00:00',
+        '3.2' => '2021-04-30T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
