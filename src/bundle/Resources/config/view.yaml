@@ -1,17 +1,20 @@
 services:
-    support_tools.view.system_info_view_builder:
-        class: EzSystems\EzSupportToolsBundle\View\SystemInfoViewBuilder
-        arguments:
-            - "@ezpublish.view.configurator"
-            - "@support_tools.system_info.collector_registry"
-
     EzSystems\EzSupportToolsBundle\Controller\SystemInfoController:
+        autowire: true
+        arguments:
+            - "@support_tools.system_info.collector_registry"
         tags:
             - { name: controller.service_arguments }
 
     support_tools.view.controller:
         alias: EzSystems\EzSupportToolsBundle\Controller\SystemInfoController
         public: true
+
+    support_tools.view.system_info_view_builder:
+        class: EzSystems\EzSupportToolsBundle\View\SystemInfoViewBuilder
+        arguments:
+            - "@ezpublish.view.configurator"
+            - "@support_tools.system_info.collector_registry"
 
     support_tools.view.system_info.provider:
         class: "%ezpublish.view_provider.configured.class%"

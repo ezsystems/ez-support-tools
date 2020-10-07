@@ -1,5 +1,8 @@
 imports:
-    - { resource: view.yml }
+    - { resource: service_aliases.yaml }
+    - { resource: view.yaml }
+    - { resource: systeminfo.yaml }
+    - { resource: events.yaml }
 
 parameters:
     support_tools.command.dump_info.class: EzSystems\EzSupportToolsBundle\Command\SystemInfoDumpCommand

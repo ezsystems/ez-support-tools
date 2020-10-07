@@ -13,6 +13,7 @@
         "php": "^7.3",
         "ezsystems/ezplatform-kernel": "^1.2@dev",
         "ezsystems/ezplatform-core": "^2.1@dev",
+        "ezsystems/ezplatform-admin-ui": "^2.1",
         "ocramius/proxy-manager": "^2.2",
         "symfony/proxy-manager-bridge": "^5.0",
         "zetacomponents/system-information": "^1.1.1",
@@ -26,7 +27,8 @@
     },
     "autoload": {
         "psr-4": {
-            "EzSystems\\EzSupportToolsBundle\\": ""
+            "EzSystems\\EzSupportToolsBundle\\": "src/bundle/",
+            "EzSystems\\EzSupportTools\\": "src/lib/"
         }
     },
     "extra": {
