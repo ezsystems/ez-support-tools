@@ -15,15 +15,14 @@
     </php>
     <testsuites>
         <testsuite name="eZ Support Tools tests suite">
-            <directory suffix="Test.php">./Tests</directory>
+            <directory suffix="Test.php">src/bundle/Tests</directory>
         </testsuite>
     </testsuites>
-
     <filter>
         <whitelist>
             <directory>./</directory>
             <exclude>
-                <directory>Tests/</directory>
+                <directory>src/bundle/Tests/</directory>
                 <directory>vendor/</directory>
             </exclude>
         </whitelist>
