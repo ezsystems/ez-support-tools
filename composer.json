@@ -9,6 +9,8 @@
             "email": "dev-team@ez.no"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^7.3",
         "ezsystems/ezplatform-kernel": "^1.2@dev",
