@@ -15,7 +15,6 @@
         "php": "^7.3",
         "ezsystems/ezplatform-kernel": "^1.2@dev",
         "ezsystems/ezplatform-core": "^2.1@dev",
-        "ezsystems/ezplatform-admin-ui": "dev-ezp-32002-move-sysinfo-to-support-tools as 2.2.x-dev",
         "ocramius/proxy-manager": "^2.2",
         "symfony/proxy-manager-bridge": "^5.0",
         "zetacomponents/system-information": "^1.1.1",
@@ -26,7 +25,8 @@
         "friendsofphp/php-cs-fixer": "^2.16",
         "ezsystems/doctrine-dbal-schema": "^1.0@dev",
         "phpunit/phpunit": "^8.2",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.0"
+        "matthiasnoback/symfony-dependency-injection-test": "^4.0",
+        "ezsystems/ezplatform-admin-ui": "dev-ezp-32002-move-sysinfo-to-support-tools as 2.2.x-dev"
     },
     "autoload": {
         "psr-4": {
