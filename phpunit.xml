@@ -18,7 +18,7 @@
             <directory suffix="Test.php">src/bundle/Tests</directory>
         </testsuite>
         <testsuite name="EzSystems\EzSupportTools">
-            <directory>src/lib/Tests/</directory>
+            <directory suffix="Test.php">src/lib/Tests/</directory>
         </testsuite>
     </testsuites>
     <filter>
