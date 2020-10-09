@@ -4,7 +4,7 @@
 <phpunit
         backupGlobals="false"
         backupStaticAttributes="false"
-        bootstrap="Tests/bootstrap.php"
+        bootstrap="src/bundle/Tests/bootstrap.php"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
