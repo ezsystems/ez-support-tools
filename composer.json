@@ -25,7 +25,8 @@
         "ezsystems/ezplatform-code-style": "^0.1",
         "friendsofphp/php-cs-fixer": "^2.16",
         "ezsystems/doctrine-dbal-schema": "^1.0@dev",
-        "phpunit/phpunit": "^8.2"
+        "phpunit/phpunit": "^8.2",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.0"
     },
     "autoload": {
         "psr-4": {
