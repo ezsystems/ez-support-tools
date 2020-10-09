@@ -14,8 +14,11 @@
         <ini name="error_reporting" value="-1" />
     </php>
     <testsuites>
-        <testsuite name="eZ Support Tools tests suite">
+        <testsuite name="EzSystems\EzSupportToolsBundle">
             <directory suffix="Test.php">src/bundle/Tests</directory>
+        </testsuite>
+        <testsuite name="EzSystems\EzSupportTools">
+            <directory>src/lib/Tests/</directory>
         </testsuite>
     </testsuites>
     <filter>
@@ -23,6 +26,7 @@
             <directory>./</directory>
             <exclude>
                 <directory>src/bundle/Tests/</directory>
+                <directory>src/lib/Tests/</directory>
                 <directory>vendor/</directory>
             </exclude>
         </whitelist>
