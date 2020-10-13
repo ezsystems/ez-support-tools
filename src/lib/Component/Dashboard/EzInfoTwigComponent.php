@@ -73,8 +73,8 @@ class EzInfoTwigComponent implements Renderable
         $urls = $this->urlList;
         foreach ($this->urlList as $urlName => $url) {
             foreach ($this->ezSystemInfo as $attribute => $value) {
-                if (\is_string($value) && strpos($url, '{ez.' . $attribute . '}') !== false) {
-                    $urls[$urlName] = str_replace('{ez.' . $attribute . '}', $value, $url);
+                if (\is_string($value) && \strpos($url, '{ez.' . $attribute . '}') !== false) {
+                    $urls[$urlName] = \str_replace('{ez.' . $attribute . '}', $value, $url);
                 }
             }
         }
