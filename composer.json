@@ -23,7 +23,8 @@
     },
     "autoload": {
         "psr-4": {
-            "EzSystems\\EzSupportToolsBundle\\": ""
+            "EzSystems\\EzSupportToolsBundle\\": "src/bundle/",
+            "EzSystems\\EzSupportTools\\": "src/lib/"
         }
     },
     "extra": {

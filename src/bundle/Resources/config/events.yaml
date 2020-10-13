@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    EzSystems\EzSupportTools\EventListener\:
+        resource: "../../../lib/EventListener/*"
+        public: true
+        tags:
+            - { name: kernel.event_subscriber }

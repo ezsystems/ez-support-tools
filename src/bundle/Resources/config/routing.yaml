@@ -1,0 +1,9 @@
+ezplatform.systeminfo:
+    path: /systeminfo
+    defaults:
+        _controller: 'EzSystems\EzSupportToolsBundle\Controller\SystemInfoController::infoAction'
+
+ezplatform.systeminfo.php:
+    path: /systeminfo/phpinfo
+    defaults:
+        _controller: 'EzSystems\EzSupportToolsBundle\Controller\SystemInfoController::phpinfoAction'

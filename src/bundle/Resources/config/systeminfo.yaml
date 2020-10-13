@@ -1,0 +1,17 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    EzSystems\EzSupportTools\Tab\SystemInfo\TabFactory:
+        arguments:
+            $httpKernelRuntime: '@twig.runtime.httpkernel'
+
+    ez.support.tools.systeminfo.tab_groups:
+        parent: EzSystems\EzPlatformAdminUi\Component\TabsComponent
+        arguments:
+            $template: '@@ezdesign/ui/tab/system_info.html.twig'
+            $groupIdentifier: 'systeminfo'
+        tags:
+            - { name: ezplatform.admin_ui.component, group: 'systeminfo-tab-groups' }

@@ -4,7 +4,7 @@
 <phpunit
         backupGlobals="false"
         backupStaticAttributes="false"
-        bootstrap="Tests/bootstrap.php"
+        bootstrap="src/bundle/Tests/bootstrap.php"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
@@ -14,16 +14,19 @@
         <ini name="error_reporting" value="-1" />
     </php>
     <testsuites>
-        <testsuite name="eZ Support Tools tests suite">
-            <directory suffix="Test.php">./Tests</directory>
+        <testsuite name="EzSystems\EzSupportToolsBundle">
+            <directory suffix="Test.php">src/bundle/Tests</directory>
+        </testsuite>
+        <testsuite name="EzSystems\EzSupportTools">
+            <directory suffix="Test.php">src/lib/Tests/</directory>
         </testsuite>
     </testsuites>
-
     <filter>
         <whitelist>
             <directory>./</directory>
             <exclude>
-                <directory>Tests/</directory>
+                <directory>src/bundle/Tests/</directory>
+                <directory>src/lib/Tests/</directory>
                 <directory>vendor/</directory>
             </exclude>
         </whitelist>

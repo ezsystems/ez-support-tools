@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry: '@support_tools.system_info.collector_registry'
+    Symfony\Contracts\Translation\TranslatorInterface: '@translator'
