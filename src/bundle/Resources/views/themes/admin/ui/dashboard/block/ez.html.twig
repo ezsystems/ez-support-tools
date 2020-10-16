@@ -17,13 +17,13 @@
             <svg class="ez-icon ez-icon--small-medium ez-icon--light">
                 <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#system-information"></use>
             </svg>
-            <span>
+            <div class="ez-alert__content">
                 {{ 'dashboard.ez_version.release_not_determined'|trans
                 |desc("The system could not find your <code>composer.lock</code> file. It's needed to determine information about
                     your Ibexa installation. It is recommended to keep it during project development to make sure the same package versions are
                     used across all environments.")
                 |raw }}
-            </span>
+            </div>
         </div>
     {% elseif ez.stability != 'stable'  %}
         {% set severity = 1 %}
@@ -32,7 +32,7 @@
             <svg class="ez-icon ez-icon--small-medium ez-icon--light">
                 <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#system-information"></use>
             </svg>
-            <span>
+            <div class="ez-alert__content">
                 {% if ez.composerInfo.minimumStability != 'stable' %}
                     {{ 'dashboard.ez_version.unstable_minimum_stability'|trans({'%minimum_stability%': ez.composerInfo.minimumStability})|desc("Your setup is running with '%minimum_stability%' as composer.json minimum-stability. This is not recommended except when testing updates or during development.") }}
                 {% else  %}
@@ -41,7 +41,7 @@
                 {% if ez.isEnterpise %}
                     {{ 'dashboard.ez_version.non_stable_ee'|trans({'%support_url%': urls['support']})|desc("If you need assistance, don't hesitate to <a target=\"_blank\" href=\"%support_url%\">get in touch with Ibexa support</a>.")|raw }}
                 {% endif %}
-            </span>
+            </div>
         </div>
     {% elseif ez.isTrial %}
         {% set badge = 'Trial' %}
@@ -51,7 +51,7 @@
                 <svg class="ez-icon ez-icon--small-medium ez-icon--light">
                     <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#system-information"></use>
                 </svg>
-                <span>
+                <div class="ez-alert__content">
                     {{ 'dashboard.ez_version.trial_expired'|trans({'%ttl_url%': urls['ttl']})|desc("Unfortunately your trial period has expired and your <a target=\"_blank\" href=\"%ttl_url%\">TTL license</a> is no longer valid.")|raw }}
         {% elseif ez.isEndOfMaintenance %}
             {% set severity = 1 %}
@@ -59,7 +59,7 @@
                 <svg class="ez-icon ez-icon--small-medium ez-icon--light">
                     <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#system-information"></use>
                 </svg>
-                <span>
+                <div class="ez-alert__content">
                     {{ 'dashboard.ez_version.trial_end_of_maintenance'|trans|desc("Your trial period is coming to an end.")}}
         {% else %}
             {% set severity = 0 %}
@@ -67,7 +67,7 @@
                 <svg class="ez-icon ez-icon--small-medium ez-icon--light">
                     <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#system-information"></use>
                 </svg>
-                <span>
+                <div class="ez-alert__content">
                     {{ 'dashboard.ez_version.trial_notice'|trans({'%name%': ez.name, '%doc_url%': urls['doc'], '%consulting_url%': urls['consulting_service'], '%training_url%': urls['training_service']})
                     |desc('Welcome to %name%, check our <a target=\"_blank\" href=\"%doc_url%\">online documentation</a>, <a target=\"_blank\" href=\"%consulting_url%\">consulting</a>
                         or <a target=\"_blank\" href=\"%training_url%\">training</a> services in order to get the most out of your trial.')
@@ -77,7 +77,7 @@
                     |desc("<a target=\"_blank\" href=\"%contact_url%\">Contact Ibexa or its partner(s)</a> to purchase a subscription
                         and follow the <a target=\"_blank\" href=\"%install_ee%\">online documentation</a> to configure composer.json 'repositories' url for 'bul' instead of 'ttl'.")
                     |raw }}
-                </span>
+                </div>
             </div>
     {% elseif not ez.isEnterpise %}
         {% set badge = 'GPL' %}
@@ -88,7 +88,7 @@
                 <svg class="ez-icon ez-icon--small-medium ez-icon--light">
                     <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#system-information"></use>
                 </svg>
-                <span>
+                <div class="ez-alert__content">
                     {{ 'dashboard.ez_version.community_end_of_maintenance'|trans({
                         '%release%': ez.release,
                         '%update_url%': urls['update']
@@ -110,7 +110,7 @@
                             <a target=\"_blank\" href=\"%service_life_url%\">longer maintenance period of your release</a>.")
                         |raw }}
                     </em>
-                </span>
+                </div>
             </div>
         {% else  %}
             {% set severity = 0 %}
@@ -118,7 +118,7 @@
                 <svg class="ez-icon ez-icon--small-medium ez-icon--light">
                     <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#system-information"></use>
                 </svg>
-                <span>
+                <div class="ez-alert__content">
                     {{ 'dashboard.ez_version.community_severity_non'|trans({
                         '%release%': ez.release,
                         '%license_url%': urls['license'],
@@ -127,7 +127,7 @@
                     |desc("Welcome to the open source %release% release. Using the community friendly <a target=\"_blank\" href=\"%license_url%\">GPL license</a>,
                         <a target=\"_blank\" href=\"%gpl_faq_url%\">sharing your code</a> is what it's all about.")
                     |raw }}
-                </span>
+                </div>
             </div>
         {% endif %}
     {% elseif ez.isEndOfLife %}
@@ -138,7 +138,7 @@
             <svg class="ez-icon ez-icon--small-medium ez-icon--light">
                 <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#system-information"></use>
             </svg>
-            <span>
+            <div class="ez-alert__content">
                 {{ 'dashboard.ez_version.end_of_life_upgrade'|trans({
                     '%release%': ez.release,
                     '%service_life_url%': urls['service_life'],
@@ -147,7 +147,7 @@
                 |desc("Unfortunately %release% has reached <a target=\"_blank\" href=\"%service_life_url%\">end of life</a>,
                     please plan to upgrade. If you need assistance, don't hesitate to <a target=\"_blank\" href=\"%contact_url%\">contact eZ</a>.")
                 |raw }}
-            </span>
+            </div>
         </div>
     {% endif %}
 {% endapply %}
