@@ -18,7 +18,7 @@ class EzSystemInfo extends ValueObject implements SystemInfo
     /**
      * @var string
      */
-    public $name = 'eZ Platform';
+    public $name = 'Ibexa Platform';
 
     /**
      * @var string|null Either string like '2.5' or null if not detected.

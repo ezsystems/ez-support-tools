@@ -140,13 +140,13 @@ class EzSystemInfoCollector implements SystemInfoCollector
         if ($package = $this->getFirstPackage(self::ENTERPISE_PACKAGES)) {
             $ez->isEnterpise = true;
             $ez->isTrial = $hasTTLComposerRepo && $package->license === 'TTL-2.0';
-            $ez->name = 'eZ Platform Enterprise';
+            $ez->name = 'Ibexa DXP';
         }
 
         if ($package = $this->getFirstPackage(self::COMMERCE_PACKAGES)) {
             $ez->isCommerce = true;
             $ez->isTrial = $ez->isTrial || $hasTTLComposerRepo && $package->license === 'TTL-2.0';
-            $ez->name = 'eZ Commerce';
+            $ez->name = 'Ibexa Commerce';
         }
 
         if ($ez->isTrial && isset(self::RELEASES[$eZRelease])) {
