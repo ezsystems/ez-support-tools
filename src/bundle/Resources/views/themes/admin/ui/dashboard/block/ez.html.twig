@@ -162,11 +162,9 @@
     {% if status %}
         <a class="badge badge-{{ levels[severity] }} ez-badge ez-badge--round ez-badge--icon" data-toggle="collapse" href="#systemInfoCollapse">
             {{ badge }}
-            {% if severity != 0 %}
-                <svg class="ez-icon ez-icon--small-medium ez-icon--light">
-                    <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#system-information"></use>
-                </svg>
-            {% endif %}
+            <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#system-information"></use>
+            </svg>
         </a>
     {% endif %}
 </div>
