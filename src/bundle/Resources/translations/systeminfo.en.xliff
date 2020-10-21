@@ -56,6 +56,51 @@
         <target state="new">Disabled</target>
         <note>key: disabled</note>
       </trans-unit>
+      <trans-unit id="3c72abbe626f27d174d80fc434b851cce7bde6d3" resname="platform">
+        <source>Platform</source>
+        <target state="new">Platform</target>
+        <note>key: platform</note>
+      </trans-unit>
+      <trans-unit id="ba5031b35adb26a0ea1c7d2964e970ff2eac672d" resname="platform.name">
+        <source>Name</source>
+        <target state="new">Name</target>
+        <note>key: platform.name</note>
+      </trans-unit>
+      <trans-unit id="29de330ee1afde5fd7b8b52493b688d499586b79" resname="platform.version">
+        <source>Version</source>
+        <target state="new">Version</target>
+        <note>key: platform.version</note>
+      </trans-unit>
+      <trans-unit id="9d5bd3bd589f34e8261031892dc2009a4e38a25f" resname="platform.is_enterprise">
+        <source>Is Enterprise</source>
+        <target state="new">Is Enterprise</target>
+        <note>key: platform.is_enterprise</note>
+      </trans-unit>
+      <trans-unit id="c1090cf68d66f668176c5fcc00d6f0b4470caa8a" resname="platform.is_commerce">
+        <source>Is Commerce</source>
+        <target state="new">Is Commerce</target>
+        <note>key: platform.is_commerce</note>
+      </trans-unit>
+      <trans-unit id="9173c16987b27c1dbb2235ec2d67a35dce07b296" resname="platform.is_eom">
+        <source>Is End of Maintenance</source>
+        <target state="new">Is End of Maintenance</target>
+        <note>key: platform.is_eom</note>
+      </trans-unit>
+      <trans-unit id="c05720448171561b73112dc677234f6cf7b8275e" resname="platform.is_eol">
+        <source>Is End of Life</source>
+        <target state="new">Is End of Life</target>
+        <note>key: platform.is_eol</note>
+      </trans-unit>
+      <trans-unit id="f6ade203331c09ee732438a4f00ba36e1aa848d7" resname="platform.is_trial">
+        <source>Is Trial</source>
+        <target state="new">Is Trial</target>
+        <note>key: platform.is_trial</note>
+      </trans-unit>
+      <trans-unit id="5c9a8c36f76d9991640a1fa67533358828ffaec6" resname="platform.stability">
+        <source>Stability</source>
+        <target state="new">Stability</target>
+        <note>key: platform.stability</note>
+      </trans-unit>
       <trans-unit id="608cb271bb7fb52c99a1a8e003e0f80f57fb41e1" resname="hardware">
         <source>Hardware</source>
         <target state="new">Hardware</target>
@@ -175,6 +220,11 @@
         <source>System Information</source>
         <target state="new">System Information</target>
         <note>key: systeminfo</note>
+      </trans-unit>
+      <trans-unit id="cf859bea232bcc0f7f5755421888dbc8b285b7a4" resname="tab.name.ez">
+        <source>Platform</source>
+        <target state="new">Platform</target>
+        <note>key: tab.name.ez</note>
       </trans-unit>
       <trans-unit id="a2a92e9d0e41ea4a14c99ab0f702d5df3ea017c3" resname="tab.name.composer">
         <source>Composer</source>

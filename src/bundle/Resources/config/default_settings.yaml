@@ -2,6 +2,10 @@ parameters:
     ezsettings.default.system_info_view: {}
     ezsettings.global.system_info_view:
         pjax_tab:
+            ez:
+                template: '@@ezdesign/system_info/platform.html.twig'
+                match:
+                    SystemInfo\Identifier: 'ez'
             composer:
                 template: '@@ezdesign/system_info/composer.html.twig'
                 match:
