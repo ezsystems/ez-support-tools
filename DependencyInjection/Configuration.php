@@ -24,7 +24,7 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ezplatform');
+        $rootNode = $treeBuilder->root('ezplatform_support_tools');
 
         $rootNode
             ->children()
