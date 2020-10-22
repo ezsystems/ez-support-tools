@@ -15,6 +15,8 @@ services:
         arguments:
             - "@ezpublish.view.configurator"
             - "@support_tools.system_info.collector_registry"
+        tags:
+            - { name: ibexa.view_builder }
 
     support_tools.view.system_info.provider:
         class: "%ezpublish.view_provider.configured.class%"

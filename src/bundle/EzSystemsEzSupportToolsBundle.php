@@ -10,7 +10,6 @@ use EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsEx
 use EzSystems\EzSupportToolsBundle\DependencyInjection\Compiler\SystemInfoCollectorPass;
 use EzSystems\EzSupportToolsBundle\DependencyInjection\Compiler\OutputFormatPass;
 use EzSystems\EzSupportToolsBundle\DependencyInjection\Compiler\SystemInfoTabGroupPass;
-use EzSystems\EzSupportToolsBundle\DependencyInjection\Compiler\ViewBuilderPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -22,7 +21,6 @@ class EzSystemsEzSupportToolsBundle extends Bundle
         parent::build($container);
         $container->addCompilerPass(new SystemInfoCollectorPass());
         $container->addCompilerPass(new OutputFormatPass());
-        $container->addCompilerPass(new ViewBuilderPass());
         $container->addCompilerPass(new SystemInfoTabGroupPass());
     }
 
