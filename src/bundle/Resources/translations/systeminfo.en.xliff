@@ -56,50 +56,50 @@
         <target state="new">Disabled</target>
         <note>key: disabled</note>
       </trans-unit>
-      <trans-unit id="3c72abbe626f27d174d80fc434b851cce7bde6d3" resname="platform">
-        <source>Platform</source>
-        <target state="new">Platform</target>
-        <note>key: platform</note>
+      <trans-unit id="d87becd0d1497fe04536d2e9291290a8b07e9dfb" resname="ibexa.product">
+        <source>Product</source>
+        <target state="new">Product</target>
+        <note>key: ibexa.product</note>
       </trans-unit>
-      <trans-unit id="ba5031b35adb26a0ea1c7d2964e970ff2eac672d" resname="platform.name">
+      <trans-unit id="b7ffaa791bbf39db2ea700efec5362a0bc4e2021" resname="ibexa.name">
         <source>Name</source>
         <target state="new">Name</target>
-        <note>key: platform.name</note>
+        <note>key: ibexa.name</note>
       </trans-unit>
-      <trans-unit id="29de330ee1afde5fd7b8b52493b688d499586b79" resname="platform.version">
+      <trans-unit id="d6025d67b03f12dac6c912f6224bb309347f6465" resname="ibexa.version">
         <source>Version</source>
         <target state="new">Version</target>
-        <note>key: platform.version</note>
+        <note>key: ibexa.version</note>
       </trans-unit>
-      <trans-unit id="9d5bd3bd589f34e8261031892dc2009a4e38a25f" resname="platform.is_enterprise">
-        <source>Is Enterprise</source>
-        <target state="new">Is Enterprise</target>
-        <note>key: platform.is_enterprise</note>
+      <trans-unit id="cbc41e7c26bda65db42f138cce26a41b8482d9d1" resname="ibexa.is_dxp">
+        <source>Is DXP</source>
+        <target state="new">Is DXP</target>
+        <note>key: ibexa.is_dxp</note>
       </trans-unit>
-      <trans-unit id="c1090cf68d66f668176c5fcc00d6f0b4470caa8a" resname="platform.is_commerce">
-        <source>Is Commerce</source>
-        <target state="new">Is Commerce</target>
-        <note>key: platform.is_commerce</note>
+      <trans-unit id="a76f9b14d1f8ffbe3880f3a1e1a78041bbdf786f" resname="ibexa.has_commerce">
+        <source>Has Commerce</source>
+        <target state="new">Has Commerce</target>
+        <note>key: ibexa.has_commerce</note>
       </trans-unit>
-      <trans-unit id="9173c16987b27c1dbb2235ec2d67a35dce07b296" resname="platform.is_eom">
+      <trans-unit id="0dcca35f98d237af5d5430cd3b2388ea75617598" resname="ibexa.is_eom">
         <source>Is End of Maintenance</source>
         <target state="new">Is End of Maintenance</target>
-        <note>key: platform.is_eom</note>
+        <note>key: ibexa.is_eom</note>
       </trans-unit>
-      <trans-unit id="c05720448171561b73112dc677234f6cf7b8275e" resname="platform.is_eol">
+      <trans-unit id="c2b139f900c61df24d9fb77a3c639d937372cf10" resname="ibexa.is_eol">
         <source>Is End of Life</source>
         <target state="new">Is End of Life</target>
-        <note>key: platform.is_eol</note>
+        <note>key: ibexa.is_eol</note>
       </trans-unit>
-      <trans-unit id="f6ade203331c09ee732438a4f00ba36e1aa848d7" resname="platform.is_trial">
+      <trans-unit id="804e14084add4426182add3b4a0a710506ef742b" resname="ibexa.is_trial">
         <source>Is Trial</source>
         <target state="new">Is Trial</target>
-        <note>key: platform.is_trial</note>
+        <note>key: ibexa.is_trial</note>
       </trans-unit>
-      <trans-unit id="5c9a8c36f76d9991640a1fa67533358828ffaec6" resname="platform.stability">
+      <trans-unit id="341340ab8c700ad6fe83322ec29cb3977262f5df" resname="ibexa.stability">
         <source>Stability</source>
         <target state="new">Stability</target>
-        <note>key: platform.stability</note>
+        <note>key: ibexa.stability</note>
       </trans-unit>
       <trans-unit id="608cb271bb7fb52c99a1a8e003e0f80f57fb41e1" resname="hardware">
         <source>Hardware</source>
@@ -221,10 +221,10 @@
         <target state="new">System Information</target>
         <note>key: systeminfo</note>
       </trans-unit>
-      <trans-unit id="cf859bea232bcc0f7f5755421888dbc8b285b7a4" resname="tab.name.ez">
-        <source>Platform</source>
-        <target state="new">Platform</target>
-        <note>key: tab.name.ez</note>
+      <trans-unit id="7dd1b2ca71037e00112dfe0297383f47c6904c77" resname="tab.name.my_ibexa">
+        <source>My Ibexa</source>
+        <target state="new">My Ibexa</target>
+        <note>key: tab.name.my_ibexa</note>
       </trans-unit>
       <trans-unit id="a2a92e9d0e41ea4a14c99ab0f702d5df3ea017c3" resname="tab.name.composer">
         <source>Composer</source>

@@ -8,7 +8,7 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use EzSystems\EzPlatformCoreBundle\EzPlatformCoreBundle;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException;
-use EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo;
 use DateTime;
 
 /**
@@ -22,7 +22,7 @@ use DateTime;
  *           - Or be able to tell if install is greatly outdated
  *           - Be able to give heads up when install is approaching end of life.
  */
-class EzSystemInfoCollector implements SystemInfoCollector
+class IbexaSystemInfoCollector implements SystemInfoCollector
 {
     /**
      * Estimated release dates for given releases.
@@ -117,13 +117,13 @@ class EzSystemInfoCollector implements SystemInfoCollector
     }
 
     /**
-     * Collects information about the eZ distrobution and version.
+     * Collects information about the Ibexa distrobution and version.
      *
-     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo
+     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo
      */
     public function collect()
     {
-        $ez = new EzSystemInfo(['debug' => $this->debug, 'composerInfo' => $this->composerInfo]);
+        $ez = new IbexaSystemInfo(['debug' => $this->debug, 'composerInfo' => $this->composerInfo]);
         if ($this->composerInfo === null) {
             return $ez;
         }

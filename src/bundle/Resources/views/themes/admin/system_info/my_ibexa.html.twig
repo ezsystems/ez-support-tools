@@ -1,0 +1,65 @@
+{% trans_default_domain "systeminfo" %}
+
+<!-- Tab name: {{ 'tab.name.my_ibexa'|trans|desc('My Ibexa') }} -->
+
+<section class="ez-fieldgroup">
+    <h2 class="ez-fieldgroup__name">{{ 'ibexa.product'|trans|desc('Product') }}</h2>
+    <div class="ez-fieldgroup__content">
+        <table class="table ez-table ez-table--list ez-table--to-left">
+            <tbody>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'ibexa.name'|trans|desc('Name') }}</td>
+                    <td class="ez-table__cell">{{ info.name }}</td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'ibexa.version'|trans|desc('Version') }}</td>
+                    <td class="ez-table__cell">{{ info.release }}</td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'ibexa.is_dxp'|trans|desc('Is DXP') }}</td>
+                    <td class="ez-table__cell">
+                        <svg class="ez-icon ez-icon--small">
+                            <use xlink:href="{{ ez_icon_path((info.isEnterpise == true) ? 'checkmark' : 'discard') }}"></use>
+                        </svg>
+                    </td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'ibexa.is_commerce'|trans|desc('Has Commerce') }}</td>
+                    <td class="ez-table__cell">
+                        <svg class="ez-icon ez-icon--small">
+                            <use xlink:href="{{ ez_icon_path((info.isCommerce == true) ? 'checkmark' : 'discard') }}"></use>
+                        </svg>
+                    </td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'ibexa.is_eom'|trans|desc('Is End of Maintenance') }}</td>
+                    <td class="ez-table__cell">
+                        <svg class="ez-icon ez-icon--small">
+                            <use xlink:href="{{ ez_icon_path((info.isEndOfMaintenance == true) ? 'checkmark' : 'discard') }}"></use>
+                        </svg>
+                    </td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'ibexa.is_eol'|trans|desc('Is End of Life') }}</td>
+                    <td class="ez-table__cell">
+                        <svg class="ez-icon ez-icon--small">
+                            <use xlink:href="{{ ez_icon_path((info.isEndOfLife == true) ? 'checkmark' : 'discard') }}"></use>
+                        </svg>
+                    </td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'ibexa.is_trial'|trans|desc('Is Trial') }}</td>
+                    <td class="ez-table__cell">
+                        <svg class="ez-icon ez-icon--small">
+                            <use xlink:href="{{ ez_icon_path((info.isTrial == true) ? 'checkmark' : 'discard') }}"></use>
+                        </svg>
+                    </td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'ibexa.stability'|trans|desc('Stability') }}</td>
+                    <td class="ez-table__cell">{{ info.stability }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

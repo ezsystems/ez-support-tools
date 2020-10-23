@@ -9,11 +9,11 @@ declare(strict_types=1);
 namespace SystemInfo\Collector;
 
 use EzSystems\EzPlatformCoreBundle\EzPlatformCoreBundle;
-use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzSystemInfoCollector;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\IbexaSystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector;
 use PHPUnit\Framework\TestCase;
 
-class EzSystemInfoCollectorTest extends TestCase
+class IbexaSystemInfoCollectorTest extends TestCase
 {
     public function testCollect(): void
     {
@@ -21,7 +21,7 @@ class EzSystemInfoCollectorTest extends TestCase
             __DIR__ . '/_fixtures/composer.lock', __DIR__ . '/_fixtures/composer.json'
         );
 
-        $systemInfoCollector = new EzSystemInfoCollector($composerCollector);
+        $systemInfoCollector = new IbexaSystemInfoCollector($composerCollector);
         $systemInfo = $systemInfoCollector->collect();
         self::assertSame('Ibexa Platform', $systemInfo->name);
         self::assertSame(EzPlatformCoreBundle::VERSION, $systemInfo->release);

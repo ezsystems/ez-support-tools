@@ -9,11 +9,11 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo\Value;
 use eZ\Publish\API\Repository\Values\ValueObject;
 
 /**
- * Value for information about the eZ installation.
+ * Value for information about the Ibexa installation.
  *
  * @internal This class will greatly change in the future and should not be used as an api.
  */
-class EzSystemInfo extends ValueObject implements SystemInfo
+class IbexaSystemInfo extends ValueObject implements SystemInfo
 {
     /**
      * @var string

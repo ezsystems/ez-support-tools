@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzSupportTools\Component\Dashboard;
 
 use EzSystems\EzPlatformAdminUi\Component\Renderable;
-use EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo;
 use Twig\Environment;
 
 class EzInfoTwigComponent implements Renderable
@@ -23,8 +23,8 @@ class EzInfoTwigComponent implements Renderable
     /** @var array */
     protected $parameters;
 
-    /** @var \EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo */
-    private $ezSystemInfo;
+    /** @var \EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo */
+    private $ibexaSystemInfo;
 
     /** @var array */
     private $urlList;
@@ -32,21 +32,21 @@ class EzInfoTwigComponent implements Renderable
     /**
      * @param \Twig\Environment $twig
      * @param string $template
-     * @param \EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo $ezSystemInfo
+     * @param \EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo $ibexaSystemInfo
      * @param array $urlList
      * @param array $parameters
      */
     public function __construct(
         Environment $twig,
         string $template,
-        EzSystemInfo $ezSystemInfo,
+        IbexaSystemInfo $ibexaSystemInfo,
         array $urlList,
         array $parameters = []
     ) {
         $this->twig = $twig;
         $this->template = $template;
         $this->parameters = $parameters;
-        $this->ezSystemInfo = $ezSystemInfo;
+        $this->ibexaSystemInfo = $ibexaSystemInfo;
         $this->urlList = $urlList;
     }
 
@@ -61,7 +61,7 @@ class EzInfoTwigComponent implements Renderable
 
         return $this->twig->render(
             $this->template,
-            $parameters + ['urls' => $urls, 'ez' => $this->ezSystemInfo] + $this->parameters
+            $parameters + ['urls' => $urls, 'ez' => $this->ibexaSystemInfo] + $this->parameters
         );
     }
 
@@ -72,7 +72,7 @@ class EzInfoTwigComponent implements Renderable
     {
         $urls = $this->urlList;
         foreach ($this->urlList as $urlName => $url) {
-            foreach ($this->ezSystemInfo as $attribute => $value) {
+            foreach ($this->ibexaSystemInfo as $attribute => $value) {
                 if (\is_string($value) && \strpos($url, '{ez.' . $attribute . '}') !== false) {
                     $urls[$urlName] = \str_replace('{ez.' . $attribute . '}', $value, $url);
                 }
