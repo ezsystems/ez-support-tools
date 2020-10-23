@@ -138,7 +138,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.2.x-dev"
+                    "dev-master": "7.5.x-dev"
                 }
             },
             "autoload": {

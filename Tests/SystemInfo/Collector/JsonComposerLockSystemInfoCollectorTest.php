@@ -25,8 +25,8 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
                 'ezsystems/ezpublish-kernel' => new ComposerPackage([
                     'name' => 'ezsystems/ezpublish-kernel',
                     'branch' => 'dev-master',
-                    'alias' => '6.2.x-dev',
-                    'version' => '6.2.x',
+                    'alias' => '7.5.x-dev',
+                    'version' => '7.5.x',
                     'license' => 'GPL-2.0',
                     'stability' => 'dev',
                     'dateTime' => new \DateTime('2016-02-28 14:30:53'),
