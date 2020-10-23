@@ -23,7 +23,7 @@ class EzSystemInfoCollectorTest extends TestCase
 
         $systemInfoCollector = new EzSystemInfoCollector($composerCollector);
         $systemInfo = $systemInfoCollector->collect();
-        self::assertSame('eZ Platform', $systemInfo->name);
+        self::assertSame('Ibexa Platform', $systemInfo->name);
         self::assertSame(EzPlatformCoreBundle::VERSION, $systemInfo->release);
     }
 }
