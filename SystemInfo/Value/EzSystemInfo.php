@@ -17,10 +17,15 @@ use eZ\Publish\API\Repository\Values\ValueObject;
  */
 class EzSystemInfo extends ValueObject implements SystemInfo
 {
+    public const PRODUCT_NAME_OSS = 'eZ Platform';
+    public const PRODUCT_NAME_ENTERPISE = 'eZ Platform Enterprise';
+    // NOTE: These are specific product names, for 3.2+ thay are all collectivly refered to by PRODUCT_NAME_ENTERPISE as well.
+    public const PRODUCT_NAME_COMMERCE = 'eZ Commerce';
+
     /**
      * @var string
      */
-    public $name = 'eZ Platform';
+    public $name = self::PRODUCT_NAME_OSS;
 
     /**
      * @var string|null Either string like '2.5' or null if not detected.

@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace EzSystems\EzSupportToolsBundle\DependencyInjection;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzSystemInfoCollector;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -56,11 +57,11 @@ class EzSystemsEzSupportToolsExtension extends Extension
         // Autodetect product name if configured name is null (default)
         $vendor = $container->getParameter('kernel.root_dir') . '/../vendor/';
         if (is_dir($vendor . EzSystemInfoCollector::COMMERCE_PACKAGES[0])) {
-            $name = 'eZ Commerce';
+            $name = EzSystemInfo::PRODUCT_NAME_COMMERCE;
         } elseif (is_dir($vendor . EzSystemInfoCollector::ENTERPISE_PACKAGES[0])) {
-            $name = 'eZ Platform Enterprise';
+            $name = EzSystemInfo::PRODUCT_NAME_ENTERPISE;
         } else {
-            $name = 'eZ Platform';
+            $name = EzSystemInfo::PRODUCT_NAME_OSS;
         }
 
         // Unlike in 3.x there is no constant for version in 2.5, so while this looks hard coded it reflects composer
