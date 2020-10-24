@@ -81,15 +81,15 @@
         <target state="new">Has Commerce</target>
         <note>key: ibexa.has_commerce</note>
       </trans-unit>
-      <trans-unit id="0dcca35f98d237af5d5430cd3b2388ea75617598" resname="ibexa.is_eom">
-        <source>Is End of Maintenance</source>
-        <target state="new">Is End of Maintenance</target>
-        <note>key: ibexa.is_eom</note>
+      <trans-unit id="4a9e6f9b28c3203784cb5f01ebe73e67661cc823" resname="ibexa.eom">
+        <source>End of Maintenance</source>
+        <target state="new">End of Maintenance</target>
+        <note>key: ibexa.eom</note>
       </trans-unit>
-      <trans-unit id="c2b139f900c61df24d9fb77a3c639d937372cf10" resname="ibexa.is_eol">
-        <source>Is End of Life</source>
-        <target state="new">Is End of Life</target>
-        <note>key: ibexa.is_eol</note>
+      <trans-unit id="ed1f723e05fbc74c1c90cfc6f64c2bcda6f4bb9d" resname="ibexa.eol">
+        <source>End of Life</source>
+        <target state="new">End of Life</target>
+        <note>key: ibexa.eol</note>
       </trans-unit>
       <trans-unit id="804e14084add4426182add3b4a0a710506ef742b" resname="ibexa.is_trial">
         <source>Is Trial</source>
@@ -221,10 +221,10 @@
         <target state="new">System Information</target>
         <note>key: systeminfo</note>
       </trans-unit>
-      <trans-unit id="7dd1b2ca71037e00112dfe0297383f47c6904c77" resname="tab.name.my_ibexa">
+      <trans-unit id="7dd1b2ca71037e00112dfe0297383f47c6904c77" resname="tab.name.ibexa">
         <source>My Ibexa</source>
         <target state="new">My Ibexa</target>
-        <note>key: tab.name.my_ibexa</note>
+        <note>key: tab.name.ibexa</note>
       </trans-unit>
       <trans-unit id="a2a92e9d0e41ea4a14c99ab0f702d5df3ea017c3" resname="tab.name.composer">
         <source>Composer</source>

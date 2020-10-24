@@ -1,6 +1,6 @@
 {% trans_default_domain "systeminfo" %}
 
-<!-- Tab name: {{ 'tab.name.my_ibexa'|trans|desc('My Ibexa') }} -->
+<!-- Tab name: {{ 'tab.name.ibexa'|trans|desc('My Ibexa') }} -->
 
 <section class="ez-fieldgroup">
     <h2 class="ez-fieldgroup__name">{{ 'ibexa.product'|trans|desc('Product') }}</h2>
@@ -32,22 +32,6 @@
                     </td>
                 </tr>
                 <tr class="ez-table__row">
-                    <td class="ez-table__cell">{{ 'ibexa.is_eom'|trans|desc('Is End of Maintenance') }}</td>
-                    <td class="ez-table__cell">
-                        <svg class="ez-icon ez-icon--small">
-                            <use xlink:href="{{ ez_icon_path((info.isEndOfMaintenance == true) ? 'checkmark' : 'discard') }}"></use>
-                        </svg>
-                    </td>
-                </tr>
-                <tr class="ez-table__row">
-                    <td class="ez-table__cell">{{ 'ibexa.is_eol'|trans|desc('Is End of Life') }}</td>
-                    <td class="ez-table__cell">
-                        <svg class="ez-icon ez-icon--small">
-                            <use xlink:href="{{ ez_icon_path((info.isEndOfLife == true) ? 'checkmark' : 'discard') }}"></use>
-                        </svg>
-                    </td>
-                </tr>
-                <tr class="ez-table__row">
                     <td class="ez-table__cell">{{ 'ibexa.is_trial'|trans|desc('Is Trial') }}</td>
                     <td class="ez-table__cell">
                         <svg class="ez-icon ez-icon--small">
@@ -56,8 +40,26 @@
                     </td>
                 </tr>
                 <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'ibexa.eom'|trans|desc('End of Maintenance') }}*</td>
+                    <td class="ez-table__cell">
+                        {{ info.endOfMaintenanceDate is empty ? '' : info.endOfMaintenanceDate|date('F Y') }}
+                    </td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'ibexa.eol'|trans|desc('End of Life') }}*</td>
+                    <td class="ez-table__cell">
+                        {{ info.endOfLifeDate is empty ? '' : info.endOfLifeDate|date('F Y') }}
+                    </td>
+                </tr>
+                <tr class="ez-table__row">
                     <td class="ez-table__cell">{{ 'ibexa.stability'|trans|desc('Stability') }}</td>
                     <td class="ez-table__cell">{{ info.stability }}</td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td colspan="2">
+                        <hr/>
+                        * you can read more about Service Life <a target="_blank" href="https://support.ibexa.co/Public/Service-Life">here</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
