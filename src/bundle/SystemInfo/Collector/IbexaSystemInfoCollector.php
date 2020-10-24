@@ -120,8 +120,9 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     /**
      * Collects information about the Ibexa distribution and version.
      *
-     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo
      * @throws \Exception
+     *
+     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo
      */
     public function collect(): IbexaSystemInfo
     {
