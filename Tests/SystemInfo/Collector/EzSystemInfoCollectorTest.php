@@ -24,6 +24,6 @@ class EzSystemInfoCollectorTest extends TestCase
         $systemInfoCollector = new EzSystemInfoCollector($composerCollector);
         $systemInfo = $systemInfoCollector->collect();
         self::assertSame(EzSystemInfo::PRODUCT_NAME_OSS, $systemInfo->name);
-        self::assertSame("2.5", $systemInfo->release);
+        self::assertSame('2.5', $systemInfo->release);
     }
 }
