@@ -28,7 +28,7 @@ class IbexaSystemInfo extends ValueObject implements SystemInfo
     /**
      * @var bool
      */
-    public $isEnterpise = false;
+    public $isEnterprise = false;
 
     /**
      * @var bool

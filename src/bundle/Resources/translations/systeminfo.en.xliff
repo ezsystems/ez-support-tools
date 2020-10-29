@@ -101,6 +101,11 @@
         <target state="new">Stability</target>
         <note>key: ibexa.stability</note>
       </trans-unit>
+      <trans-unit id="972bcf808b8ce2b0a08a21db7f0f15f520f4b87b" resname="ibexa.read_more">
+        <source>You can read more about Service Life for Ibexa DXP with a business license</source>
+        <target state="new">You can read more about Service Life for Ibexa DXP with a business license</target>
+        <note>key: ibexa.read_more</note>
+      </trans-unit>
       <trans-unit id="608cb271bb7fb52c99a1a8e003e0f80f57fb41e1" resname="hardware">
         <source>Hardware</source>
         <target state="new">Hardware</target>

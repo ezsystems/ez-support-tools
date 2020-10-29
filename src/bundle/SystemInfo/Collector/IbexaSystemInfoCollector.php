@@ -141,7 +141,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
         $hasTTLComposerRepo = \in_array('https://updates.ez.no/ttl', $this->composerInfo->repositoryUrls);
 
         if ($package = $this->getFirstPackage(self::ENTERPRISE_PACKAGES)) {
-            $ibexa->isEnterpise = true;
+            $ibexa->isEnterprise = true;
             $ibexa->isTrial = $hasTTLComposerRepo && $package->license === 'TTL-2.0';
             $ibexa->name = 'Ibexa DXP';
         }
@@ -163,7 +163,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
             }
 
             if (isset(self::EOL[$ibexaRelease])) {
-                if (!$ibexa->isEnterpise) {
+                if (!$ibexa->isEnterprise) {
                     $ibexa->isEndOfLife = $ibexa->isEndOfMaintenance;
                 } else {
                     $ibexa->isEndOfLife = strtotime(self::EOL[$ibexaRelease]) < time();
