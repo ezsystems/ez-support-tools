@@ -2,6 +2,10 @@ parameters:
     ezsettings.default.system_info_view: {}
     ezsettings.global.system_info_view:
         pjax_tab:
+            ibexa:
+                template: '@@ezdesign/system_info/my_ibexa.html.twig'
+                match:
+                    SystemInfo\Identifier: 'ibexa'
             composer:
                 template: '@@ezdesign/system_info/composer.html.twig'
                 match:

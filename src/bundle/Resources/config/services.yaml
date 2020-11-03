@@ -11,7 +11,7 @@ parameters:
     support_tools.system_info.ezc.wrapper.class: EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper
     support_tools.system_info.collector.composer.lock_file.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector
     support_tools.system_info.collector.database.doctrine.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\DoctrineDatabaseSystemInfoCollector
-    support_tools.system_info.collector.system.ez.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzSystemInfoCollector
+    support_tools.system_info.collector.system.ibexa.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\IbexaSystemInfoCollector
     support_tools.system_info.collector.hardware.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcHardwareSystemInfoCollector
     support_tools.system_info.collector.php.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcPhpSystemInfoCollector
     support_tools.system_info.collector.symfony.kernel.config.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ConfigurationSymfonyKernelSystemInfoCollector
@@ -62,14 +62,13 @@ services:
 
     # SystemInfoCollectors
 
-    support_tools.system_info.collector.system.ez:
-        class: "%support_tools.system_info.collector.system.ez.class%"
+    support_tools.system_info.collector.system.ibexa:
+        class: "%support_tools.system_info.collector.system.ibexa.class%"
         arguments:
             - "@support_tools.system_info.collector.composer.lock_file"
             - "%kernel.debug%"
-        # Can't tag this before v0.3 (2.5?) as it will blow up in admin UI for missing templates there
-        # And it does not look like there is any way to add it from this package, so maybe it needs to be made extensible(?)
-        #tags: [{ name: "support_tools.system_info.collector", identifier: "ez" }]
+        tags:
+            - { name: "support_tools.system_info.collector", identifier: "ibexa" }
 
     support_tools.system_info.collector.composer.lock_file:
         class: "%support_tools.system_info.collector.composer.lock_file.class%"

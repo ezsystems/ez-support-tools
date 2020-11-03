@@ -13,7 +13,7 @@ use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemIn
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo;
 use PHPUnit\Framework\TestCase;
 
-class EzSystemInfoCollectorTest extends TestCase
+class IbexaSystemInfoCollectorTest extends TestCase
 {
     public function testCollect(): void
     {
@@ -21,7 +21,7 @@ class EzSystemInfoCollectorTest extends TestCase
             __DIR__ . '/_fixtures/composer.lock', __DIR__ . '/_fixtures/composer.json'
         );
 
-        $systemInfoCollector = new EzSystemInfoCollector($composerCollector);
+        $systemInfoCollector = new IbexaSystemInfoCollector($composerCollector);
         $systemInfo = $systemInfoCollector->collect();
         self::assertSame(EzSystemInfo::PRODUCT_NAME_OSS, $systemInfo->name);
         self::assertSame('2.5', $systemInfo->release);

@@ -38,7 +38,7 @@
                 {% else  %}
                     {{ 'dashboard.ez_version.non_stable_packages'|trans({'%stability%': ez.stability})|desc("Your setup is running with @%stability% composer packages. This is not recommended except when testing updates or during development.") }}
                 {% endif %}
-                {% if ez.isEnterpise %}
+                {% if ez.isEnterprise %}
                     {{ 'dashboard.ez_version.non_stable_ee'|trans({'%support_url%': urls['support']})|desc("If you need assistance, don't hesitate to <a target=\"_blank\" href=\"%support_url%\">get in touch with Ibexa support</a>.")|raw }}
                 {% endif %}
             </div>
@@ -79,7 +79,7 @@
                     |raw }}
                 </div>
             </div>
-    {% elseif not ez.isEnterpise %}
+    {% elseif not ez.isEnterprise %}
         {% set badge = 'GPL' %}
         {% if ez.isEndOfMaintenance %}
             {# In the future with retrival of info from updates.ez.no we can detect missing (public) security fixes and then let this become an error #}
