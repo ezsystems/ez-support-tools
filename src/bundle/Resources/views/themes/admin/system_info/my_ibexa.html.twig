@@ -16,22 +16,6 @@
                     <td class="ez-table__cell">{{ info.release }}</td>
                 </tr>
                 <tr class="ez-table__row">
-                    <td class="ez-table__cell">{{ 'ibexa.is_dxp'|trans|desc('Is DXP') }}</td>
-                    <td class="ez-table__cell">
-                        <svg class="ez-icon ez-icon--small">
-                            <use xlink:href="{{ ez_icon_path(info.isEnterprise ? 'checkmark' : 'discard') }}"></use>
-                        </svg>
-                    </td>
-                </tr>
-                <tr class="ez-table__row">
-                    <td class="ez-table__cell">{{ 'ibexa.has_commerce'|trans|desc('Has Commerce') }}</td>
-                    <td class="ez-table__cell">
-                        <svg class="ez-icon ez-icon--small">
-                            <use xlink:href="{{ ez_icon_path(info.isCommerce ? 'checkmark' : 'discard') }}"></use>
-                        </svg>
-                    </td>
-                </tr>
-                <tr class="ez-table__row">
                     <td class="ez-table__cell">{{ 'ibexa.is_trial'|trans|desc('Is Trial') }}</td>
                     <td class="ez-table__cell">
                         <svg class="ez-icon ez-icon--small">

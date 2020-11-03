@@ -71,16 +71,6 @@
         <target state="new">Version</target>
         <note>key: ibexa.version</note>
       </trans-unit>
-      <trans-unit id="cbc41e7c26bda65db42f138cce26a41b8482d9d1" resname="ibexa.is_dxp">
-        <source>Is DXP</source>
-        <target state="new">Is DXP</target>
-        <note>key: ibexa.is_dxp</note>
-      </trans-unit>
-      <trans-unit id="a76f9b14d1f8ffbe3880f3a1e1a78041bbdf786f" resname="ibexa.has_commerce">
-        <source>Has Commerce</source>
-        <target state="new">Has Commerce</target>
-        <note>key: ibexa.has_commerce</note>
-      </trans-unit>
       <trans-unit id="4a9e6f9b28c3203784cb5f01ebe73e67661cc823" resname="ibexa.eom">
         <source>End of Maintenance</source>
         <target state="new">End of Maintenance</target>

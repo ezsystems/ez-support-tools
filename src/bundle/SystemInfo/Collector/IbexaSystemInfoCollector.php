@@ -143,7 +143,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
         if ($package = $this->getFirstPackage(self::ENTERPRISE_PACKAGES)) {
             $ibexa->isEnterprise = true;
             $ibexa->isTrial = $hasTTLComposerRepo && $package->license === 'TTL-2.0';
-            $ibexa->name = 'Ibexa DXP';
+            $ibexa->name = 'Ibexa Experience';
         }
 
         if ($package = $this->getFirstPackage(self::COMMERCE_PACKAGES)) {

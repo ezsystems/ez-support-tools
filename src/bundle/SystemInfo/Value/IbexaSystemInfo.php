@@ -18,7 +18,7 @@ class IbexaSystemInfo extends ValueObject implements SystemInfo
     /**
      * @var string
      */
-    public $name = 'Ibexa Platform';
+    public $name = 'Ibexa Open Source';
 
     /**
      * @var string|null Either string like '2.5' or null if not detected.

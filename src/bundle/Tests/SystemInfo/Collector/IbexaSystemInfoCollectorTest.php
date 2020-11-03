@@ -23,7 +23,7 @@ class IbexaSystemInfoCollectorTest extends TestCase
 
         $systemInfoCollector = new IbexaSystemInfoCollector($composerCollector);
         $systemInfo = $systemInfoCollector->collect();
-        self::assertSame('Ibexa Platform', $systemInfo->name);
+        self::assertSame('Ibexa Open Source', $systemInfo->name);
         self::assertSame(EzPlatformCoreBundle::VERSION, $systemInfo->release);
     }
 }

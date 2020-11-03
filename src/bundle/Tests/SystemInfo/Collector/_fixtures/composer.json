@@ -1,12 +1,12 @@
 {
     "name": "ezsystems/ezplatform-ee",
-    "description": "eZ Platform Enterprise Edition distribution",
+    "description": "Ibexa Experience distribution",
     "homepage": "https://github.com/ezsystems/ezplatform-ee",
     "license": "proprietary",
     "type": "project",
     "authors": [
         {
-            "name": "eZ dev-team & eZ Community",
+            "name": "Ibexa dev-team & Ibexa Community",
             "homepage": "https://github.com/ezsystems/ezplatform-ee/contributors"
         }
     ],
