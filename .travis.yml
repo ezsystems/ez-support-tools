@@ -15,7 +15,7 @@ matrix:
           name: "Unit tests"
           env: UNIT_TESTS=true 
         - php: 7.3
-          name: "System informarion browser tests"
+          name: "System information browser tests"
           env:     
             - EZPLATFORM_REPO="https://github.com/ezsystems/ezplatform.git"
             - APP_ENV=behat
