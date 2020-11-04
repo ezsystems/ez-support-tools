@@ -28,6 +28,7 @@
         }
     },
     "extra": {
+        "_ezplatform_branch_for_behat_tests": "3.2",
         "branch-alias": {
             "dev-master": "2.3.x-dev"
         }
