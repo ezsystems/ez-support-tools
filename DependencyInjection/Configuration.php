@@ -43,7 +43,7 @@ final class Configuration implements ConfigurationInterface
                                 ->enumNode('release')
                                     ->info('Sets how much of version info is exposed in powered by. Examples:  minor: "2.5", major: "2", none: ""')
                                     ->values(['major', 'minor', 'none'])
-                                    ->defaultValue('minor')
+                                    ->defaultValue('major')
                                 ->end()
                             ->end()
                         ->end()
