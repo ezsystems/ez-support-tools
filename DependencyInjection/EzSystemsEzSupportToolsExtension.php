@@ -67,9 +67,9 @@ class EzSystemsEzSupportToolsExtension extends Extension
         // Unlike in 3.x there is no constant for version in 2.5, so while this looks hard coded it reflects composer
         // requirements for this package version
         if ($release === 'major') {
-            $name .= ' 2';
+            $name .= ' v2';
         } elseif ($release === 'minor') {
-            $name .= ' 2.5';
+            $name .= ' v2.5';
         }
 
         return $name;
