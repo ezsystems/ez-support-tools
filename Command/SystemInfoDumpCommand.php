@@ -48,7 +48,6 @@ class SystemInfoDumpCommand extends ContainerAwareCommand
         $this
             ->setName('ez-support-tools:dump-info')
             ->setAliases([
-                'ez:info',
                 'ibexa:info',
             ])
             ->setDescription('Collects system information and dumps it.')
