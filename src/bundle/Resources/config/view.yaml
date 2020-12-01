@@ -1,5 +1,6 @@
 services:
     EzSystems\EzSupportToolsBundle\Controller\SystemInfoController:
+        parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
         autowire: true
         arguments:
             - "@support_tools.system_info.collector_registry"
