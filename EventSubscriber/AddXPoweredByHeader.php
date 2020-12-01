@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzSupportToolsBundle\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -32,7 +32,7 @@ class AddXPoweredByHeader implements EventSubscriberInterface
         return [KernelEvents::RESPONSE => 'promotePlatform'];
     }
 
-    public function promotePlatform(FilterResponseEvent $event): void
+    public function promotePlatform(ResponseEvent $event): void
     {
         $response = $event->getResponse();
         if ($response->headers->has('X-Powered-By')) {
