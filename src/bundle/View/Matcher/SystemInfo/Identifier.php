@@ -6,7 +6,6 @@
  */
 namespace EzSystems\EzSupportToolsBundle\View\Matcher\SystemInfo;
 
-use Doctrine\Common\Inflector\Inflector;
 use eZ\Publish\Core\MVC\Symfony\Matcher\ViewMatcherInterface;
 use eZ\Publish\Core\MVC\Symfony\View\View;
 use EzSystems\EzSupportToolsBundle\View\SystemInfoView;
@@ -55,6 +54,20 @@ class Identifier implements ViewMatcherInterface
         $className = substr($className, strrpos($className, '\\') + 1);
         $className = str_replace('SystemInfo', '', $className);
 
-        return Inflector::tableize($className);
+        return $this->normalizeName($className);
+    }
+
+    private function normalizeName(string $name): string
+    {
+        $normalized = preg_replace('~(?<=\\w)([A-Z])~u', '_$1', $name);
+
+        if ($normalized === null) {
+            throw new \RuntimeException(sprintf(
+                'preg_replace returned null for value "%s"',
+                $name
+            ));
+        }
+
+        return mb_strtolower($normalized);
     }
 }
