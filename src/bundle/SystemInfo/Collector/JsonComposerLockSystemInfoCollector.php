@@ -7,7 +7,8 @@
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception;
-use EzSystems\EzSupportToolsBundle\SystemInfo\Value;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerPackage;
 
 /**
  * Collects information about installed Composer packages, by reading json from composer.lock.
@@ -38,7 +39,7 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
     private $jsonFile;
 
     /**
-     * @var Value\ComposerSystemInfo The collected value, cached in case info is collected by other collectors.
+     * @var ComposerSystemInfo The collected value, cached in case info is collected by other collectors.
      */
     private $value;
 
@@ -53,9 +54,9 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
      *
      * @throws Exception\ComposerLockFileNotFoundException if the composer.lock file was not found.
      *
-     * @return Value\ComposerSystemInfo
+     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo
      */
-    public function collect()
+    public function collect(): ComposerSystemInfo
     {
         if ($this->value) {
             return $this->value;
@@ -72,7 +73,7 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
         $lockData = json_decode(file_get_contents($this->lockFile), true);
         $jsonData = json_decode(file_get_contents($this->jsonFile), true);
 
-        return $this->value = new Value\ComposerSystemInfo([
+        return $this->value = new ComposerSystemInfo([
             'packages' => $this->extractPackages($lockData),
             'repositoryUrls' => $this->extractRepositoryUrls($jsonData),
             'minimumStability' => isset($lockData['minimum-stability']) ? $lockData['minimum-stability'] : null,
@@ -93,7 +94,7 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
         }
 
         foreach ($lockData['packages'] as $packageData) {
-            $package = new Value\ComposerPackage([
+            $package = new ComposerPackage([
                 'name' => $packageData['name'],
                 'branch' => $packageData['version'],
                 'dateTime' => isset($packageData['time']) ? new \DateTime($packageData['time']) : null,
@@ -154,9 +155,9 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
     }
 
     /**
-     * @param Value\ComposerPackage $package
+     * @param ComposerPackage $package
      */
-    private static function setNormalizedVersion(Value\ComposerPackage $package): void
+    private static function setNormalizedVersion(ComposerPackage $package): void
     {
         $version = $package->alias ? $package->alias : $package->branch;
         if ($version[0] === 'v') {

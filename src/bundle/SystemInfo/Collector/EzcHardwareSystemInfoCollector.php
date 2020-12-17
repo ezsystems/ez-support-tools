@@ -7,7 +7,7 @@
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper;
-use EzSystems\EzSupportToolsBundle\SystemInfo\Value;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\HardwareSystemInfo;
 
 /**
  * Collects hardware system information using zetacomponents/sysinfo.
@@ -29,11 +29,11 @@ class EzcHardwareSystemInfoCollector implements SystemInfoCollector
      *  - cpu information
      *  - memory size.
      *
-     * @return Value\HardwareSystemInfo
+     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\HardwareSystemInfo
      */
-    public function collect()
+    public function collect(): HardwareSystemInfo
     {
-        return new Value\HardwareSystemInfo([
+        return new HardwareSystemInfo([
             'cpuType' => $this->ezcSystemInfo->cpuType,
             'cpuSpeed' => $this->ezcSystemInfo->cpuSpeed,
             'cpuCount' => $this->ezcSystemInfo->cpuCount,

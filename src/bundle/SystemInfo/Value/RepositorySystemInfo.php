@@ -11,7 +11,7 @@ use eZ\Publish\API\Repository\Values\ValueObject;
 /**
  * Value for information about the database we are using.
  */
-class DatabaseSystemInfo extends ValueObject implements SystemInfo
+class RepositorySystemInfo extends ValueObject implements SystemInfo
 {
     /**
      * Database type.
@@ -48,4 +48,11 @@ class DatabaseSystemInfo extends ValueObject implements SystemInfo
      * @var string
      */
     public $username;
+
+    /**
+     * RepositoryMetrics contains counts of content objects, users etc.
+     *
+     * @var \EzSystems\EzSupportToolsBundle\SystemInfo\Value\RepositoryMetrics
+     */
+    public $repositoryMetrics;
 }
