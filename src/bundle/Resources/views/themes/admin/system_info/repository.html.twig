@@ -1,0 +1,60 @@
+{% trans_default_domain "systeminfo" %}
+
+<!-- Tab name: {{ 'tab.name.repository'|trans|desc('Repository') }} -->
+
+<section class="ez-fieldgroup">
+    <h2 class="ez-fieldgroup__name">{{ 'repository'|trans|desc('Repository') }}</h2>
+    <div class="ez-fieldgroup__content">
+        <table class="table ez-table--list">
+            <tbody>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">
+                        {{ 'repository.published_content_objects_count'|trans|desc('Published content objects count') }}
+                    </td>
+                    <td class="ez-table__cell">{{ info.repositoryMetrics.publishedCount }}</td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'repository.users_count'|trans|desc('Users count') }}</td>
+                    <td class="ez-table__cell">{{ info.repositoryMetrics.usersCount }}</td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'repository.drafts_count'|trans|desc('Drafts count') }}</td>
+                    <td class="ez-table__cell">{{ info.repositoryMetrics.draftsCount }}</td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'repository.versions_count'|trans|desc('Versions count') }}</td>
+                    <td class="ez-table__cell">{{ info.repositoryMetrics.versionsCount }}</td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'repository.content_types_count'|trans|desc('Content Types count') }}</td>
+                    <td class="ez-table__cell">{{ info.repositoryMetrics.contentTypesCount }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="ez-fieldgroup">
+    <h2 class="ez-fieldgroup__name">{{ 'database'|trans|desc('Database') }}</h2>
+    <div class="ez-fieldgroup__content">
+        <table class="table ez-table--list">
+            <tbody>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'repository.type'|trans|desc('Type') }}</td>
+                    <td class="ez-table__cell">{{ info.type }}</td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'repository.name'|trans|desc('Name') }}</td>
+                    <td class="ez-table__cell">{{ info.name }}</td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'repository.host'|trans|desc('Host') }}</td>
+                    <td class="ez-table__cell">{{ info.host }}</td>
+                </tr>
+                <tr class="ez-table__row">
+                    <td class="ez-table__cell">{{ 'repository.username'|trans|desc('Username') }}</td>
+                    <td class="ez-table__cell">{{ info.username }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

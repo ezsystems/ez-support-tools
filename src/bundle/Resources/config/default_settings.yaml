@@ -11,9 +11,9 @@ parameters:
                 match:
                     SystemInfo\Identifier: 'composer'
             database:
-                template: '@@ezdesign/system_info/database.html.twig'
+                template: '@@ezdesign/system_info/repository.html.twig'
                 match:
-                    SystemInfo\Identifier: 'database'
+                    SystemInfo\Identifier: 'repository'
             hardware:
                 template: '@@ezdesign/system_info/hardware.html.twig'
                 match:
