@@ -2,7 +2,7 @@
     "name": "ezsystems/ez-support-tools",
     "description": "Providing information about the system eZ Platform/Enterprise/Commerce is running on, and eZ install itself",
     "license": "GPL-2.0",
-    "type": "ezplatform-bundle",
+    "type": "composer-plugin",
     "authors": [
         {
             "name": "eZ Systems",
@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": "^7.3",
+        "composer-plugin-api": "^2.0",
         "ezsystems/ezplatform-kernel": "^1.3@dev",
         "ezsystems/ezplatform-core": "^2.1@dev",
         "ezsystems/ezplatform-admin-ui": "^2.2@dev",
@@ -19,6 +20,7 @@
         "zetacomponents/system-information": "^1.1.1"
     },
     "require-dev": {
+        "composer/composer": "^2.0",
         "ezsystems/ezplatform-code-style": "^0.1",
         "friendsofphp/php-cs-fixer": "^2.16",
         "ezsystems/doctrine-dbal-schema": "^1.0@dev",
@@ -33,6 +35,7 @@
     },
     "extra": {
         "_ezplatform_branch_for_behat_tests": "master",
+        "class": "EzSystems\\EzSupportTools\\Composer\\SubscriptionPlugin",
         "branch-alias": {
             "dev-master": "2.3.x-dev",
             "dev-tmp_ci_branch": "2.3.x-dev"
