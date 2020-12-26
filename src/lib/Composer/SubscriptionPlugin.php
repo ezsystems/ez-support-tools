@@ -36,7 +36,7 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
     /**
      * @var bool
      */
-    private $hasUpdatesIbexaCoRepo = false;
+    private $hasUpdatesIbexaCoRepo = null;
 
     public function activate(Composer $composer, IOInterface $io)
     {
@@ -63,11 +63,17 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
         ];
     }
 
-    public function checkRepositoryConfig(): void
+    public function checkRepositoryConfig(): bool
     {
+        //  Make sure this is only run once
+        if ($this->hasUpdatesIbexaCoRepo !== null) {
+            return $this->hasUpdatesIbexaCoRepo;
+        }
+
+        $hasUpdatesIbexaCoRepo = false;
         foreach ($this->composer->getRepositoryManager()->getRepositories() as $repo) {
             if (strpos($repo->getRepoName(), 'https://updates.ibexa.co') !== false) {
-                $this->hasUpdatesIbexaCoRepo = true;
+                $hasUpdatesIbexaCoRepo = true;
             }
 
             if (strpos($repo->getRepoName(), 'https://updates.ez.no/') !== false) {
@@ -76,12 +82,14 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
                 $this->writeWarning("WARNING: Ibexa update repository should be configured as 'https://updates.ibexa.co'");
             }
         }
+
+        return $this->hasUpdatesIbexaCoRepo = $hasUpdatesIbexaCoRepo;
     }
 
     public function downloadSubscriptionInfo(): void
     {
         // Skip if we don't have updates.ibexa.co repo yet, as we then probably also don't have AUTH config for it
-        if (!$this->hasUpdatesIbexaCoRepo) {
+        if (!$this->checkRepositoryConfig()) {
             return;
         }
 
