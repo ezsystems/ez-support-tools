@@ -72,13 +72,14 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
 
         $hasUpdatesIbexaCoRepo = false;
         foreach ($this->composer->getRepositoryManager()->getRepositories() as $repo) {
-            if (strpos($repo->getRepoName(), 'https://updates.ibexa.co') !== false) {
+            $url = $repo->getRepoConfig()['url'] ?? null;
+            if (strpos($url, 'https://updates.ibexa.co') !== false) {
                 $hasUpdatesIbexaCoRepo = true;
             }
 
-            if (strpos($repo->getRepoName(), 'https://updates.ez.no/') !== false) {
+            if (strpos($url, 'https://updates.ez.no/') !== false) {
                 $this->writeWarning("WARNING: 'updates.ez.no' is deprecated, for how to use 'updates.ibexa.co' see: https://TODO");
-            } else if (1 === preg_match('@https://updates.ibexa.co/[^/]+@', $repo->getRepoName())) {
+            } else if (1 === preg_match('@^https://updates.ibexa.co/[^/]+@', $url)) {
                 $this->writeWarning("WARNING: Ibexa update repository should be configured as 'https://updates.ibexa.co'");
             }
         }
