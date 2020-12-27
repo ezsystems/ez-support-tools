@@ -9,6 +9,7 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 use EzSystems\EzPlatformCoreBundle\EzPlatformCoreBundle;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerPackage;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo;
 use DateTime;
 
@@ -102,6 +103,11 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     private $composerInfo;
 
     /**
+     * @var string Subscription json file with info on subscription downloaded by SubscriptionPlugin for composer.
+     */
+    private $subscriptionFile;
+
+    /**
      * @var bool
      */
     private $debug;
@@ -109,14 +115,17 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     /**
      * @param \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector|\EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector $composerCollector
      * @param bool $debug
+     * @param string $subscriptionFile = 'vendor/ibexa/subscription.json'
      */
-    public function __construct(SystemInfoCollector $composerCollector, $debug = false)
+    public function __construct(SystemInfoCollector $composerCollector, $debug = false, $subscriptionFile = 'vendor/ibexa/subscription.json')
     {
         try {
             $this->composerInfo = $composerCollector->collect();
         } catch (ComposerLockFileNotFoundException $e) {
             // do nothing
         }
+
+        $this->subscriptionFile = $subscriptionFile;
         $this->debug = $debug;
     }
 
@@ -129,56 +138,84 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
      */
     public function collect(): IbexaSystemInfo
     {
-        $ibexa = new IbexaSystemInfo(['debug' => $this->debug, 'composerInfo' => $this->composerInfo]);
-        if ($this->composerInfo === null) {
-            return $ibexa;
+        $ibexa = new IbexaSystemInfo([
+            'debug' => $this->debug,
+        ]);
+
+        $this->setSubscriptionInfo($ibexa);
+        $this->setReleaseInfo($ibexa);
+        $this->extractComposerInfo($ibexa);
+
+        return $ibexa;
+    }
+
+    private function setSubscriptionInfo(IbexaSystemInfo $ibexa): void
+    {
+        if (!file_exists($this->subscriptionFile)) {
+            //$subscriptionExpiryDate = null;
+            return;
         }
 
+        $subscriptionData = json_decode(file_get_contents($this->subscriptionFile), true);
+
+        // NOTE: For non trials, the date from support.ibexa.co can be auto renewing
+        //       typically updated a few weeks before expiring.
+        $ibexa->subscriptionExpiryDate = new DateTime($subscriptionData['expiry']);
+
+        $ibexa->isEnterprise = true;
+        $ibexa->name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['content'];
+
+        foreach ($subscriptionData['product_additions'] as $product) {
+            // If some of the products is a trial, then currently mark whole install as trial
+            $ibexa->isTrial = $ibexa->isTrial  || $product['trial'];
+
+            // Map older subscription names to new where needed.
+            $identifier = in_array($product['name'], ['enterprise', 'platform']) ? 'experience' : $product['name'];
+
+            // Detect product name using subscription info product idenfiter
+            if (!$ibexa->isCommerce && $identifier !== 'content') {
+                $ibexa->name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS[$identifier];
+
+                $ibexa->isCommerce = $identifier === 'commerce';
+            }
+
+            $ibexa->subscriptionProducts[] = $identifier;
+        }
+    }
+
+    private function setReleaseInfo(IbexaSystemInfo $ibexa): void
+    {
         $ibexa->release = EzPlatformCoreBundle::VERSION;
         // try to extract version number, but prepare for unexpected string
         [$majorVersion, $minorVersion] = array_pad(explode('.', $ibexa->release), 2, '');
         $ibexaRelease = "{$majorVersion}.{$minorVersion}";
 
-        // In case someone switches from TTL to BUL, make sure we only identify installation as Trial if this is present,
-        // as well as TTL packages
-        $hasTTLComposerRepo = \in_array('https://updates.ez.no/ttl', $this->composerInfo->repositoryUrls);
-
-        if ($package = $this->getFirstPackage(self::ENTERPRISE_PACKAGES)) {
-            $ibexa->isEnterprise = true;
-            $ibexa->isTrial = $hasTTLComposerRepo && $package->license === 'TTL-2.0';
-            $ibexa->name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['experience'];
+        if (isset(self::EOM[$ibexaRelease])) {
+            $ibexa->isEndOfMaintenance = strtotime(self::EOM[$ibexaRelease]) < time();
         }
 
-        if ($package = $this->getFirstPackage(self::COMMERCE_PACKAGES)) {
-            $ibexa->isCommerce = true;
-            $ibexa->isTrial = $ibexa->isTrial || ($hasTTLComposerRepo && $package->license === 'TTL-2.0');
-            $ibexa->name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
-        }
-
-        if ($ibexa->isTrial && isset(self::RELEASES[$ibexaRelease])) {
-            $months = (new DateTime(self::RELEASES[$ibexaRelease]))->diff(new DateTime())->m;
-            $ibexa->isEndOfMaintenance = $months > 3;
-            // @todo We need to detect this in a better way, this is temporary until some of the work described in class doc is done.
-            $ibexa->isEndOfLife = $months > 6;
-        } else {
-            if (isset(self::EOM[$ibexaRelease])) {
-                $ibexa->isEndOfMaintenance = strtotime(self::EOM[$ibexaRelease]) < time();
-            }
-
-            if (isset(self::EOL[$ibexaRelease])) {
-                if (!$ibexa->isEnterprise) {
-                    $ibexa->isEndOfLife = $ibexa->isEndOfMaintenance;
-                } else {
-                    $ibexa->isEndOfLife = strtotime(self::EOL[$ibexaRelease]) < time();
-                }
-            }
+        if (isset(self::EOL[$ibexaRelease])) {
+            $ibexa->isEndOfLife = strtotime(self::EOL[$ibexaRelease]) < time();
         }
 
         $ibexa->endOfMaintenanceDate = $this->getEOMDate($ibexaRelease);
         $ibexa->endOfLifeDate = $this->getEOLDate($ibexaRelease);
-        $ibexa->stability = $this->getStability();
+    }
 
-        return $ibexa;
+    private function extractComposerInfo(IbexaSystemInfo $ibexa): void
+    {
+        if ($this->composerInfo === null) {
+            return;
+        }
+
+        // BC (deprecated property)
+        $ibexa->composerInfo = ['minimumStability' => $this->composerInfo->minimumStability];
+
+        $ibexa->shouldHaveSubscription = self::hasPackage(
+            $this->composerInfo,
+            array_merge(self::ENTERPRISE_PACKAGES, self::COMMERCE_PACKAGES)
+        );
+        $ibexa->stability = self::getStability($this->composerInfo);
     }
 
     /**
@@ -201,17 +238,17 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
             null;
     }
 
-    private function getStability(): string
+    private static function getStability(ComposerSystemInfo $composerInfo): string
     {
         $stabilityFlags = array_flip(JsonComposerLockSystemInfoCollector::STABILITIES);
 
         // Root package stability
-        $stabilityFlag = $this->composerInfo->minimumStability !== null ?
-            $stabilityFlags[$this->composerInfo->minimumStability] :
+        $stabilityFlag = $composerInfo->minimumStability !== null ?
+            $stabilityFlags[$composerInfo->minimumStability] :
             $stabilityFlags['stable'];
 
         // Check if any of the watched packages has lower stability than root
-        foreach ($this->composerInfo->packages as $name => $package) {
+        foreach ($composerInfo->packages as $name => $package) {
             if (!preg_match(self::PACKAGE_WATCH_REGEX, $name)) {
                 continue;
             }
@@ -228,14 +265,14 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
         return JsonComposerLockSystemInfoCollector::STABILITIES[$stabilityFlag];
     }
 
-    private function getFirstPackage($packageNames): ?ComposerPackage
+    private static function hasPackage(ComposerSystemInfo $composerInfo, array $packageNames): bool
     {
         foreach ($packageNames as $packageName) {
-            if (isset($this->composerInfo->packages[$packageName])) {
-                return $this->composerInfo->packages[$packageName];
+            if (isset($composerInfo->packages[$packageName])) {
+                return true;
             }
         }
 
-        return null;
+        return false;
     }
 }
