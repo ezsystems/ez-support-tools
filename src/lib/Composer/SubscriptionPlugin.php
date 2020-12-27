@@ -10,6 +10,7 @@ namespace EzSystems\EzSupportTools\Composer;
 
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
+use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
 use Composer\Script\ScriptEvents;
@@ -78,9 +79,9 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
             }
 
             if (strpos($url, 'https://updates.ez.no/') !== false) {
-                $this->writeWarning("WARNING: 'updates.ez.no' is deprecated, for how to use 'updates.ibexa.co' see: https://TODO");
+                $this->io->write("<warning>'updates.ez.no' is deprecated, for how to use 'updates.ibexa.co' see: https://TODO</>");
             } else if (1 === preg_match('@^https://updates.ibexa.co/[^/]+@', $url)) {
-                $this->writeWarning("WARNING: Ibexa update repository should be configured as 'https://updates.ibexa.co'");
+                $this->io->write("<warning>Ibexa update repository should be configured as 'https://updates.ibexa.co'</>");
             }
         }
 
@@ -94,26 +95,28 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
             return;
         }
 
-        !is_dir('vendor/ibexa') && mkdir('vendor/ibexa');
-
-        $this->composer->getLoop()->getHttpDownloader()->addCopy(
-            'https://updates.ibexa.co/subscription',
-            'vendor/ibexa/subscription.json'
-        );
-
         $this->io->write(
-            "Downloading subscription info from 'https://updates.ibexa.co/subscription'",
+            "<info>Downloading subscription info from: https://updates.ibexa.co/subscription</>",
             true,
             IOInterface::VERBOSE
         );
-    }
 
-    private function writeWarning(string $message)
-    {
-        if (method_exists($this->io, 'warning')) {
-            $this->io->warning($message);
+        !is_dir('vendor/ibexa') && mkdir('vendor/ibexa');
+
+        // 2.0 API first, allows async download
+        if (method_exists($this->composer, 'getLoop')) {
+            $this->composer->getLoop()->getHttpDownloader()->addCopy(
+                'https://updates.ibexa.co/subscription',
+                'vendor/ibexa/subscription.json'
+            );
         } else {
-            $this->io->write($message);
+            $rfs = Factory::createRemoteFilesystem($this->io, $this->composer->getConfig());
+            $rfs->copy(
+                'updates.ibexa.co',
+                'https://updates.ibexa.co/subscription',
+                'vendor/ibexa/subscription.json',
+                false,
+            );
         }
     }
 }
