@@ -67,6 +67,7 @@ services:
         arguments:
             - "@support_tools.system_info.collector.composer.lock_file"
             - "%kernel.debug%"
+            - "%kernel.project_dir%/vendor/ibexa/subscription.json"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "ibexa" }
 
