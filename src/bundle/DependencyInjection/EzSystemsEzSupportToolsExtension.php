@@ -79,7 +79,7 @@ class EzSystemsEzSupportToolsExtension extends Extension
     private static function getNameBySubscriptionInfo(string $file): ?string
     {
         if (!file_exists($file)) {
-            return;
+            return null;
         }
 
         $subscriptionData = json_decode(file_get_contents($file), true);
@@ -100,7 +100,7 @@ class EzSystemsEzSupportToolsExtension extends Extension
         return $name;
     }
 
-    private static function getNameByPackages(): ?string
+    private static function getNameByPackages(): string
     {
         if (is_dir($vendor . IbexaSystemInfoCollector::COMMERCE_PACKAGES[0])) {
             $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
