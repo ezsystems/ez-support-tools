@@ -104,7 +104,7 @@ class EzSystemsEzSupportToolsExtension extends Extension
     {
         if (is_dir($vendor . IbexaSystemInfoCollector::COMMERCE_PACKAGES[0])) {
             $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
-        } elseif (is_dir($vendor . IbexaSystemInfoCollector::ENTERPRISE_PACKAGES[0])) {
+        } elseif (is_dir($vendor . IbexaSystemInfoCollector::EXPERIENCE_PACKAGES[0])) {
             $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['experience'];
         } elseif (is_dir($vendor . IbexaSystemInfoCollector::CONTENT_PACKAGES[0])) {
             $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['content'];

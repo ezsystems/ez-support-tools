@@ -7,6 +7,7 @@
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use EzSystems\EzPlatformCoreBundle\EzPlatformCoreBundle;
+use EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo;
@@ -82,15 +83,24 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     /**
      * Packages that identify installation as "Content".
      */
-    const CONTENT_PACKAGES = [
-        'ezsystems/flex-workflow',
+    public const CONTENT_PACKAGES = [
+        'ezsystems/ezplatform-workflow',
+    ];
+
+    public const EXPERIENCE_PACKAGES = [
+        'ezsystems/ezplatform-page-builder',
+        'ezsystems/landing-page-fieldtype-bundle',
     ];
 
     /**
-     * Packages that identify installation as "Experience".
+     * Packages that identify installation as "Enterprise".
+     *
+     * @deprecated since Ibexa DXP 3.3. Rely either on <code>IbexaSystemInfoCollector::EXPERIENCE_PACKAGES</code>
+     * or <code>IbexaSystemInfoCollector::CONTENT_PACKAGES</code>.
      */
     const ENTERPRISE_PACKAGES = [
         'ezsystems/ezplatform-page-builder',
+        'ezsystems/flex-workflow',
         'ezsystems/landing-page-fieldtype-bundle',
     ];
 
@@ -117,13 +127,20 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
      */
     private $debug;
 
+    /** @var string */
+    private $kernelProjectDir;
+
     /**
      * @param \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector|\EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector $composerCollector
      * @param bool $debug
      * @param string $subscriptionFile = 'vendor/ibexa/subscription.json'
      */
-    public function __construct(SystemInfoCollector $composerCollector, $debug = false, $subscriptionFile = 'vendor/ibexa/subscription.json')
-    {
+    public function __construct(
+        SystemInfoCollector $composerCollector,
+        $kernelProjectDir,
+        $debug = false,
+        $subscriptionFile = 'vendor/ibexa/subscription.json'
+    ) {
         try {
             $this->composerInfo = $composerCollector->collect();
         } catch (ComposerLockFileNotFoundException $e) {
@@ -132,6 +149,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
 
         $this->subscriptionFile = $subscriptionFile;
         $this->debug = $debug;
+        $this->kernelProjectDir = $kernelProjectDir;
     }
 
     /**
