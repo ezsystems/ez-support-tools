@@ -213,7 +213,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
             $this->composerInfo,
             array_merge(self::ENTERPRISE_PACKAGES, self::COMMERCE_PACKAGES)
         );
-        $ibexa->stability = self::getStability($this->composerInfo);
+        $ibexa->stability = $ibexa->lowestStability = self::getStability($this->composerInfo);
     }
 
     /**

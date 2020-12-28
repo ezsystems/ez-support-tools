@@ -76,18 +76,6 @@ class IbexaSystemInfo extends ValueObject implements SystemInfo
     public $endOfLifeDate;
 
     /**
-     * @var bool
-     */
-    public $isTrial = false;
-
-    /**
-     * Lowest stability found in install (packages / minimumStability).
-     *
-     * @var string One of {@see \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::STABILITIES}.
-     */
-    public $lowestStability;
-
-    /**
      * @var \DateTime|null Empty if no subscripton info is found.
      */
     public $subscriptionExpiryDate;
@@ -101,6 +89,18 @@ class IbexaSystemInfo extends ValueObject implements SystemInfo
      * @var array List of products that are part of subscription.
      */
     public $subscriptionProducts = [];
+
+    /**
+     * @var bool
+     */
+    public $isTrial = false;
+
+    /**
+     * Lowest stability found in install (packages / minimumStability).
+     *
+     * @var string One of {@see \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::STABILITIES}.
+     */
+    public $lowestStability;
 
     /**
      * @deprecated Instead use $lowestStability.
