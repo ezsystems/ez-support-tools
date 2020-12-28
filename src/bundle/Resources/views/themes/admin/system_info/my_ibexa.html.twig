@@ -67,23 +67,17 @@
                         {{ info.subscriptionExpiryDate|date('F Y') }}
                     </td>
                 </tr>
-                <tr class="ez-table__row">
-                    <td colspan="2">
-                        <hr/>
-                        * {{ 'ibexa.subscription_read_more'|trans|desc('Subscription renewal date does not reflect auto renawal, and typically does not represent when the subscription ends') }}
-                    </td>
-                </tr>
             {% elseif info.shouldHaveSubscription %}
                 <tr class="ez-table__row">
                     <td class="ez-table__cell ez-alert__content">
-                        {{ 'ibexa.subscription_info_missing'|trans|desc('Subscription info was missing on installation, run the following command to syncronize it') }}
+                        {{ 'ibexa.subscription_info_missing'|trans|desc('Subscription info was missing on installation, run the following command to synchronize it') }}
                         <code>composer run ibexa:sync-subscription</code>
                     </td>
                 </tr>
             {% else %}
                 <tr class="ez-table__row">
                     <td class="ez-table__cell">
-                        {{ 'ibexa.no_subscription'|trans|desc('This install is currently running on Open Source version, which does not come with any subscription') }}
+                        {{ 'ibexa.no_subscription'|trans|desc('This installation is currently running the Open Source version, which does not come with any subscription') }}
                     </td>
                 </tr>
             {% endif %}

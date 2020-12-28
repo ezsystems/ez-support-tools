@@ -80,11 +80,17 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     const PACKAGE_WATCH_REGEX = '/^(doctrine|ezsystems|silversolutions|symfony)\//';
 
     /**
-     * Packages that identify installation as "Enterprise".
+     * Packages that identify installation as "Content".
+     */
+    const CONTENT_PACKAGES = [
+        'ezsystems/flex-workflow',
+    ];
+
+    /**
+     * Packages that identify installation as "Experience".
      */
     const ENTERPRISE_PACKAGES = [
         'ezsystems/ezplatform-page-builder',
-        'ezsystems/flex-workflow',
         'ezsystems/landing-page-fieldtype-bundle',
     ];
 
@@ -170,7 +176,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
             // Map older subscription names to new where needed.
             $identifier = in_array($product['name'], ['enterprise', 'platform']) ? 'experience' : $product['name'];
 
-            // Detect product name using subscription info product idenfiter
+            // Detect product name using subscription info product identifier
             if (!$ibexa->isCommerce && $identifier !== 'content') {
                 $ibexa->name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS[$identifier];
 

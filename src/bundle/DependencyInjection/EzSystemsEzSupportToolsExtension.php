@@ -61,9 +61,9 @@ class EzSystemsEzSupportToolsExtension extends Extension
 
         // Autodetect product name
         $name = self::getNameBySubscriptionInfo($vendor . 'ibexa/subscription.json');
-        if (!$name) {
+        if (empty($name)) {
             // Fallback to detect name by packages
-            $name = self::getNameByPackages();
+            $name = self::getNameByPackages($vendor);
         }
 
         if ($release === 'major') {
@@ -100,14 +100,18 @@ class EzSystemsEzSupportToolsExtension extends Extension
         return $name;
     }
 
-    private static function getNameByPackages(): string
+    private static function getNameByPackages(string $vendor): string
     {
         if (is_dir($vendor . IbexaSystemInfoCollector::COMMERCE_PACKAGES[0])) {
             $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
         } elseif (is_dir($vendor . IbexaSystemInfoCollector::ENTERPRISE_PACKAGES[0])) {
             $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['experience'];
+        } elseif (is_dir($vendor . IbexaSystemInfoCollector::CONTENT_PACKAGES[0])) {
+            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['content'];
         } else {
             $name = IbexaSystemInfo::PRODUCT_NAME_OSS;
         }
+
+        return $name;
     }
 }
