@@ -175,6 +175,9 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     private function setSubscriptionInfo(IbexaSystemInfo $ibexa): void
     {
         if (!file_exists($this->subscriptionFile)) {
+            $vendor = sprintf('%s/vendor/', $this->kernelProjectDir);
+            $ibexa->name = EzSystemsEzSupportToolsExtension::getNameByPackages($vendor);
+
             return;
         }
 

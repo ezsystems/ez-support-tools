@@ -100,7 +100,7 @@ class EzSystemsEzSupportToolsExtension extends Extension
         return $name;
     }
 
-    private static function getNameByPackages(string $vendor): string
+    public static function getNameByPackages(string $vendor): string
     {
         if (is_dir($vendor . IbexaSystemInfoCollector::COMMERCE_PACKAGES[0])) {
             $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
