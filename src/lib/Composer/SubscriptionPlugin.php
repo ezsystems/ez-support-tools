@@ -67,7 +67,6 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
 
             // Custom command in order to document what people should run if subscriptin info is missing
             self::DOWNLOAD_SUBSCRIPTION_CMD => 'downloadSubscriptionInfo',
-
         ];
     }
 
@@ -87,7 +86,7 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
 
             if (strpos($url, 'https://updates.ez.no/') !== false) {
                 $this->io->write("<warning>'updates.ez.no' is deprecated, for how to use 'updates.ibexa.co' see: https://TODO</>");
-            } else if (1 === preg_match('@^https://updates.ibexa.co/[^/]+@', $url)) {
+            } elseif (1 === preg_match('@^https://updates.ibexa.co/[^/]+@', $url)) {
                 $this->io->write("<warning>Ibexa update repository should be configured as 'https://updates.ibexa.co'</>");
             }
         }
@@ -102,9 +101,8 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
             return;
         }
 
-
         $this->io->write(
-            "<info>Syncronizing subscription info from: https://updates.ibexa.co/subscription</>",
+            '<info>Syncronizing subscription info from: https://updates.ibexa.co/subscription</>',
             true,
             // If directly called make sure there is some output to console
             $event->getName() === self::DOWNLOAD_SUBSCRIPTION_CMD ? IOInterface::NORMAL : IOInterface::VERBOSE

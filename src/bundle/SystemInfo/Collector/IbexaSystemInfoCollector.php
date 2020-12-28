@@ -8,7 +8,6 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use EzSystems\EzPlatformCoreBundle\EzPlatformCoreBundle;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException;
-use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerPackage;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo;
 use DateTime;
@@ -166,7 +165,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
 
         foreach ($subscriptionData['product_additions'] as $product) {
             // If some of the products is a trial, then currently mark whole install as trial
-            $ibexa->isTrial = $ibexa->isTrial  || $product['trial'];
+            $ibexa->isTrial = $ibexa->isTrial || $product['trial'];
 
             // Map older subscription names to new where needed.
             $identifier = in_array($product['name'], ['enterprise', 'platform']) ? 'experience' : $product['name'];
