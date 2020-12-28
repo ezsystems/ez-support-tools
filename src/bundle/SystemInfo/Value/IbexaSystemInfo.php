@@ -49,21 +49,25 @@ class IbexaSystemInfo extends ValueObject implements SystemInfo
 
     /**
      * @var bool
+     * @uses $endOfMaintenanceDate
      */
     public $isEndOfMaintenance = true;
 
     /**
-     * @var \DateTime
+     * @var \DateTime EOM for the given release, if you have an Ibexa DXP / Enterpise susbscription.
+     * @see https://support.ibexa.co/Public/Service-Life
      */
     public $endOfMaintenanceDate;
 
     /**
      * @var bool
+     * @uses $endOfLifeDate
      */
     public $isEndOfLife = true;
 
     /**
-     * @var \DateTime
+     * @var \DateTime EOL for the given release, if you have an Ibexa DXP susbscription.
+     * @see https://support.ibexa.co/Public/Service-Life
      */
     public $endOfLifeDate;
 

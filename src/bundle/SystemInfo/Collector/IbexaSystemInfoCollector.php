@@ -152,7 +152,6 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     private function setSubscriptionInfo(IbexaSystemInfo $ibexa): void
     {
         if (!file_exists($this->subscriptionFile)) {
-            //$subscriptionExpiryDate = null;
             return;
         }
 

@@ -13,6 +13,7 @@ use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
+use Composer\EventDispatcher\Event;
 use Composer\Script\ScriptEvents;
 
 /**
@@ -24,6 +25,8 @@ use Composer\Script\ScriptEvents;
  */
 class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
 {
+    public const DOWNLOAD_SUBSCRIPTION_CMD = 'ibexa:sync-subscription';
+
     /**
      * @var Composer
      */
@@ -61,6 +64,10 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
 
             ScriptEvents::POST_INSTALL_CMD => 'downloadSubscriptionInfo',
             ScriptEvents::POST_UPDATE_CMD => 'downloadSubscriptionInfo',
+
+            // Custom command in order to document what people should run if subscriptin info is missing
+            self::DOWNLOAD_SUBSCRIPTION_CMD => 'downloadSubscriptionInfo',
+
         ];
     }
 
@@ -88,17 +95,19 @@ class SubscriptionPlugin implements PluginInterface, EventSubscriberInterface
         return $this->hasUpdatesIbexaCoRepo = $hasUpdatesIbexaCoRepo;
     }
 
-    public function downloadSubscriptionInfo(): void
+    public function downloadSubscriptionInfo(Event $event): void
     {
         // Skip if we don't have updates.ibexa.co repo yet, as we then probably also don't have AUTH config for it
         if (!$this->checkRepositoryConfig()) {
             return;
         }
 
+
         $this->io->write(
-            "<info>Downloading subscription info from: https://updates.ibexa.co/subscription</>",
+            "<info>Syncronizing subscription info from: https://updates.ibexa.co/subscription</>",
             true,
-            IOInterface::VERBOSE
+            // If directly called make sure there is some output to console
+            $event->getName() === self::DOWNLOAD_SUBSCRIPTION_CMD ? IOInterface::NORMAL : IOInterface::VERBOSE
         );
 
         !is_dir('vendor/ibexa') && mkdir('vendor/ibexa');
