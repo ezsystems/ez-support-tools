@@ -57,14 +57,13 @@ class EzSystemsEzSupportToolsExtension extends Extension
 
     private function getPoweredByName(ContainerBuilder $container, ?string $release): string
     {
-        // Autodetect product name if configured name is null (default)
         $vendor = $container->getParameter('kernel.project_dir') . '/vendor/';
-        if (is_dir($vendor . IbexaSystemInfoCollector::COMMERCE_PACKAGES[0])) {
-            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
-        } elseif (is_dir($vendor . IbexaSystemInfoCollector::ENTERPRISE_PACKAGES[0])) {
-            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['experience'];
-        } else {
-            $name = IbexaSystemInfo::PRODUCT_NAME_OSS;
+
+        // Autodetect product name
+        $name = self::getNameBySubscriptionInfo($vendor . 'ibexa/subscription.json');
+        if (!$name) {
+            // Fallback to detect name by packages
+            $name = self::getNameByPackages();
         }
 
         if ($release === 'major') {
@@ -75,5 +74,40 @@ class EzSystemsEzSupportToolsExtension extends Extension
         }
 
         return $name;
+    }
+
+    private static function getNameBySubscriptionInfo(string $file): ?string
+    {
+        if (!file_exists($file)) {
+            return;
+        }
+
+        $subscriptionData = json_decode(file_get_contents($file), true);
+        $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['content'];
+        foreach ($subscriptionData['product_additions'] as $product) {
+            // Map older subscription names to new where needed.
+            $identifier = in_array($product['name'], ['enterprise', 'platform']) ? 'experience' : $product['name'];
+            if ($identifier !== 'content') {
+                $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS[$identifier];
+            }
+
+            // Break out if highest package (commerce) was detected
+            if ($identifier === 'commerce') {
+                break;
+            }
+        }
+
+        return $name;
+    }
+
+    private static function getNameByPackages(): ?string
+    {
+        if (is_dir($vendor . IbexaSystemInfoCollector::COMMERCE_PACKAGES[0])) {
+            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
+        } elseif (is_dir($vendor . IbexaSystemInfoCollector::ENTERPRISE_PACKAGES[0])) {
+            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['experience'];
+        } else {
+            $name = IbexaSystemInfo::PRODUCT_NAME_OSS;
+        }
     }
 }
