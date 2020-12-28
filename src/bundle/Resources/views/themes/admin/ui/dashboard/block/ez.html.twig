@@ -25,7 +25,21 @@
                 |raw }}
             </div>
         </div>
-    {% elseif ez.stability != 'stable'  %}
+    {% elseif ez.subscriptionExpiryDate is empty and ez.shouldHaveSubscription %}
+        {% set severity = 1 %}
+        <div class="alert alert-warning mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
+            <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+                <use xlink:href="{{ ez_icon_path('system-information') }}"></use>
+            </svg>
+            <div class="ez-alert__content">
+                {{ 'dashboard.ez_version.subscription_missing'|trans({'%command%': 'composer run ibexa:sync-subscription','%file%': 'vendor/ibexa/subscription.json'})
+                |desc("The system could not find your <code>%file%</code> file.
+                For Ibexa DXP installs this is needed to determin access to features and give you feedback if something is not right.
+                Please run <code>%command%</code> to syncronize this info from our updates.ibexa.co servers.")
+                |raw }}
+            </div>
+        </div>
+    {% elseif ez.lowestStability != 'stable'  %}
         {% set severity = 1 %}
         {% set badge = 'Development' %}
         <div class="alert alert-warning mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
@@ -36,7 +50,7 @@
                 {% if ez.composerInfo.minimumStability != 'stable' %}
                     {{ 'dashboard.ez_version.unstable_minimum_stability'|trans({'%minimum_stability%': ez.composerInfo.minimumStability})|desc("Your setup is running with '%minimum_stability%' as composer.json minimum-stability. This is not recommended except when testing updates or during development.") }}
                 {% else  %}
-                    {{ 'dashboard.ez_version.non_stable_packages'|trans({'%stability%': ez.stability})|desc("Your setup is running with @%stability% composer packages. This is not recommended except when testing updates or during development.") }}
+                    {{ 'dashboard.ez_version.non_stable_packages'|trans({'%stability%': ez.lowestStability})|desc("Your setup is running with @%stability% composer packages. This is not recommended except when testing updates or during development.") }}
                 {% endif %}
                 {% if ez.isEnterprise %}
                     {{ 'dashboard.ez_version.non_stable_ee'|trans({'%support_url%': urls['support']})|desc("If you need assistance, don't hesitate to <a target=\"_blank\" href=\"%support_url%\">get in touch with Ibexa support</a>.")|raw }}
@@ -45,7 +59,7 @@
         </div>
     {% elseif ez.isTrial %}
         {% set badge = 'Trial' %}
-        {% if ez.isEndOfLife %}
+        {% if ez.subscriptionExpiryDate < date() %}
             {% set severity = 2 %}
             <div class="alert alert-danger mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
                 <svg class="ez-icon ez-icon--small-medium ez-icon--light">
@@ -53,7 +67,7 @@
                 </svg>
                 <div class="ez-alert__content">
                     {{ 'dashboard.ez_version.trial_expired'|trans({'%ttl_url%': urls['ttl']})|desc("Unfortunately your trial period has expired and your <a target=\"_blank\" href=\"%ttl_url%\">TTL license</a> is no longer valid.")|raw }}
-        {% elseif ez.isEndOfMaintenance %}
+        {% elseif ez.subscriptionExpiryDate < date('-60days') %}
             {% set severity = 1 %}
             <div class="alert alert-warning mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
                 <svg class="ez-icon ez-icon--small-medium ez-icon--light">
@@ -131,8 +145,7 @@
             </div>
         {% endif %}
     {% elseif ez.isEndOfLife %}
-        {# As we don't yet here know if subscription has expired (todo with info from updates.ez.no), this is a warning and not a error #}
-        {% set severity = 1 %}
+        {% set severity = 2 %}
         {% set badge = 'End of Life' %}
         <div class="alert alert-warning mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
             <svg class="ez-icon ez-icon--small-medium ez-icon--light">
