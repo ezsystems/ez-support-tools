@@ -11,9 +11,9 @@ namespace EzSystems\EzSupportTools\Storage\Metrics;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\ParameterType;
 use eZ\Publish\SPI\Persistence\Content\ContentInfo;
-use EzSystems\EzSupportTools\Storage\MetricsInterface;
+use EzSystems\EzSupportTools\Storage\Metrics;
 
-final class DraftsCountMetrics implements MetricsInterface
+final class DraftsCountMetrics implements Metrics
 {
     private const CONTENTOBJECT_VERSION_TABLE = 'ezcontentobject_version';
     private const CONTENTOBJECT_TABLE = 'ezcontentobject';

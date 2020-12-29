@@ -109,10 +109,10 @@ services:
             - { name: "support_tools.system_info.output_format", format: "json" }
 
     # Gateways
-    EzSystems\EzSupportTools\Storage\MetricsProviderInterface:
-        alias: 'EzSystems\EzSupportTools\Storage\MetricsProvider'
-
     EzSystems\EzSupportTools\Storage\MetricsProvider:
+        alias: EzSystems\EzSupportTools\Storage\AggregateMetricsProvider
+
+    EzSystems\EzSupportTools\Storage\AggregateMetricsProvider:
         arguments:
             $metrics: !tagged_iterator { tag: support_tools.metrics, index_by: identifier }
 

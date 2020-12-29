@@ -10,9 +10,9 @@ namespace EzSystems\EzSupportTools\Storage\Metrics;
 
 use Doctrine\DBAL\Connection;
 use eZ\Publish\SPI\Persistence\Content\Type;
-use EzSystems\EzSupportTools\Storage\MetricsInterface;
+use EzSystems\EzSupportTools\Storage\Metrics;
 
-final class ContentTypesCountMetrics implements MetricsInterface
+final class ContentTypesCountMetrics implements Metrics
 {
     private const CONTENT_TYPE_TABLE = 'ezcontentclass';
     private const ID_COLUMN = 'id';

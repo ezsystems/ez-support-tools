@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace EzSystems\EzSupportTools\Storage\Metrics;
 
 use Doctrine\DBAL\Connection;
-use EzSystems\EzSupportTools\Storage\MetricsInterface;
+use EzSystems\EzSupportTools\Storage\Metrics;
 
-final class UsersCountMetrics implements MetricsInterface
+final class UsersCountMetrics implements Metrics
 {
     private const USER_TABLE = 'ezuser';
     private const CONTENTOBJECT_ID_COLUMN = 'contentobject_id';

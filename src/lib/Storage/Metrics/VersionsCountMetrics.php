@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace EzSystems\EzSupportTools\Storage\Metrics;
 
 use Doctrine\DBAL\Connection;
-use EzSystems\EzSupportTools\Storage\MetricsInterface;
+use EzSystems\EzSupportTools\Storage\Metrics;
 
-final class VersionsCountMetrics implements MetricsInterface
+final class VersionsCountMetrics implements Metrics
 {
     private const CONTENTOBJECT_VERSION_TABLE = 'ezcontentobject_version';
     private const ID_COLUMN = 'id';
