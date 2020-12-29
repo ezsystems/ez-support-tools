@@ -16,20 +16,21 @@ parameters:
     support_tools.system_info.collector.symfony.kernel.config.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ConfigurationSymfonyKernelSystemInfoCollector
     support_tools.system_info.output_format.json.class: EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormat\JsonOutputFormat
     ezplatform_support_tools.system_info.powered_by.name: ''
-    support_tools.ez_url_list:
-        contact: "https://ez.no/About-eZ/Contact-Us"
-        license: "https://ez.no/About-our-Software/Licenses-and-agreements"
-        ttl: "https://ez.no/About-our-Software/Licenses-and-agreements/eZ-Trial-and-Test-License-Agreement-eZ-TTL-v2.1"
-        service_life: "https://support.ez.no/Public/Service-Life"
-        support_service: "https://ez.no/Services/Support-Maintenance"
-        training_service: "https://ez.no/Services/Training"
-        consulting_service: "https://ez.no/Services/Consulting"
-        ee_product: "https://ez.no/Products/eZ-Platform-Enterprise-Edition"
-        install_ee: "https://doc.ezplatform.com/en/{ez.release}/getting_started/install_ez_enterprise/"
-        doc: "https://doc.ezplatform.com"
-        update: "https://doc.ezplatform.com/en/latest/releases/updating_ez_platform/"
+    ibexa.system_info.ibexa_url_list:
+        contact: "https://www.ibexa.co/about-ibexa/contact-us"
+        license: "https://www.ibexa.co/software-information/licenses-and-agreements"
+        ttl: "https://www.ibexa.co/software-information/licenses-and-agreements/ez-trial-and-test-license-agreement-ez-ttl-v2.1"
+        service_life: "https://support.ibexa.co/Public/Service-Life"
+        support_service: "https://www.ibexa.co/services/support-maintenance"
+        training_service: "https://www.ibexa.co/services/training"
+        consulting_service: "https://www.ibexa.co/services/consulting-services"
+        ee_product: "https://www.ibexa.co/products"
+        install_ee: "https://doc.ibexa.co/en/{ez.release}/getting_started/install_ez_enterprise/"
+        doc: "https://doc.ibexa.co"
+        update: "https://doc.ibexa.co/en/latest/updating/updating_ez_platform/"
         gpl_faq: "https://www.gnu.org/licenses/old-licenses/gpl-2.0-faq.en.html#GPLModuleLicense"
-        support: "https://support.ez.no"
+        support: "https://support.ibexa.co"
+    support_tools.ez_url_list: '%ibexa.system_info.ibexa_url_list%' # BC
 
 services:
     # EventSubscriber
