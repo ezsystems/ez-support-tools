@@ -8,36 +8,25 @@ declare(strict_types=1);
 
 namespace EzSystems\EzSupportTools\Storage\Metrics;
 
-use Doctrine\DBAL\Connection;
 use eZ\Publish\SPI\Persistence\Content\Type;
-use EzSystems\EzSupportTools\Storage\Metrics;
 
 /**
  * @internal
  */
-final class ContentTypesCountMetrics implements Metrics
+final class ContentTypesCountMetrics extends RepositoryConnectionAwareMetrics
 {
     private const CONTENT_TYPE_TABLE = 'ezcontentclass';
     private const ID_COLUMN = 'id';
     private const VERSION_COLUMN = 'version';
 
-    /** @var \Doctrine\DBAL\Connection */
-    private $connection;
-
-    /** @var \Doctrine\DBAL\Platforms\AbstractPlatform */
-    private $databasePlatform;
-
-    public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
-        $this->databasePlatform = $connection->getDatabasePlatform();
-    }
-
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     */
     public function getValue(): int
     {
         $queryBuilder = $this->connection->createQueryBuilder();
         $queryBuilder
-            ->select($this->databasePlatform->getCountExpression(self::ID_COLUMN))
+            ->select($this->getCountExpression(self::ID_COLUMN))
             ->from(self::CONTENT_TYPE_TABLE)
             ->where(
                 $queryBuilder->expr()->eq(self::VERSION_COLUMN, Type::STATUS_DEFINED)
