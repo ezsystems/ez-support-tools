@@ -12,6 +12,9 @@ use Doctrine\DBAL\Connection;
 use eZ\Publish\SPI\Persistence\Content\ContentInfo;
 use EzSystems\EzSupportTools\Storage\Metrics;
 
+/**
+ * @internal
+ */
 final class PublishedContentObjectsCountMetrics implements Metrics
 {
     private const CONTENTOBJECT_TABLE = 'ezcontentobject';

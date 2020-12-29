@@ -13,6 +13,9 @@ use Doctrine\DBAL\ParameterType;
 use eZ\Publish\SPI\Persistence\Content\ContentInfo;
 use EzSystems\EzSupportTools\Storage\Metrics;
 
+/**
+ * @internal
+ */
 final class DraftsCountMetrics implements Metrics
 {
     private const CONTENTOBJECT_VERSION_TABLE = 'ezcontentobject_version';
