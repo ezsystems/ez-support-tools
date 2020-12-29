@@ -108,7 +108,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
      * Packages that identify installation as "Commerce".
      */
     public const COMMERCE_PACKAGES = [
-        'ezsystems/ezcommerce-shop',
+        'ezsystems/ezcommerce-admin-ui',
         'silversolutions/silver.e-shop',
     ];
 
