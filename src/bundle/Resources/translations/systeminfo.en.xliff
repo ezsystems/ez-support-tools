@@ -56,50 +56,50 @@
         <target state="new">Disabled</target>
         <note>key: disabled</note>
       </trans-unit>
-      <trans-unit id="d87becd0d1497fe04536d2e9291290a8b07e9dfb" resname="ibexa.product">
-        <source>Product</source>
-        <target state="new">Product</target>
-        <note>key: ibexa.product</note>
-      </trans-unit>
-      <trans-unit id="b7ffaa791bbf39db2ea700efec5362a0bc4e2021" resname="ibexa.name">
-        <source>Name</source>
-        <target state="new">Name</target>
-        <note>key: ibexa.name</note>
-      </trans-unit>
-      <trans-unit id="d6025d67b03f12dac6c912f6224bb309347f6465" resname="ibexa.version">
-        <source>Version</source>
-        <target state="new">Version</target>
-        <note>key: ibexa.version</note>
-      </trans-unit>
-      <trans-unit id="4a9e6f9b28c3203784cb5f01ebe73e67661cc823" resname="ibexa.eom">
-        <source>End of Maintenance</source>
-        <target state="new">End of Maintenance</target>
-        <note>key: ibexa.eom</note>
+      <trans-unit id="608cb271bb7fb52c99a1a8e003e0f80f57fb41e1" resname="hardware">
+        <source>Hardware</source>
+        <target state="new">Hardware</target>
+        <note>key: hardware</note>
       </trans-unit>
       <trans-unit id="ed1f723e05fbc74c1c90cfc6f64c2bcda6f4bb9d" resname="ibexa.eol">
         <source>End of Life</source>
         <target state="new">End of Life</target>
         <note>key: ibexa.eol</note>
       </trans-unit>
+      <trans-unit id="4a9e6f9b28c3203784cb5f01ebe73e67661cc823" resname="ibexa.eom">
+        <source>End of Maintenance</source>
+        <target state="new">End of Maintenance</target>
+        <note>key: ibexa.eom</note>
+      </trans-unit>
       <trans-unit id="804e14084add4426182add3b4a0a710506ef742b" resname="ibexa.is_trial">
         <source>Is Trial</source>
         <target state="new">Is Trial</target>
         <note>key: ibexa.is_trial</note>
       </trans-unit>
-      <trans-unit id="341340ab8c700ad6fe83322ec29cb3977262f5df" resname="ibexa.stability">
-        <source>Stability</source>
-        <target state="new">Stability</target>
-        <note>key: ibexa.stability</note>
+      <trans-unit id="b7ffaa791bbf39db2ea700efec5362a0bc4e2021" resname="ibexa.name">
+        <source>Name</source>
+        <target state="new">Name</target>
+        <note>key: ibexa.name</note>
+      </trans-unit>
+      <trans-unit id="d87becd0d1497fe04536d2e9291290a8b07e9dfb" resname="ibexa.product">
+        <source>Product</source>
+        <target state="new">Product</target>
+        <note>key: ibexa.product</note>
       </trans-unit>
       <trans-unit id="972bcf808b8ce2b0a08a21db7f0f15f520f4b87b" resname="ibexa.read_more">
         <source>You can read more about Service Life for Ibexa DXP with a business license at</source>
         <target state="new">You can read more about Service Life for Ibexa DXP with a business license at</target>
         <note>key: ibexa.read_more</note>
       </trans-unit>
-      <trans-unit id="608cb271bb7fb52c99a1a8e003e0f80f57fb41e1" resname="hardware">
-        <source>Hardware</source>
-        <target state="new">Hardware</target>
-        <note>key: hardware</note>
+      <trans-unit id="341340ab8c700ad6fe83322ec29cb3977262f5df" resname="ibexa.stability">
+        <source>Stability</source>
+        <target state="new">Stability</target>
+        <note>key: ibexa.stability</note>
+      </trans-unit>
+      <trans-unit id="d6025d67b03f12dac6c912f6224bb309347f6465" resname="ibexa.version">
+        <source>Version</source>
+        <target state="new">Version</target>
+        <note>key: ibexa.version</note>
       </trans-unit>
       <trans-unit id="81c5d49be9505089d8d248ea96f6d077fd0ab9bd" resname="memory">
         <source>Memory</source>
@@ -216,11 +216,6 @@
         <target state="new">System Information</target>
         <note>key: systeminfo</note>
       </trans-unit>
-      <trans-unit id="7dd1b2ca71037e00112dfe0297383f47c6904c77" resname="tab.name.ibexa">
-        <source>My Ibexa</source>
-        <target state="new">My Ibexa</target>
-        <note>key: tab.name.ibexa</note>
-      </trans-unit>
       <trans-unit id="a2a92e9d0e41ea4a14c99ab0f702d5df3ea017c3" resname="tab.name.composer">
         <source>Composer</source>
         <target state="new">Composer</target>
@@ -235,6 +230,11 @@
         <source>Hardware</source>
         <target state="new">Hardware</target>
         <note>key: tab.name.hardware</note>
+      </trans-unit>
+      <trans-unit id="7dd1b2ca71037e00112dfe0297383f47c6904c77" resname="tab.name.ibexa">
+        <source>My Ibexa</source>
+        <target state="new">My Ibexa</target>
+        <note>key: tab.name.ibexa</note>
       </trans-unit>
       <trans-unit id="b71f0d567a424182b8c83a6b90a262b29819241b" resname="tab.name.php">
         <source>PHP</source>
