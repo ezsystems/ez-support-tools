@@ -49,23 +49,46 @@ class IbexaSystemInfo extends ValueObject implements SystemInfo
 
     /**
      * @var bool
+     *
+     * @uses $endOfMaintenanceDate
      */
     public $isEndOfMaintenance = true;
 
     /**
-     * @var \DateTime
+     * @var \DateTime EOM for the given release, if you have an Ibexa DXP / Enterpise susbscription.
+     *
+     * @see https://support.ibexa.co/Public/Service-Life
      */
     public $endOfMaintenanceDate;
 
     /**
      * @var bool
+     *
+     * @uses $endOfLifeDate
      */
     public $isEndOfLife = true;
 
     /**
-     * @var \DateTime
+     * @var \DateTime EOL for the given release, if you have an Ibexa DXP susbscription.
+     *
+     * @see https://support.ibexa.co/Public/Service-Life
      */
     public $endOfLifeDate;
+
+    /**
+     * @var \DateTime|null Empty if no subscripton info is found.
+     */
+    public $subscriptionExpiryDate;
+
+    /**
+     * @var bool If install should have subscription data (due to enterpise packages), but it's not present.
+     */
+    public $shouldHaveSubscription;
+
+    /**
+     * @var array List of products that are part of subscription.
+     */
+    public $subscriptionProducts = [];
 
     /**
      * @var bool
@@ -73,17 +96,30 @@ class IbexaSystemInfo extends ValueObject implements SystemInfo
     public $isTrial = false;
 
     /**
+     * Lowest stability found in install (packages / minimumStability).
+     *
+     * @var string One of {@see \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::STABILITIES}.
+     */
+    public $lowestStability;
+
+    /**
+     * @deprecated Instead use $lowestStability.
+     *
      * @var string One of {@see \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::STABILITIES}.
      */
     public $stability;
 
     /**
+     * @deprecated Duplicates collected info on symfony
+     *
      * @var bool
      */
     public $debug;
 
     /**
-     * @var \EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo|null
+     * @deprecated This was duplication of collected info from Composer, now only contains key 'minimumStability'
+     *
+     * @var array|null
      */
     public $composerInfo;
 }
