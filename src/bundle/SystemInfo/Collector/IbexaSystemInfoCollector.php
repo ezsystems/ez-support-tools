@@ -7,8 +7,9 @@
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use EzSystems\EzPlatformCoreBundle\EzPlatformCoreBundle;
+use EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException;
-use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerPackage;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\IbexaSystemInfo;
 use DateTime;
 
@@ -30,7 +31,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
      *
      * Mainly for usage for trial to calculate TTL expiry.
      */
-    const RELEASES = [
+    public const RELEASES = [
         '2.5' => '2019-03-29T16:59:59+00:00',
         '3.0' => '2020-04-02T23:59:59+00:00',
         '3.1' => '2020-07-15T23:59:59+00:00',
@@ -51,12 +52,12 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
      *
      * @see: https://support.ibexa.co/Public/Service-Life
      */
-    const EOM = [
+    public const EOM = [
         '2.5' => '2022-03-29T23:59:59+00:00',
         '3.0' => '2020-07-10T23:59:59+00:00',
         '3.1' => '2020-11-30T23:59:59+00:00',
         '3.2' => '2021-02-28T23:59:59+00:00',
-        '3.3' => '2021-04-30T23:59:59+00:00', // Estimate at time of writing
+        '3.3' => '2022-12-30T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
@@ -66,23 +67,38 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
      *
      * @see: https://support.ibexa.co/Public/Service-Life
      */
-    const EOL = [
+    public const EOL = [
         '2.5' => '2024-03-29T23:59:59+00:00',
         '3.0' => '2020-08-31T23:59:59+00:00',
         '3.1' => '2021-01-30T23:59:59+00:00',
         '3.2' => '2021-04-30T23:59:59+00:00',
-        '3.3' => '2021-06-30T23:59:59+00:00', // Estimate at time of writing
+        '3.3' => '2023-12-30T23:59:59+00:00', // Estimate at time of writing
     ];
 
     /**
      * Vendors we watch for stability (and potentially more).
      */
-    const PACKAGE_WATCH_REGEX = '/^(doctrine|ezsystems|silversolutions|symfony)\//';
+    public const PACKAGE_WATCH_REGEX = '/^(doctrine|ezsystems|silversolutions|symfony)\//';
+
+    /**
+     * Packages that identify installation as "Content".
+     */
+    public const CONTENT_PACKAGES = [
+        'ezsystems/ezplatform-workflow',
+    ];
+
+    public const EXPERIENCE_PACKAGES = [
+        'ezsystems/ezplatform-page-builder',
+        'ezsystems/landing-page-fieldtype-bundle',
+    ];
 
     /**
      * Packages that identify installation as "Enterprise".
+     *
+     * @deprecated since Ibexa DXP 3.3. Rely either on <code>IbexaSystemInfoCollector::EXPERIENCE_PACKAGES</code>
+     * or <code>IbexaSystemInfoCollector::CONTENT_PACKAGES</code>.
      */
-    const ENTERPRISE_PACKAGES = [
+    public const ENTERPRISE_PACKAGES = [
         'ezsystems/ezplatform-page-builder',
         'ezsystems/flex-workflow',
         'ezsystems/landing-page-fieldtype-bundle',
@@ -91,7 +107,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     /**
      * Packages that identify installation as "Commerce".
      */
-    const COMMERCE_PACKAGES = [
+    public const COMMERCE_PACKAGES = [
         'ezsystems/ezcommerce-shop',
         'silversolutions/silver.e-shop',
     ];
@@ -106,18 +122,25 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
      */
     private $debug;
 
+    /** @var string */
+    private $kernelProjectDir;
+
     /**
      * @param \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector|\EzSystems\EzSupportToolsBundle\SystemInfo\Collector\SystemInfoCollector $composerCollector
      * @param bool $debug
      */
-    public function __construct(SystemInfoCollector $composerCollector, $debug = false)
-    {
+    public function __construct(
+        SystemInfoCollector $composerCollector,
+        string $kernelProjectDir,
+        $debug = false
+    ) {
         try {
             $this->composerInfo = $composerCollector->collect();
         } catch (ComposerLockFileNotFoundException $e) {
             // do nothing
         }
         $this->debug = $debug;
+        $this->kernelProjectDir = $kernelProjectDir;
     }
 
     /**
@@ -129,56 +152,58 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
      */
     public function collect(): IbexaSystemInfo
     {
-        $ibexa = new IbexaSystemInfo(['debug' => $this->debug, 'composerInfo' => $this->composerInfo]);
-        if ($this->composerInfo === null) {
-            return $ibexa;
-        }
+        $vendorDir = sprintf('%s/vendor/', $this->kernelProjectDir);
 
+        $ibexa = new IbexaSystemInfo([
+            'debug' => $this->debug,
+            'name' => EzSystemsEzSupportToolsExtension::getNameByPackages($vendorDir),
+        ]);
+
+        $this->setReleaseInfo($ibexa);
+        $this->extractComposerInfo($ibexa);
+
+        return $ibexa;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    private function setReleaseInfo(IbexaSystemInfo $ibexa): void
+    {
         $ibexa->release = EzPlatformCoreBundle::VERSION;
         // try to extract version number, but prepare for unexpected string
         [$majorVersion, $minorVersion] = array_pad(explode('.', $ibexa->release), 2, '');
         $ibexaRelease = "{$majorVersion}.{$minorVersion}";
 
-        // In case someone switches from TTL to BUL, make sure we only identify installation as Trial if this is present,
-        // as well as TTL packages
-        $hasTTLComposerRepo = \in_array('https://updates.ez.no/ttl', $this->composerInfo->repositoryUrls);
-
-        if ($package = $this->getFirstPackage(self::ENTERPRISE_PACKAGES)) {
-            $ibexa->isEnterprise = true;
-            $ibexa->isTrial = $hasTTLComposerRepo && $package->license === 'TTL-2.0';
-            $ibexa->name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['experience'];
+        if (isset(self::EOM[$ibexaRelease])) {
+            $ibexa->isEndOfMaintenance = strtotime(self::EOM[$ibexaRelease]) < time();
         }
 
-        if ($package = $this->getFirstPackage(self::COMMERCE_PACKAGES)) {
-            $ibexa->isCommerce = true;
-            $ibexa->isTrial = $ibexa->isTrial || ($hasTTLComposerRepo && $package->license === 'TTL-2.0');
-            $ibexa->name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
-        }
-
-        if ($ibexa->isTrial && isset(self::RELEASES[$ibexaRelease])) {
-            $months = (new DateTime(self::RELEASES[$ibexaRelease]))->diff(new DateTime())->m;
-            $ibexa->isEndOfMaintenance = $months > 3;
-            // @todo We need to detect this in a better way, this is temporary until some of the work described in class doc is done.
-            $ibexa->isEndOfLife = $months > 6;
-        } else {
-            if (isset(self::EOM[$ibexaRelease])) {
-                $ibexa->isEndOfMaintenance = strtotime(self::EOM[$ibexaRelease]) < time();
-            }
-
-            if (isset(self::EOL[$ibexaRelease])) {
-                if (!$ibexa->isEnterprise) {
-                    $ibexa->isEndOfLife = $ibexa->isEndOfMaintenance;
-                } else {
-                    $ibexa->isEndOfLife = strtotime(self::EOL[$ibexaRelease]) < time();
-                }
-            }
+        if (isset(self::EOL[$ibexaRelease])) {
+            $ibexa->isEndOfLife = strtotime(self::EOL[$ibexaRelease]) < time();
         }
 
         $ibexa->endOfMaintenanceDate = $this->getEOMDate($ibexaRelease);
         $ibexa->endOfLifeDate = $this->getEOLDate($ibexaRelease);
-        $ibexa->stability = $this->getStability();
+    }
 
-        return $ibexa;
+    private function extractComposerInfo(IbexaSystemInfo $ibexa): void
+    {
+        if ($this->composerInfo === null) {
+            return;
+        }
+
+        // BC (deprecated property)
+        $ibexa->composerInfo = ['minimumStability' => $this->composerInfo->minimumStability];
+
+        $dxpPackages = array_merge(
+            self::CONTENT_PACKAGES,
+            self::EXPERIENCE_PACKAGES,
+            self::COMMERCE_PACKAGES
+        );
+        $ibexa->isEnterprise = self::hasPackage($this->composerInfo, $dxpPackages);
+        $ibexa->shouldHaveSubscription = $ibexa->isEnterprise;
+        $ibexa->stability = $ibexa->lowestStability = self::getStability($this->composerInfo);
     }
 
     /**
@@ -201,17 +226,17 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
             null;
     }
 
-    private function getStability(): string
+    private static function getStability(ComposerSystemInfo $composerInfo): string
     {
         $stabilityFlags = array_flip(JsonComposerLockSystemInfoCollector::STABILITIES);
 
         // Root package stability
-        $stabilityFlag = $this->composerInfo->minimumStability !== null ?
-            $stabilityFlags[$this->composerInfo->minimumStability] :
+        $stabilityFlag = $composerInfo->minimumStability !== null ?
+            $stabilityFlags[$composerInfo->minimumStability] :
             $stabilityFlags['stable'];
 
         // Check if any of the watched packages has lower stability than root
-        foreach ($this->composerInfo->packages as $name => $package) {
+        foreach ($composerInfo->packages as $name => $package) {
             if (!preg_match(self::PACKAGE_WATCH_REGEX, $name)) {
                 continue;
             }
@@ -228,14 +253,14 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
         return JsonComposerLockSystemInfoCollector::STABILITIES[$stabilityFlag];
     }
 
-    private function getFirstPackage($packageNames): ?ComposerPackage
+    private static function hasPackage(ComposerSystemInfo $composerInfo, array $packageNames): bool
     {
         foreach ($packageNames as $packageName) {
-            if (isset($this->composerInfo->packages[$packageName])) {
-                return $this->composerInfo->packages[$packageName];
+            if (isset($composerInfo->packages[$packageName])) {
+                return true;
             }
         }
 
-        return null;
+        return false;
     }
 }

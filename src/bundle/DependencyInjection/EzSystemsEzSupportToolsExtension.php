@@ -63,15 +63,10 @@ class EzSystemsEzSupportToolsExtension extends Extension implements PrependExten
 
     private function getPoweredByName(ContainerBuilder $container, ?string $release): string
     {
-        // Autodetect product name if configured name is null (default)
         $vendor = $container->getParameter('kernel.project_dir') . '/vendor/';
-        if (is_dir($vendor . IbexaSystemInfoCollector::COMMERCE_PACKAGES[0])) {
-            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
-        } elseif (is_dir($vendor . IbexaSystemInfoCollector::ENTERPRISE_PACKAGES[0])) {
-            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['experience'];
-        } else {
-            $name = IbexaSystemInfo::PRODUCT_NAME_OSS;
-        }
+
+        // Autodetect product name
+        $name = self::getNameByPackages($vendor);
 
         if ($release === 'major') {
             $name .= ' v' . (int)EzPlatformCoreBundle::VERSION;
@@ -97,5 +92,20 @@ class EzSystemsEzSupportToolsExtension extends Extension implements PrependExten
                 ],
             ],
         ]);
+    }
+
+    public static function getNameByPackages(string $vendor): string
+    {
+        if (is_dir($vendor . IbexaSystemInfoCollector::COMMERCE_PACKAGES[0])) {
+            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
+        } elseif (is_dir($vendor . IbexaSystemInfoCollector::EXPERIENCE_PACKAGES[0])) {
+            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['experience'];
+        } elseif (is_dir($vendor . IbexaSystemInfoCollector::CONTENT_PACKAGES[0])) {
+            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['content'];
+        } else {
+            $name = IbexaSystemInfo::PRODUCT_NAME_OSS;
+        }
+
+        return $name;
     }
 }

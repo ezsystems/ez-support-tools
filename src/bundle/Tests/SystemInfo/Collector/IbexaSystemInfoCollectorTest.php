@@ -22,7 +22,9 @@ class IbexaSystemInfoCollectorTest extends TestCase
             __DIR__ . '/_fixtures/composer.lock', __DIR__ . '/_fixtures/composer.json'
         );
 
-        $systemInfoCollector = new IbexaSystemInfoCollector($composerCollector);
+        $systemInfoCollector = new IbexaSystemInfoCollector(
+            $composerCollector, dirname(__DIR__, 5)
+        );
         $systemInfo = $systemInfoCollector->collect();
         self::assertSame(IbexaSystemInfo::PRODUCT_NAME_OSS, $systemInfo->name);
         self::assertSame(EzPlatformCoreBundle::VERSION, $systemInfo->release);

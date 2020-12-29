@@ -63,10 +63,11 @@ services:
     # SystemInfoCollectors
 
     support_tools.system_info.collector.system.ibexa:
-        class: "%support_tools.system_info.collector.system.ibexa.class%"
+        class: '%support_tools.system_info.collector.system.ibexa.class%'
         arguments:
-            - "@support_tools.system_info.collector.composer.lock_file"
-            - "%kernel.debug%"
+            $composerCollector: "@support_tools.system_info.collector.composer.lock_file"
+            $kernelProjectDir: '%kernel.project_dir%'
+            $debug: '%kernel.debug%'
         tags:
             - { name: "support_tools.system_info.collector", identifier: "ibexa" }
 
