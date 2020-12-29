@@ -11,6 +11,9 @@ namespace EzSystems\EzSupportTools\Storage\Metrics;
 use Doctrine\DBAL\Connection;
 use EzSystems\EzSupportTools\Storage\Metrics;
 
+/**
+ * @internal
+ */
 final class UsersCountMetrics implements Metrics
 {
     private const USER_TABLE = 'ezuser';

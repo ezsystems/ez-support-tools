@@ -12,6 +12,9 @@ use Doctrine\DBAL\Connection;
 use eZ\Publish\SPI\Persistence\Content\Type;
 use EzSystems\EzSupportTools\Storage\Metrics;
 
+/**
+ * @internal
+ */
 final class ContentTypesCountMetrics implements Metrics
 {
     private const CONTENT_TYPE_TABLE = 'ezcontentclass';

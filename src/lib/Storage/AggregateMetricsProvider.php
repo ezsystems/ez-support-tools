@@ -10,6 +10,9 @@ namespace EzSystems\EzSupportTools\Storage;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\MetricsNotFoundException;
 
+/**
+ * @internal
+ */
 final class AggregateMetricsProvider implements MetricsProvider
 {
     /** @var iterable */
