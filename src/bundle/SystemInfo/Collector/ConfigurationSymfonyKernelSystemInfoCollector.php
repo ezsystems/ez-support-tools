@@ -6,7 +6,7 @@
  */
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
-use EzSystems\EzSupportToolsBundle\SystemInfo\Value;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\SymfonyKernelSystemInfo;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
@@ -45,13 +45,13 @@ class ConfigurationSymfonyKernelSystemInfoCollector implements SystemInfoCollect
     /**
      * Collects information about the Symfony kernel.
      *
-     * @return Value\SymfonyKernelSystemInfo
+     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\SymfonyKernelSystemInfo
      */
-    public function collect()
+    public function collect(): SymfonyKernelSystemInfo
     {
         ksort($this->bundles, SORT_FLAG_CASE | SORT_STRING);
 
-        return new Value\SymfonyKernelSystemInfo([
+        return new SymfonyKernelSystemInfo([
             'environment' => $this->kernel->getEnvironment(),
             'debugMode' => $this->kernel->isDebug(),
             'version' => Kernel::VERSION,

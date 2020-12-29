@@ -7,7 +7,7 @@
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper;
-use EzSystems\EzSupportToolsBundle\SystemInfo\Value;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Value\PhpSystemInfo;
 
 /**
  * Collects PHP information using zetacomponents/sysinfo.
@@ -29,9 +29,9 @@ class EzcPhpSystemInfoCollector implements SystemInfoCollector
      *  - php version
      *  - php accelerator info.
      *
-     * @return Value\PhpSystemInfo
+     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\PhpSystemInfo
      */
-    public function collect()
+    public function collect(): PhpSystemInfo
     {
         $properties = [
             'version' => PHP_VERSION,
@@ -50,6 +50,6 @@ class EzcPhpSystemInfoCollector implements SystemInfoCollector
             );
         }
 
-        return new Value\PhpSystemInfo($properties);
+        return new PhpSystemInfo($properties);
     }
 }
