@@ -45,6 +45,6 @@ services:
         arguments:
             $template: '@@ezdesign/ui/dashboard/block/ez.html.twig'
             $ibexaSystemInfo: "@=service('support_tools.system_info.collector.system.ibexa').collect()"
-            $urlList: '%support_tools.ez_url_list%'
+            $urlList: '%ibexa.system_info.ibexa_url_list%'
         tags:
             - { name: ezplatform.admin_ui.component, group: 'dashboard-blocks', priority: 200 }
