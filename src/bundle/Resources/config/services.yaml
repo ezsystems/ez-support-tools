@@ -114,29 +114,29 @@ services:
 
     EzSystems\EzSupportTools\Storage\AggregateMetricsProvider:
         arguments:
-            $metrics: !tagged_iterator { tag: support_tools.metrics, index_by: identifier }
+            $metrics: !tagged_iterator { tag: ibexa.system_info.metrics, index_by: identifier }
 
     EzSystems\EzSupportTools\Storage\Metrics\PublishedContentObjectsCountMetrics:
         autowire: true
         tags:
-            - { name: support_tools.metrics, identifier: published }
+            - { name: ibexa.system_info.metrics, identifier: published }
 
     EzSystems\EzSupportTools\Storage\Metrics\UsersCountMetrics:
         autowire: true
         tags:
-            - { name: support_tools.metrics, identifier: users }
+            - { name: ibexa.system_info.metrics, identifier: users }
 
     EzSystems\EzSupportTools\Storage\Metrics\DraftsCountMetrics:
         autowire: true
         tags:
-            - { name: support_tools.metrics, identifier: drafts }
+            - { name: ibexa.system_info.metrics, identifier: drafts }
 
     EzSystems\EzSupportTools\Storage\Metrics\VersionsCountMetrics:
         autowire: true
         tags:
-            - { name: support_tools.metrics, identifier: versions }
+            - { name: ibexa.system_info.metrics, identifier: versions }
 
     EzSystems\EzSupportTools\Storage\Metrics\ContentTypesCountMetrics:
         autowire: true
         tags:
-            - { name: support_tools.metrics, identifier: content_types }
+            - { name: ibexa.system_info.metrics, identifier: content_types }
