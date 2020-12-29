@@ -7,7 +7,7 @@
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use Doctrine\DBAL\Connection;
-use EzSystems\EzSupportTools\Storage\MetricsProviderInterface;
+use EzSystems\EzSupportTools\Storage\MetricsProvider;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\RepositorySystemInfo;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\RepositoryMetrics;
 
@@ -26,11 +26,11 @@ class RepositorySystemInfoCollector implements SystemInfoCollector
     /**
      * The metrics provider needed to populate Repository value object consisting of several metrics.
      *
-     * @var \EzSystems\EzSupportTools\Storage\MetricsProviderInterface
+     * @var \EzSystems\EzSupportTools\Storage\MetricsProvider
      */
     private $metricsProvider;
 
-    public function __construct(Connection $db, MetricsProviderInterface $metricsProvider)
+    public function __construct(Connection $db, MetricsProvider $metricsProvider)
     {
         $this->connection = $db;
         $this->metricsProvider = $metricsProvider;

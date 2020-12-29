@@ -8,8 +8,8 @@ namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Collector;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use EzSystems\EzSupportTools\Storage\MetricsInterface;
-use EzSystems\EzSupportTools\Storage\MetricsProviderInterface;
+use EzSystems\EzSupportTools\Storage\Metrics;
+use EzSystems\EzSupportTools\Storage\MetricsProvider;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\RepositorySystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\RepositoryMetrics;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\RepositorySystemInfo;
@@ -46,8 +46,8 @@ class RepositorySystemInfoCollectorTest extends TestCase
     {
         $this->dbalConnectionMock = $this->getMockBuilder(Connection::class)->disableOriginalConstructor()->getMock();
         $this->dbalPlatformMock = $this->getMockBuilder(AbstractPlatform::class)->getMock();
-        $this->metricsProviderMock = $this->createMock(MetricsProviderInterface::class);
-        $this->metricsMock = $this->createMock(MetricsInterface::class);
+        $this->metricsProviderMock = $this->createMock(MetricsProvider::class);
+        $this->metricsMock = $this->createMock(Metrics::class);
 
         $this->repositoryCollector = new RepositorySystemInfoCollector(
             $this->dbalConnectionMock,

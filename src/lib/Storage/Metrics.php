@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzSupportTools\Storage;
 
-interface MetricsProviderInterface
+interface Metrics
 {
-    public function provideMetrics(string $identifier): MetricsInterface;
+    public function getValue(): int;
 }
