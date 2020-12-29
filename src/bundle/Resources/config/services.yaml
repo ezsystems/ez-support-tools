@@ -79,6 +79,8 @@ services:
     EzSystems\EzSupportToolsBundle\SystemInfo\Collector\RepositorySystemInfoCollector:
         lazy: true
         autowire: true
+        arguments:
+            $db: '@ezpublish.persistence.connection'
         tags:
             - { name: "support_tools.system_info.collector", identifier: "repository" }
 
@@ -117,6 +119,11 @@ services:
     EzSystems\EzSupportTools\Storage\AggregateMetricsProvider:
         arguments:
             $metrics: !tagged_iterator { tag: ibexa.system_info.metrics, index_by: identifier }
+
+    EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics:
+        abstract: true
+        arguments:
+            $connection: '@ezpublish.persistence.connection'
 
     EzSystems\EzSupportTools\Storage\Metrics\PublishedContentObjectsCountMetrics:
         autowire: true
