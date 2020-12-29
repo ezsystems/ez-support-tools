@@ -12,10 +12,11 @@ use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzSystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class EzSystemsEzSupportToolsExtension extends Extension
+class EzSystemsEzSupportToolsExtension extends Extension implements PrependExtensionInterface
 {
     public function getAlias()
     {
@@ -50,6 +51,11 @@ class EzSystemsEzSupportToolsExtension extends Extension
         }
     }
 
+    public function prepend(ContainerBuilder $container)
+    {
+        $this->prependJMSTranslation($container);
+    }
+
     private function getPoweredByName(ContainerBuilder $container, ?string $release): string
     {
         // Autodetect product name if configured name is null (default)
@@ -71,5 +77,21 @@ class EzSystemsEzSupportToolsExtension extends Extension
         }
 
         return $name;
+    }
+
+    private function prependJMSTranslation(ContainerBuilder $container): void
+    {
+        $container->prependExtensionConfig('jms_translation', [
+            'configs' => [
+                'ibexa_support_tools' => [
+                    'dirs' => [
+                        __DIR__ . '/../../../src/',
+                    ],
+                    'output_dir' => __DIR__ . '/../Resources/translations/',
+                    'output_format' => 'xliff',
+                    'excluded_dirs' => ['Behat', 'Tests', 'node_modules'],
+                ],
+            ],
+        ]);
     }
 }
