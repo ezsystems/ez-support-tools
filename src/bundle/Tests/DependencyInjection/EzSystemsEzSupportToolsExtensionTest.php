@@ -46,7 +46,7 @@ class EzSystemsEzSupportToolsExtensionTest extends AbstractExtensionTestCase
         foreach ($services as $serviceId => $identifier) {
             $this->assertContainerBuilderHasServiceDefinitionWithTag(
                 $serviceId,
-                'ibexa.system_info.metrics',
+                EzSystemsEzSupportToolsExtension::METRICS_TAG,
                 ['identifier' => $identifier]
             );
         }
