@@ -209,7 +209,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     /**
      * @throws \Exception
      */
-    private function getEOMDate(string $ibexaRelease): ?\DateTime
+    private function getEOMDate(string $ibexaRelease): ?DateTime
     {
         return isset(self::EOM[$ibexaRelease]) ?
             new DateTime(self::EOM[$ibexaRelease]) :
@@ -219,7 +219,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     /**
      * @throws \Exception
      */
-    private function getEOLDate(string $ibexaRelease): ?\DateTime
+    private function getEOLDate(string $ibexaRelease): ?DateTime
     {
         return isset(self::EOL[$ibexaRelease]) ?
             new DateTime(self::EOL[$ibexaRelease]) :
