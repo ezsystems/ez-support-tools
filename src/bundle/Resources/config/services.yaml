@@ -127,35 +127,35 @@ services:
             $connection: '@ezpublish.persistence.connection'
 
     EzSystems\EzSupportTools\Storage\Metrics\PublishedContentObjectsCountMetrics:
-        autowire: true
+        parent: EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics
         tags:
             -
               name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
               identifier: published
 
     EzSystems\EzSupportTools\Storage\Metrics\UsersCountMetrics:
-        autowire: true
+        parent: EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics
         tags:
             -
               name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
               identifier: users
 
     EzSystems\EzSupportTools\Storage\Metrics\DraftsCountMetrics:
-        autowire: true
+        parent: EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics
         tags:
             -
               name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
               identifier: drafts
 
     EzSystems\EzSupportTools\Storage\Metrics\VersionsCountMetrics:
-        autowire: true
+        parent: EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics
         tags:
             -
               name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
               identifier: versions
 
     EzSystems\EzSupportTools\Storage\Metrics\ContentTypesCountMetrics:
-        autowire: true
+        parent: EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics
         tags:
             -
               name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
