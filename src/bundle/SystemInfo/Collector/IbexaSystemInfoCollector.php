@@ -202,7 +202,6 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
             self::COMMERCE_PACKAGES
         );
         $ibexa->isEnterprise = self::hasPackage($this->composerInfo, $dxpPackages);
-        $ibexa->shouldHaveSubscription = $ibexa->isEnterprise;
         $ibexa->stability = $ibexa->lowestStability = self::getStability($this->composerInfo);
     }
 

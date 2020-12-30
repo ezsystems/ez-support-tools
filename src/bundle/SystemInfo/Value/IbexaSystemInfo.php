@@ -76,11 +76,6 @@ class IbexaSystemInfo extends ValueObject implements SystemInfo
     public $endOfLifeDate;
 
     /**
-     * @var bool If install should have subscription data (due to enterpise packages), but it's not present.
-     */
-    public $shouldHaveSubscription;
-
-    /**
      * @var bool
      */
     public $isTrial = false;
