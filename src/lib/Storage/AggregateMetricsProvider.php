@@ -9,28 +9,31 @@ declare(strict_types=1);
 namespace EzSystems\EzSupportTools\Storage;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\MetricsNotFoundException;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
+use Symfony\Component\DependencyInjection\ServiceLocator;
 
 /**
  * @internal
  */
 final class AggregateMetricsProvider implements MetricsProvider
 {
-    /** @var iterable */
-    private $metrics;
+    /** @var \Symfony\Component\DependencyInjection\ServiceLocator */
+    private $metricsLocator;
 
-    public function __construct(iterable $metrics)
+    public function __construct(ServiceLocator $metrics)
     {
-        $this->metrics = $metrics;
+        $this->metricsLocator = $metrics;
     }
 
+    /**
+     * @throws \EzSystems\EzSupportToolsBundle\SystemInfo\Exception\MetricsNotFoundException
+     */
     public function provideMetrics(string $identifier): Metrics
     {
-        foreach ($this->metrics as $metricKey => $metric) {
-            if ($metricKey === $identifier) {
-                return $metric;
-            }
+        try {
+            return $this->metricsLocator->get($identifier);
+        } catch (ServiceNotFoundException $e) {
+            throw new MetricsNotFoundException($identifier);
         }
-
-        throw new MetricsNotFoundException($identifier);
     }
 }

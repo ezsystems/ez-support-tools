@@ -118,7 +118,7 @@ services:
 
     EzSystems\EzSupportTools\Storage\AggregateMetricsProvider:
         arguments:
-            $metrics: !tagged_iterator { tag: ibexa.system_info.metrics, index_by: identifier }
+            $metrics: !tagged_locator { tag: ibexa.system_info.metrics, index_by: identifier }
 
     EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics:
         abstract: true
