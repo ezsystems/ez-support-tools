@@ -33,7 +33,7 @@ final class AggregateMetricsProvider implements MetricsProvider
         try {
             return $this->metricsLocator->get($identifier);
         } catch (ServiceNotFoundException $e) {
-            throw new MetricsNotFoundException($identifier);
+            throw new MetricsNotFoundException($identifier, $e);
         }
     }
 }
