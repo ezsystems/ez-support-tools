@@ -132,7 +132,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     public function __construct(
         SystemInfoCollector $composerCollector,
         string $kernelProjectDir,
-        $debug = false
+        bool $debug = false
     ) {
         try {
             $this->composerInfo = $composerCollector->collect();
