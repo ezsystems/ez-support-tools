@@ -81,7 +81,7 @@ class IbexaSystemInfo extends ValueObject implements SystemInfo
     public $isTrial = false;
 
     /**
-     * Lowest stability found in install (packages / minimumStability).
+     * Lowest stability found in the installation (packages / minimumStability).
      *
      * @var string One of {@see \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::STABILITIES}.
      */
