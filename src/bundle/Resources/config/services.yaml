@@ -117,7 +117,9 @@ services:
 
     EzSystems\EzSupportTools\Storage\AggregateMetricsProvider:
         arguments:
-            $metrics: !tagged_locator { tag: ibexa.system_info.metrics, index_by: identifier }
+            $metrics: !tagged_locator
+                tag: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+                index_by: identifier
 
     EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics:
         abstract: true
@@ -127,24 +129,34 @@ services:
     EzSystems\EzSupportTools\Storage\Metrics\PublishedContentObjectsCountMetrics:
         autowire: true
         tags:
-            - { name: ibexa.system_info.metrics, identifier: published }
+            -
+              name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+              identifier: published
 
     EzSystems\EzSupportTools\Storage\Metrics\UsersCountMetrics:
         autowire: true
         tags:
-            - { name: ibexa.system_info.metrics, identifier: users }
+            -
+              name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+              identifier: users
 
     EzSystems\EzSupportTools\Storage\Metrics\DraftsCountMetrics:
         autowire: true
         tags:
-            - { name: ibexa.system_info.metrics, identifier: drafts }
+            -
+              name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+              identifier: drafts
 
     EzSystems\EzSupportTools\Storage\Metrics\VersionsCountMetrics:
         autowire: true
         tags:
-            - { name: ibexa.system_info.metrics, identifier: versions }
+            -
+              name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+              identifier: versions
 
     EzSystems\EzSupportTools\Storage\Metrics\ContentTypesCountMetrics:
         autowire: true
         tags:
-            - { name: ibexa.system_info.metrics, identifier: content_types }
+            -
+              name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+              identifier: content_types
