@@ -201,15 +201,14 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
             self::EXPERIENCE_PACKAGES,
             self::COMMERCE_PACKAGES
         );
-        $ibexa->isEnterprise = self::hasPackage($this->composerInfo, $dxpPackages);
-        $ibexa->shouldHaveSubscription = $ibexa->isEnterprise;
+        $ibexa->isEnterprise = self::hasAnyPackage($this->composerInfo, $dxpPackages);
         $ibexa->stability = $ibexa->lowestStability = self::getStability($this->composerInfo);
     }
 
     /**
      * @throws \Exception
      */
-    private function getEOMDate(string $ibexaRelease): ?\DateTime
+    private function getEOMDate(string $ibexaRelease): ?DateTime
     {
         return isset(self::EOM[$ibexaRelease]) ?
             new DateTime(self::EOM[$ibexaRelease]) :
@@ -219,7 +218,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
     /**
      * @throws \Exception
      */
-    private function getEOLDate(string $ibexaRelease): ?\DateTime
+    private function getEOLDate(string $ibexaRelease): ?DateTime
     {
         return isset(self::EOL[$ibexaRelease]) ?
             new DateTime(self::EOL[$ibexaRelease]) :
@@ -253,8 +252,10 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
         return JsonComposerLockSystemInfoCollector::STABILITIES[$stabilityFlag];
     }
 
-    private static function hasPackage(ComposerSystemInfo $composerInfo, array $packageNames): bool
-    {
+    private static function hasAnyPackage(
+        ComposerSystemInfo $composerInfo,
+        array $packageNames
+    ): bool {
         foreach ($packageNames as $packageName) {
             if (isset($composerInfo->packages[$packageName])) {
                 return true;

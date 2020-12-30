@@ -76,17 +76,12 @@ class IbexaSystemInfo extends ValueObject implements SystemInfo
     public $endOfLifeDate;
 
     /**
-     * @var bool If install should have subscription data (due to enterpise packages), but it's not present.
-     */
-    public $shouldHaveSubscription;
-
-    /**
      * @var bool
      */
     public $isTrial = false;
 
     /**
-     * Lowest stability found in install (packages / minimumStability).
+     * Lowest stability found in the installation (packages / minimumStability).
      *
      * @var string One of {@see \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::STABILITIES}.
      */
