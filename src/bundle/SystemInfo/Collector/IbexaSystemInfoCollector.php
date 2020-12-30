@@ -201,7 +201,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
             self::EXPERIENCE_PACKAGES,
             self::COMMERCE_PACKAGES
         );
-        $ibexa->isEnterprise = self::hasPackage($this->composerInfo, $dxpPackages);
+        $ibexa->isEnterprise = self::hasAnyPackage($this->composerInfo, $dxpPackages);
         $ibexa->stability = $ibexa->lowestStability = self::getStability($this->composerInfo);
     }
 
@@ -252,8 +252,10 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
         return JsonComposerLockSystemInfoCollector::STABILITIES[$stabilityFlag];
     }
 
-    private static function hasPackage(ComposerSystemInfo $composerInfo, array $packageNames): bool
-    {
+    private static function hasAnyPackage(
+        ComposerSystemInfo $composerInfo,
+        array $packageNames
+    ): bool {
         foreach ($packageNames as $packageName) {
             if (isset($composerInfo->packages[$packageName])) {
                 return true;
