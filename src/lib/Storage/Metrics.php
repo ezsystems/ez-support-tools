@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzSupportTools\Storage;
 
+/**
+ * @internal
+ */
 interface Metrics
 {
     public function getValue(): int;
