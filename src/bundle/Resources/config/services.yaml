@@ -10,7 +10,6 @@ parameters:
     support_tools.system_info.output_registry.class: EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormatRegistry
     support_tools.system_info.ezc.wrapper.class: EzSystems\EzSupportToolsBundle\SystemInfo\EzcSystemInfoWrapper
     support_tools.system_info.collector.composer.lock_file.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector
-    support_tools.system_info.collector.database.doctrine.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\DoctrineDatabaseSystemInfoCollector
     support_tools.system_info.collector.system.ibexa.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\IbexaSystemInfoCollector
     support_tools.system_info.collector.hardware.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcHardwareSystemInfoCollector
     support_tools.system_info.collector.php.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcPhpSystemInfoCollector
@@ -35,14 +34,12 @@ parameters:
 
 services:
     # EventSubscriber
-
     EzSystems\EzSupportToolsBundle\EventSubscriber\AddXPoweredByHeader:
         arguments: ["%ezplatform_support_tools.system_info.powered_by.name%"]
         tags:
             - { name: kernel.event_subscriber }
 
     # Console
-
     support_tools.command.dump_info:
         class: "%support_tools.command.dump_info.class%"
         arguments:
@@ -62,7 +59,6 @@ services:
         lazy: true
 
     # SystemInfoCollectors
-
     support_tools.system_info.collector.system.ibexa:
         class: '%support_tools.system_info.collector.system.ibexa.class%'
         arguments:
@@ -80,13 +76,13 @@ services:
         tags:
             - { name: "support_tools.system_info.collector", identifier: "composer" }
 
-    support_tools.system_info.collector.database.doctrine:
-        class: "%support_tools.system_info.collector.database.doctrine.class%"
-        arguments:
-            - "@ezpublish.persistence.connection"
+    EzSystems\EzSupportToolsBundle\SystemInfo\Collector\RepositorySystemInfoCollector:
         lazy: true
+        autowire: true
+        arguments:
+            $db: '@ezpublish.persistence.connection'
         tags:
-            - { name: "support_tools.system_info.collector", identifier: "database" }
+            - { name: "support_tools.system_info.collector", identifier: "repository" }
 
     support_tools.system_info.collector.hardware.ezc:
         class: "%support_tools.system_info.collector.hardware.ezc.class%"
@@ -111,8 +107,57 @@ services:
             - { name: "support_tools.system_info.collector", identifier: "symfony_kernel" }
 
     # SystemInfoOutputFormats
-
     support_tools.system_info.output_format.json:
         class: "%support_tools.system_info.output_format.json.class%"
         tags:
             - { name: "support_tools.system_info.output_format", format: "json" }
+
+    # Gateways
+    EzSystems\EzSupportTools\Storage\MetricsProvider:
+        alias: EzSystems\EzSupportTools\Storage\AggregateMetricsProvider
+
+    EzSystems\EzSupportTools\Storage\AggregateMetricsProvider:
+        arguments:
+            $metrics: !tagged_locator
+                tag: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+                index_by: identifier
+
+    EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics:
+        abstract: true
+        arguments:
+            $connection: '@ezpublish.persistence.connection'
+
+    EzSystems\EzSupportTools\Storage\Metrics\PublishedContentObjectsCountMetrics:
+        parent: EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics
+        tags:
+            -
+              name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+              identifier: published
+
+    EzSystems\EzSupportTools\Storage\Metrics\UsersCountMetrics:
+        parent: EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics
+        tags:
+            -
+              name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+              identifier: users
+
+    EzSystems\EzSupportTools\Storage\Metrics\DraftsCountMetrics:
+        parent: EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics
+        tags:
+            -
+              name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+              identifier: drafts
+
+    EzSystems\EzSupportTools\Storage\Metrics\VersionsCountMetrics:
+        parent: EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics
+        tags:
+            -
+              name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+              identifier: versions
+
+    EzSystems\EzSupportTools\Storage\Metrics\ContentTypesCountMetrics:
+        parent: EzSystems\EzSupportTools\Storage\Metrics\RepositoryConnectionAwareMetrics
+        tags:
+            -
+              name: !php/const \EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension::METRICS_TAG
+              identifier: content_types
