@@ -94,4 +94,19 @@ class EzSystemsEzSupportToolsExtension extends Extension implements PrependExten
             ],
         ]);
     }
+
+    public static function getNameByPackages(string $vendor): string
+    {
+        if (is_dir($vendor . IbexaSystemInfoCollector::COMMERCE_PACKAGES[0])) {
+            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['commerce'];
+        } elseif (is_dir($vendor . IbexaSystemInfoCollector::EXPERIENCE_PACKAGES[0])) {
+            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['experience'];
+        } elseif (is_dir($vendor . IbexaSystemInfoCollector::CONTENT_PACKAGES[0])) {
+            $name = IbexaSystemInfo::PRODUCT_NAME_VARIANTS['content'];
+        } else {
+            $name = IbexaSystemInfo::PRODUCT_NAME_OSS;
+        }
+
+        return $name;
+    }
 }
