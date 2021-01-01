@@ -6,6 +6,7 @@
  */
 namespace EzSystems\EzSupportToolsBundle\Command;
 
+use eZ\Bundle\EzPublishCoreBundle\Command\BackwardCompatibleCommand;
 use EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry;
 use EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormatRegistry;
 use Symfony\Component\Console\Command\Command;
@@ -14,7 +15,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SystemInfoDumpCommand extends Command
+class SystemInfoDumpCommand extends Command implements BackwardCompatibleCommand
 {
     /**
      * System info collector registry.
@@ -44,8 +45,9 @@ class SystemInfoDumpCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('ez-support-tools:dump-info')
+            ->setName('ibexa:system-info:dump')
             ->setAliases([
+                'ez-support-tools:dump-info',
                 'ibexa:dump-info',
                 'ibexa:info',
             ])
@@ -115,5 +117,13 @@ EOD
         );
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getDeprecatedAliases(): array
+    {
+        return ['ez-support-tools:dump-info'];
     }
 }
