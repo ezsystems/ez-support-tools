@@ -7,6 +7,7 @@
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
 use EzSystems\EzPlatformCoreBundle\EzPlatformCoreBundle;
+use EzSystems\EzSupportTools\Value\Stability;
 use EzSystems\EzSupportToolsBundle\DependencyInjection\EzSystemsEzSupportToolsExtension;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
@@ -226,7 +227,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
 
     private static function getStability(ComposerSystemInfo $composerInfo): string
     {
-        $stabilityFlags = array_flip(JsonComposerLockSystemInfoCollector::STABILITIES);
+        $stabilityFlags = array_flip(Stability::STABILITIES);
 
         // Root package stability
         $stabilityFlag = $composerInfo->minimumStability !== null ?
@@ -248,7 +249,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
             }
         }
 
-        return JsonComposerLockSystemInfoCollector::STABILITIES[$stabilityFlag];
+        return Stability::STABILITIES[$stabilityFlag];
     }
 
     private static function hasAnyPackage(

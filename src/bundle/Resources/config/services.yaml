@@ -68,11 +68,17 @@ services:
         tags:
             - { name: "support_tools.system_info.collector", identifier: "ibexa" }
 
+    EzSystems\EzSupportTools\VersionStability\ComposerVersionStabilityChecker: ~
+
+    EzSystems\EzSupportTools\VersionStability\VersionStabilityChecker:
+        '@EzSystems\EzSupportTools\VersionStability\ComposerVersionStabilityChecker'
+
     support_tools.system_info.collector.composer.lock_file:
         class: "%support_tools.system_info.collector.composer.lock_file.class%"
         arguments:
-            - "%kernel.project_dir%/composer.lock"
-            - "%kernel.project_dir%/composer.json"
+            $versionStabilityChecker: '@EzSystems\EzSupportTools\VersionStability\VersionStabilityChecker'
+            $lockFile: "%kernel.project_dir%/composer.lock"
+            $jsonFile: "%kernel.project_dir%/composer.json"
         tags:
             - { name: "support_tools.system_info.collector", identifier: "composer" }
 

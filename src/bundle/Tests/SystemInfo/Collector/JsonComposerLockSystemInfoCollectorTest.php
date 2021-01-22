@@ -6,6 +6,7 @@
  */
 namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Collector;
 
+use EzSystems\EzSupportTools\VersionStability\VersionStabilityChecker;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerJsonFileNotFoundException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException;
@@ -15,10 +16,18 @@ use PHPUnit\Framework\TestCase;
 
 class JsonComposerLockSystemInfoCollectorTest extends TestCase
 {
+    /** @var \EzSystems\EzSupportTools\VersionStability\VersionStabilityChecker|\PHPUnit\Framework\MockObject\MockObject */
+    private $versionStabilityChecker;
+
+    public function setUp(): void
+    {
+        $this->versionStabilityChecker = $this->createMock(VersionStabilityChecker::class);
+    }
+
     /**
      * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::collect()
      */
-    public function testCollect()
+    public function testCollectWithMinimumStability()
     {
         $expected = new ComposerSystemInfo([
             'packages' => [
@@ -68,7 +77,11 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
             'repositoryUrls' => ['https://updates.ez.no/bul'],
         ]);
 
-        $composerCollector = new JsonComposerLockSystemInfoCollector(__DIR__ . '/_fixtures/composer.lock', __DIR__ . '/_fixtures/composer.json');
+        $composerCollector = new JsonComposerLockSystemInfoCollector(
+            $this->versionStabilityChecker,
+            __DIR__ . '/_fixtures/composer.lock',
+            __DIR__ . '/_fixtures/composer.json'
+        );
         $value = $composerCollector->collect();
 
         self::assertInstanceOf('EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo', $value);
@@ -82,7 +95,11 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
     {
         $this->expectException(ComposerLockFileNotFoundException::class);
 
-        $composerCollectorNotFound = new JsonComposerLockSystemInfoCollector(__DIR__ . '/_fixtures/snafu.lock', __DIR__ . '/_fixtures/composer.json');
+        $composerCollectorNotFound = new JsonComposerLockSystemInfoCollector(
+            $this->versionStabilityChecker,
+            __DIR__ . '/_fixtures/snafu.lock',
+            __DIR__ . '/_fixtures/composer.json'
+        );
         $composerCollectorNotFound->collect();
     }
 
@@ -93,7 +110,11 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
     {
         $this->expectException(ComposerJsonFileNotFoundException::class);
 
-        $composerCollectorNotFound = new JsonComposerLockSystemInfoCollector(__DIR__ . '/_fixtures/composer.lock', __DIR__ . '/_fixtures/snafu.json');
+        $composerCollectorNotFound = new JsonComposerLockSystemInfoCollector(
+            $this->versionStabilityChecker,
+            __DIR__ . '/_fixtures/composer.lock',
+            __DIR__ . '/_fixtures/snafu.json'
+        );
         $composerCollectorNotFound->collect();
     }
 }
