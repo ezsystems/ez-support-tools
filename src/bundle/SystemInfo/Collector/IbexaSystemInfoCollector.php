@@ -35,7 +35,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
         '3.0' => '2020-04-02T23:59:59+00:00',
         '3.1' => '2020-07-15T23:59:59+00:00',
         '3.2' => '2020-10-23T23:59:59+00:00',
-        '3.3' => '2020-12-30T23:59:59+00:00', // Estimate at time of writing
+        '3.3' => '2021-01-18T23:59:59+00:00',
     ];
 
     /**
@@ -56,7 +56,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
         '3.0' => '2020-07-10T23:59:59+00:00',
         '3.1' => '2020-11-30T23:59:59+00:00',
         '3.2' => '2021-02-28T23:59:59+00:00',
-        '3.3' => '2021-04-30T23:59:59+00:00', // Estimate at time of writing
+        '3.3' => '2023-12-30T23:59:59+00:00',
     ];
 
     /**
@@ -71,7 +71,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
         '3.0' => '2020-08-31T23:59:59+00:00',
         '3.1' => '2021-01-30T23:59:59+00:00',
         '3.2' => '2021-04-30T23:59:59+00:00',
-        '3.3' => '2021-06-30T23:59:59+00:00', // Estimate at time of writing
+        '3.3' => '2025-12-30T23:59:59+00:00',
     ];
 
     /**
