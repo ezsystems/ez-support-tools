@@ -6,6 +6,9 @@
  */
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
+use Composer\InstalledVersions;
+use EzSystems\EzSupportTools\Value\Stability;
+use EzSystems\EzSupportTools\VersionStability\VersionStabilityChecker;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerPackage;
@@ -15,18 +18,10 @@ use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerPackage;
  */
 class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
 {
-    /**
-     * @var array Hash of stability constant values to human readable stabilities, see Composer\Package\BasePackage.
-     *
-     * Needed as long as we don't want to depend on Composer.
-     */
-    public const STABILITIES = [
-        0 => 'stable',
-        5 => 'RC',
-        10 => 'beta',
-        15 => 'alpha',
-        20 => 'dev',
-    ];
+    public const IBEXA_OSS_PACKAGE = 'ibexa/oss';
+
+    /** @var \EzSystems\EzSupportTools\VersionStability\VersionStabilityChecker */
+    private $versionStabilityChecker;
 
     /**
      * @var string Composer lock file with full path.
@@ -43,8 +38,12 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
      */
     private $value;
 
-    public function __construct($lockFile, $jsonFile)
-    {
+    public function __construct(
+        VersionStabilityChecker $versionStabilityChecker,
+        $lockFile,
+        $jsonFile
+    ) {
+        $this->versionStabilityChecker = $versionStabilityChecker;
         $this->lockFile = $lockFile;
         $this->jsonFile = $jsonFile;
     }
@@ -56,6 +55,8 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
      * @throws Exception\ComposerFileValidationException if composer.lock of composer.json are not valid.
      *
      * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo
+     *
+     * @throws Exception\ComposerLockFileNotFoundException if the composer.lock file was not found.
      */
     public function collect(): ComposerSystemInfo
     {
@@ -73,6 +74,11 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
 
         $lockData = json_decode(file_get_contents($this->lockFile), true);
         $jsonData = json_decode(file_get_contents($this->jsonFile), true);
+        $stability = InstalledVersions::isInstalled(self::IBEXA_OSS_PACKAGE)
+            ? $this->versionStabilityChecker->getStability(
+                InstalledVersions::getVersion(self::IBEXA_OSS_PACKAGE)
+            )
+            : $this->getMinimumStability($lockData);
 
         if (!is_array($lockData)) {
             throw new Exception\ComposerFileValidationException($this->lockFile);
@@ -85,7 +91,7 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
         return $this->value = new Value\ComposerSystemInfo([
             'packages' => $this->extractPackages($lockData),
             'repositoryUrls' => $this->extractRepositoryUrls($jsonData),
-            'minimumStability' => isset($lockData['minimum-stability']) ? $lockData['minimum-stability'] : null,
+            'minimumStability' => $stability,
         ]);
     }
 
@@ -115,8 +121,8 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
             if (isset($lockData['stability-flags'][$package->name])) {
                 $stabilityFlag = (int)$lockData['stability-flags'][$package->name];
 
-                if (isset(self::STABILITIES[$stabilityFlag])) {
-                    $package->stability = self::STABILITIES[$stabilityFlag];
+                if (isset(Stability::STABILITIES[$stabilityFlag])) {
+                    $package->stability = Stability::STABILITIES[$stabilityFlag];
                 }
             }
 
@@ -179,5 +185,10 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
         }
 
         $package->version = $version;
+    }
+
+    private function getMinimumStability(array $lockData): ?string
+    {
+        return $lockData['minimum-stability'] ?? null;
     }
 }

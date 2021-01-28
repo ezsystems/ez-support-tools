@@ -231,7 +231,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
 
     private static function getStability(ComposerSystemInfo $composerInfo): string
     {
-        $stabilityFlags = array_flip(JsonComposerLockSystemInfoCollector::STABILITIES);
+        $stabilityFlags = array_flip(Stability::STABILITIES);
 
         // Root package stability
         $stabilityFlag = $composerInfo->minimumStability !== null ?
@@ -253,7 +253,7 @@ class IbexaSystemInfoCollector implements SystemInfoCollector
             }
         }
 
-        return JsonComposerLockSystemInfoCollector::STABILITIES[$stabilityFlag];
+        return Stability::STABILITIES[$stabilityFlag];
     }
 
     private static function hasAnyPackage(
