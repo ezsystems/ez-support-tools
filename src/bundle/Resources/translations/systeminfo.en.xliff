@@ -26,60 +26,10 @@
         <target state="new">CPU</target>
         <note>key: cpu</note>
       </trans-unit>
-      <trans-unit id="7d98ad90ac8076d2bda25ff05688ced394d0ca1b" resname="repository">
-        <source>Repository</source>
-        <target state="new">Repository</target>
-        <note>key: repository</note>
-      </trans-unit>
-      <trans-unit id="5de05c757e2ce051da58581c67074f5fa96fe424" resname="repository.published_content_objects_count">
-        <source>Published content objects count</source>
-        <target state="new">Published content objects count</target>
-        <note>key: repository.published_content_objects_count</note>
-      </trans-unit>
-      <trans-unit id="2f9d49c355e4660fbb8cc89c39d048b53edc7e3c" resname="repository.users_count">
-        <source>Users count</source>
-        <target state="new">Users count</target>
-        <note>key: repository.users_count</note>
-      </trans-unit>
-      <trans-unit id="f17704b4dda4d61ecc379a0960655f35c6abef2d" resname="repository.drafts_count">
-        <source>Drafts count</source>
-        <target state="new">Drafts count</target>
-        <note>key: repository.drafts_count</note>
-      </trans-unit>
-      <trans-unit id="6fdeb59a15d4eea938b956273b9944a5c483dd57" resname="repository.versions_count">
-        <source>Versions count</source>
-        <target state="new">Versions count</target>
-        <note>key: repository.versions_count</note>
-      </trans-unit>
-      <trans-unit id="ca27c822aa4f52351a6a89150fc5ac970d052fca" resname="repository.content_types_count">
-        <source>Content Types count</source>
-        <target state="new">Content Types count</target>
-        <note>key: repository.content_types_count</note>
-      </trans-unit>
       <trans-unit id="6d613a1ee01eec4c0f8ca66df0db71dca0c6e1cf" resname="database">
         <source>Database</source>
         <target state="new">Database</target>
         <note>key: database</note>
-      </trans-unit>
-      <trans-unit id="5588036c51b3fff9557483e210bfd47187f54ac8" resname="database.host">
-        <source>Host</source>
-        <target state="new">Host</target>
-        <note>key: database.host</note>
-      </trans-unit>
-      <trans-unit id="cda1c2cdc0936c26cd9a325835b49a27d2ddfcc3" resname="database.name">
-        <source>Name</source>
-        <target state="new">Name</target>
-        <note>key: database.name</note>
-      </trans-unit>
-      <trans-unit id="3af131bd1d37e4242ca0c124312180ad31ee23e9" resname="database.type">
-        <source>Type</source>
-        <target state="new">Type</target>
-        <note>key: database.type</note>
-      </trans-unit>
-      <trans-unit id="512e470f98391ba6e8140ef7a85e27c71af6e6bc" resname="database.username">
-        <source>Username</source>
-        <target state="new">Username</target>
-        <note>key: database.username</note>
       </trans-unit>
       <trans-unit id="07596f183f5e91b1778d5e47b2752b8d42aa763d" resname="disabled">
         <source>Disabled</source>
@@ -176,6 +126,56 @@
         <target state="new">PHP Info</target>
         <note>key: php.info</note>
       </trans-unit>
+      <trans-unit id="7d98ad90ac8076d2bda25ff05688ced394d0ca1b" resname="repository">
+        <source>Repository</source>
+        <target state="new">Repository</target>
+        <note>key: repository</note>
+      </trans-unit>
+      <trans-unit id="ca27c822aa4f52351a6a89150fc5ac970d052fca" resname="repository.content_types_count">
+        <source>Content Types count</source>
+        <target state="new">Content Types count</target>
+        <note>key: repository.content_types_count</note>
+      </trans-unit>
+      <trans-unit id="f17704b4dda4d61ecc379a0960655f35c6abef2d" resname="repository.drafts_count">
+        <source>Drafts count</source>
+        <target state="new">Drafts count</target>
+        <note>key: repository.drafts_count</note>
+      </trans-unit>
+      <trans-unit id="b08856f94643075c9a7a13c29010d09165a28015" resname="repository.host">
+        <source>Host</source>
+        <target state="new">Host</target>
+        <note>key: repository.host</note>
+      </trans-unit>
+      <trans-unit id="ee01b6b682997544f84af781a766918d98d7bfc4" resname="repository.name">
+        <source>Name</source>
+        <target state="new">Name</target>
+        <note>key: repository.name</note>
+      </trans-unit>
+      <trans-unit id="5de05c757e2ce051da58581c67074f5fa96fe424" resname="repository.published_content_objects_count">
+        <source>Published content objects count</source>
+        <target state="new">Published content objects count</target>
+        <note>key: repository.published_content_objects_count</note>
+      </trans-unit>
+      <trans-unit id="b5b5d12b45fa443c42cf45488d124305c39df1d5" resname="repository.type">
+        <source>Type</source>
+        <target state="new">Type</target>
+        <note>key: repository.type</note>
+      </trans-unit>
+      <trans-unit id="dabc0d144fa7579439f60490d5f44d96c4abfdec" resname="repository.username">
+        <source>Username</source>
+        <target state="new">Username</target>
+        <note>key: repository.username</note>
+      </trans-unit>
+      <trans-unit id="2f9d49c355e4660fbb8cc89c39d048b53edc7e3c" resname="repository.users_count">
+        <source>Users count</source>
+        <target state="new">Users count</target>
+        <note>key: repository.users_count</note>
+      </trans-unit>
+      <trans-unit id="6fdeb59a15d4eea938b956273b9944a5c483dd57" resname="repository.versions_count">
+        <source>Versions count</source>
+        <target state="new">Versions count</target>
+        <note>key: repository.versions_count</note>
+      </trans-unit>
       <trans-unit id="98c89e1daa8c0a7c472af26752752299ff44ee23" resname="symfony_kernel">
         <source>Symfony Kernel</source>
         <target state="new">Symfony Kernel</target>
@@ -251,11 +251,6 @@
         <target state="new">Composer</target>
         <note>key: tab.name.composer</note>
       </trans-unit>
-      <trans-unit id="1d99640a1a35d6f805a048ba701c6b98aed7654b" resname="tab.name.repository">
-        <source>Repository</source>
-        <target state="new">Repository</target>
-        <note>key: tab.name.repository</note>
-      </trans-unit>
       <trans-unit id="951e3ad18b17f0b2aa96fcb84f6eb25f208e1127" resname="tab.name.hardware">
         <source>Hardware</source>
         <target state="new">Hardware</target>
@@ -270,6 +265,11 @@
         <source>PHP</source>
         <target state="new">PHP</target>
         <note>key: tab.name.php</note>
+      </trans-unit>
+      <trans-unit id="1d99640a1a35d6f805a048ba701c6b98aed7654b" resname="tab.name.repository">
+        <source>Repository</source>
+        <target state="new">Repository</target>
+        <note>key: tab.name.repository</note>
       </trans-unit>
       <trans-unit id="b7989598c01fcae061f7917e563a9c0d66790a84" resname="tab.name.symfony_kernel">
         <source>Symfony Kernel</source>
