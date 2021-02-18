@@ -17,11 +17,11 @@ matrix:
         - php: 7.3
           name: "System information browser tests"
           env:     
-            - EZPLATFORM_REPO="https://github.com/ezsystems/ezplatform.git"
             - APP_ENV=behat
             - APP_DEBUG=1
             - COMPOSE_FILE="doc/docker/base-dev.yml:doc/docker/selenium.yml"
-            - BEHAT_OPTS="--profile=adminui --suite=adminui --tags=@systemInformation"
+            - BEHAT_OPTS="--profile=adminui --suite=adminui --tags=@systemInformation -c=behat_ibexa_oss.yaml"
+            - PROJECT_VERSION=^3.3.x-dev
 
 # test only on matching branches (+ Pull requests)
 branches:
@@ -43,13 +43,13 @@ before_script:
     - phpenv config-rm xdebug.ini
     - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
     # Install packages
-    - if [ "${CHECK_CS}" != "" -o "${UNIT_TESTS}" != "" ] ; then travis_retry composer install ; fi
-    - if [ "${BEHAT_OPTS}" != "" ] ; then ./.travis/prepare_ezplatform.sh; fi
+    - travis_retry composer install --prefer-dist --no-interaction
+    - if [ "${BEHAT_OPTS}" != "" ]; then ./vendor/bin/prepare_project_edition.sh oss ${PROJECT_VERSION} ${COMPOSE_FILE} ; fi
 
 script:
     - if [ "${UNIT_TESTS}" != "" ] ; then php vendor/bin/phpunit ; fi
-    - if [ "$CHECK_CS" != "" ]; then vendor/bin/php-cs-fixer fix -v --dry-run --diff --show-progress=estimating; fi
-    - if [ "${BEHAT_OPTS}" != "" ] ; then cd "$HOME/build/ezplatform"; docker-compose exec --user www-data app sh -c "bin/ezbehat ${BEHAT_OPTS}" ; fi
+    - if [ "$CHECK_CS" != "" ]; then ./vendor/bin/check_cs.sh; fi
+    - if [ "${BEHAT_OPTS}" != "" ] ; then cd "$HOME/build/project"; docker-compose exec --user www-data app sh -c "vendor/bin/ezbehat ${BEHAT_OPTS}" ; fi
 
 after_failure:
   # Will show us the last bit of the log of container's main processes
@@ -60,4 +60,4 @@ after_failure:
   - docker ps -s
 
 after_script:
-  - if [ "${BEHAT_OPTS}" != "" ] ; then bin/ezreport ; fi
+  - if [ "${BEHAT_OPTS}" != "" ] ; then vendor/bin/ezreport ; fi
