@@ -19,7 +19,7 @@ class ServicesSystemInfoCollectorTest extends TestCase
     private $parameterBagMock;
 
     /**
-     * @var ServicesSystemInfoCollector
+     * @var \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ServicesSystemInfoCollector
      */
     private $servicesCollector;
 

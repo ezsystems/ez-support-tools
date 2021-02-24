@@ -14,7 +14,6 @@ parameters:
     support_tools.system_info.collector.hardware.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcHardwareSystemInfoCollector
     support_tools.system_info.collector.php.ezc.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\EzcPhpSystemInfoCollector
     support_tools.system_info.collector.symfony.kernel.config.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ConfigurationSymfonyKernelSystemInfoCollector
-    support_tools.system_info.collector.services.config.class: EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ServicesSystemInfoCollector
     support_tools.system_info.output_format.json.class: EzSystems\EzSupportToolsBundle\SystemInfo\OutputFormat\JsonOutputFormat
     ezplatform_support_tools.system_info.powered_by.name: ''
     ibexa.system_info.ibexa_url_list:
@@ -113,8 +112,7 @@ services:
         tags:
             - { name: "support_tools.system_info.collector", identifier: "symfony_kernel" }
 
-    support_tools.system_info.collector.services.config:
-        class: "%support_tools.system_info.collector.services.config.class%"
+    EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ServicesSystemInfoCollector:
         arguments:
             - '@parameter_bag'
         tags:

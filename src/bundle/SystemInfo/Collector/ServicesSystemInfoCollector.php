@@ -28,8 +28,6 @@ class ServicesSystemInfoCollector implements SystemInfoCollector
 
     /**
      * Collects information about the utilized services.
-     *
-     * @return \EzSystems\EzSupportToolsBundle\SystemInfo\Value\ServicesSystemInfo
      */
     public function collect(): ServicesSystemInfo
     {
