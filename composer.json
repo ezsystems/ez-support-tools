@@ -20,6 +20,7 @@
     "require-dev": {
         "ezsystems/ezplatform-code-style": "^0.1.0",
         "phpunit/phpunit": "^5.7.27 || ^6.5.14"
+
     },
     "autoload": {
         "psr-4": {
@@ -30,7 +31,7 @@
     "extra": {
         "_ezplatform_branch_for_behat_tests": "3.2",
         "branch-alias": {
-            "dev-master": "2.3.x-dev"
+            "dev-master": "3.0.x-dev"
         }
     },
     "scripts": {

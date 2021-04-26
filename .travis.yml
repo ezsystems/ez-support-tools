@@ -21,7 +21,7 @@ matrix:
             - APP_DEBUG=1
             - COMPOSE_FILE="doc/docker/base-dev.yml:doc/docker/selenium.yml"
             - BEHAT_OPTS="--profile=adminui --suite=adminui --tags=@systemInformation -c=behat_ibexa_oss.yaml"
-            - PROJECT_VERSION=^3.3.x-dev
+            - PROJECT_VERSION=^4.0.x-dev
 
 # test only on matching branches (+ Pull requests)
 branches:
