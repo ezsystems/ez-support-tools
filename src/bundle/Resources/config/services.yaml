@@ -112,6 +112,12 @@ services:
         tags:
             - { name: "support_tools.system_info.collector", identifier: "symfony_kernel" }
 
+    EzSystems\EzSupportToolsBundle\SystemInfo\Collector\ServicesSystemInfoCollector:
+        arguments:
+            - '@parameter_bag'
+        tags:
+            - { name: "support_tools.system_info.collector", identifier: "services" }
+
     # SystemInfoOutputFormats
     support_tools.system_info.output_format.json:
         class: "%support_tools.system_info.output_format.json.class%"

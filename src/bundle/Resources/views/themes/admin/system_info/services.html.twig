@@ -1,0 +1,31 @@
+{% trans_default_domain "systeminfo" %}
+
+<!-- Tab name: {{ 'tab.name.services'|trans|desc('Services') }} -->
+
+<section class="ez-fieldgroup">
+    <h2 class="ez-fieldgroup__name">{{ 'services'|trans|desc('Services') }}</h2>
+    <div class="ez-fieldgroup__content">
+        <table class="table ez-table--list">
+            <tbody>
+            <tr class="ez-table__row">
+                <td class="ez-table__cell">
+                    {{ 'services.search_engine'|trans|desc('Search engine') }}
+                </td>
+                <td class="ez-table__cell">{{ info.searchEngine }}</td>
+            </tr>
+            <tr class="ez-table__row">
+                <td class="ez-table__cell">
+                    {{ 'services.http_cache_proxy'|trans|desc('HTTP cache proxy') }}
+                </td>
+                <td class="ez-table__cell">{{ info.httpCacheProxy }}</td>
+            </tr>
+            <tr class="ez-table__row">
+                <td class="ez-table__cell">
+                    {{ 'services.persistence_cache_adapter'|trans|desc('Persistence cache adapter') }}
+                </td>
+                <td class="ez-table__cell">{{ info.persistenceCacheAdapter }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

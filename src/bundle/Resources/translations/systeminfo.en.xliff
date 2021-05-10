@@ -176,6 +176,26 @@
         <target state="new">Versions count</target>
         <note>key: repository.versions_count</note>
       </trans-unit>
+      <trans-unit id="3e7aaa79601ad9b577f333a67d082c3752b7e357" resname="services">
+        <source>Services</source>
+        <target state="new">Services</target>
+        <note>key: services</note>
+      </trans-unit>
+      <trans-unit id="9bc1a12ff71e39bc34441abb3dddb60f26a1d9c4" resname="services.http_cache_proxy">
+        <source>HTTP cache proxy</source>
+        <target state="new">HTTP cache proxy</target>
+        <note>key: services.http_cache_proxy</note>
+      </trans-unit>
+      <trans-unit id="f005b719a442f81e3bcf0dfdca767e26c134f1d8" resname="services.persistence_cache_adapter">
+        <source>Persistence cache adapter</source>
+        <target state="new">Persistence cache adapter</target>
+        <note>key: services.persistence_cache_adapter</note>
+      </trans-unit>
+      <trans-unit id="e2a6a37636c55d88afbbc0e16414b31ec456b0ae" resname="services.search_engine">
+        <source>Search engine</source>
+        <target state="new">Search engine</target>
+        <note>key: services.search_engine</note>
+      </trans-unit>
       <trans-unit id="98c89e1daa8c0a7c472af26752752299ff44ee23" resname="symfony_kernel">
         <source>Symfony Kernel</source>
         <target state="new">Symfony Kernel</target>
@@ -270,6 +290,11 @@
         <source>Repository</source>
         <target state="new">Repository</target>
         <note>key: tab.name.repository</note>
+      </trans-unit>
+      <trans-unit id="89ee4f613b63015aec82ada871cd895463340db0" resname="tab.name.services">
+        <source>Services</source>
+        <target state="new">Services</target>
+        <note>key: tab.name.services</note>
       </trans-unit>
       <trans-unit id="b7989598c01fcae061f7917e563a9c0d66790a84" resname="tab.name.symfony_kernel">
         <source>Symfony Kernel</source>
