@@ -75,11 +75,11 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
         $lockData = json_decode(file_get_contents($this->lockFile), true);
         $jsonData = json_decode(file_get_contents($this->jsonFile), true);
 
-        if (!$lockData) {
+        if (!is_array($lockData)) {
             throw new Exception\ComposerFileValidationException($this->lockFile);
         }
 
-        if (!$jsonData) {
+        if (!is_array($jsonData)) {
             throw new Exception\ComposerFileValidationException($this->jsonFile);
         }
 
