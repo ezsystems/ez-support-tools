@@ -73,7 +73,7 @@
         <note>key: dashboard.ez_version.non_stable_ee</note>
       </trans-unit>
       <trans-unit id="c1fb5ba9fd547e30a49a4e1895822e69cd4a9dbc" resname="dashboard.ez_version.release_not_determined">
-        <source><![CDATA[The system could not find your <code>composer.lock</code> or <code>composer.json</code> file or it's not valid. It's needed to determine information about
+        <source><![CDATA[The system could not find your <code>composer.lock</code> or <code>composer.json</code> file, or the files are invalid. They are needed to determine information about
             your eZ install, and recommended to be kept on project development to make sure same package versions are used across all environments.]]></source>
         <target state="new"><![CDATA[The system could not find your <code>composer.lock</code> or <code>composer.json</code> file or it's not valid. It's needed to determine information about
             your eZ install, and recommended to be kept on project development to make sure same package versions are used across all environments.]]></target>
