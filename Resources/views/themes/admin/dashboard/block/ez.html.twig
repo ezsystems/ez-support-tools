@@ -16,7 +16,7 @@
         {% set severity = 1 %}
         <div class="alert alert-warning mb-0 mt-3" role="alert">
             {{ 'dashboard.ez_version.release_not_determined'|trans
-            |desc("The system could not find your <code>composer.lock</code> file. It's needed to determine information about
+            |desc("The system could not find your <code>composer.lock</code> or <code>composer.json</code> file or it's not valid. It's needed to determine information about
                 your eZ installation. It is recommended to keep it during project development to make sure the same package versions are
                 used across all environments.")
             |raw }}

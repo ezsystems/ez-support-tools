@@ -8,6 +8,7 @@
  */
 namespace EzSystems\EzSupportToolsBundle\SystemInfo\Collector;
 
+use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerFileValidationException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\EzSystemInfo;
 use DateTime;
@@ -123,7 +124,7 @@ class EzSystemInfoCollector implements SystemInfoCollector
     {
         try {
             $this->composerInfo = $composerCollector->collect();
-        } catch (ComposerLockFileNotFoundException $e) {
+        } catch (ComposerLockFileNotFoundException | ComposerFileValidationException $e) {
             // do nothing
         }
         $this->debug = $debug;

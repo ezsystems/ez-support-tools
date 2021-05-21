@@ -54,6 +54,7 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
      * Collects information about installed composer packages.
      *
      * @throws Exception\ComposerLockFileNotFoundException if the composer.lock file was not found.
+     * @throws Exception\ComposerFileValidationException if composer.lock of composer.json are not valid.
      *
      * @return Value\ComposerSystemInfo
      */
@@ -73,6 +74,14 @@ class JsonComposerLockSystemInfoCollector implements SystemInfoCollector
 
         $lockData = json_decode(file_get_contents($this->lockFile), true);
         $jsonData = json_decode(file_get_contents($this->jsonFile), true);
+
+        if (!$lockData) {
+            throw new Exception\ComposerFileValidationException($this->lockFile);
+        }
+
+        if (!$jsonData) {
+            throw new Exception\ComposerFileValidationException($this->jsonFile);
+        }
 
         return $this->value = new Value\ComposerSystemInfo([
             'packages' => $this->extractPackages($lockData),
