@@ -16,7 +16,7 @@ use eZ\Publish\API\Repository\Values\ValueObject;
 class InvalidSystemInfo extends ValueObject implements SystemInfo
 {
     /**
-     * Error message shown in the System info tab
+     * Error message shown in the System info tab.
      *
      * @var string
      */
