@@ -19,7 +19,7 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
     /**
      * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::collect()
      */
-    public function testCollect()
+    public function testCollect(): void
     {
         $expected = new ComposerSystemInfo([
             'packages' => [
@@ -81,7 +81,7 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
      *
      * @expectedException \EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerLockFileNotFoundException
      */
-    public function testCollectLockFileNotFound()
+    public function testCollectLockFileNotFound(): void
     {
         $composerCollectorNotFound = new JsonComposerLockSystemInfoCollector(__DIR__ . '/_fixtures/snafu.lock', __DIR__ . '/_fixtures/composer.json');
         $composerCollectorNotFound->collect();
@@ -92,7 +92,7 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
      *
      * @expectedException \EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerJsonFileNotFoundException
      */
-    public function testCollectJsonFileNotFound()
+    public function testCollectJsonFileNotFound(): void
     {
         $composerCollectorNotFound = new JsonComposerLockSystemInfoCollector(__DIR__ . '/_fixtures/composer.lock', __DIR__ . '/_fixtures/snafu.json');
         $composerCollectorNotFound->collect();
@@ -101,7 +101,7 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
     /**
      * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::collect()
      */
-    public function testCollectLockFileCorrupted()
+    public function testCollectLockFileCorrupted(): void
     {
         $composerCollectorCorrupted = new JsonComposerLockSystemInfoCollector(
             __DIR__ . '/_fixtures/corrupted_composer.lock',
@@ -115,7 +115,7 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
     /**
      * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::collect()
      */
-    public function testCollectJsonFileCorrupted()
+    public function testCollectJsonFileCorrupted(): void
     {
         $composerCollectorCorrupted = new JsonComposerLockSystemInfoCollector(
             __DIR__ . '/_fixtures/composer.lock',
