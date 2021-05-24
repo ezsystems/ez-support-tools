@@ -9,6 +9,7 @@
 namespace EzSystems\EzSupportToolsBundle\Tests\SystemInfo\Collector;
 
 use EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\ComposerFileValidationException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerPackage;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\ComposerSystemInfo;
 use PHPUnit\Framework\TestCase;
@@ -95,5 +96,19 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
     {
         $composerCollectorNotFound = new JsonComposerLockSystemInfoCollector(__DIR__ . '/_fixtures/composer.lock', __DIR__ . '/_fixtures/snafu.json');
         $composerCollectorNotFound->collect();
+    }
+
+    /**
+     * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::collect()
+     */
+    public function testCollectJsonFileCorrupted()
+    {
+        $composerCollectorCorrupted = new JsonComposerLockSystemInfoCollector(
+            __DIR__ . '/_fixtures/corrupted_composer.lock',
+            __DIR__ . '/_fixtures/corrupted_composer.json'
+        );
+
+        $this->expectException(ComposerFileValidationException::class);
+        $composerCollectorCorrupted->collect();
     }
 }
