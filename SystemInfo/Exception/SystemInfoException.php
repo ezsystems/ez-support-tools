@@ -8,5 +8,4 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo\Exception;
 
 interface SystemInfoException
 {
-
 }
