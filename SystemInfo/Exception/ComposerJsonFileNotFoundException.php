@@ -11,7 +11,7 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo\Exception;
 use Exception;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException as BaseNotFoundException;
 
-class ComposerJsonFileNotFoundException extends BaseNotFoundException
+class ComposerJsonFileNotFoundException extends BaseNotFoundException implements SystemInfoException
 {
     public function __construct(string $path, Exception $previous = null)
     {

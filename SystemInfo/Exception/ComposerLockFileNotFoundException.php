@@ -11,7 +11,7 @@ namespace EzSystems\EzSupportToolsBundle\SystemInfo\Exception;
 use Exception;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException as BaseNotFoundException;
 
-class ComposerLockFileNotFoundException extends BaseNotFoundException
+class ComposerLockFileNotFoundException extends BaseNotFoundException implements SystemInfoException
 {
     public function __construct($path, Exception $previous = null)
     {

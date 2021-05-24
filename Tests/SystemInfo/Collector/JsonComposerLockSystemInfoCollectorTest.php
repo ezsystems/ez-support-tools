@@ -101,10 +101,24 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
     /**
      * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::collect()
      */
-    public function testCollectJsonFileCorrupted()
+    public function testCollectLockFileCorrupted()
     {
         $composerCollectorCorrupted = new JsonComposerLockSystemInfoCollector(
             __DIR__ . '/_fixtures/corrupted_composer.lock',
+            __DIR__ . '/_fixtures/composer.json'
+        );
+
+        $this->expectException(ComposerFileValidationException::class);
+        $composerCollectorCorrupted->collect();
+    }
+
+    /**
+     * @covers \EzSystems\EzSupportToolsBundle\SystemInfo\Collector\JsonComposerLockSystemInfoCollector::collect()
+     */
+    public function testCollectJsonFileCorrupted()
+    {
+        $composerCollectorCorrupted = new JsonComposerLockSystemInfoCollector(
+            __DIR__ . '/_fixtures/composer.lock',
             __DIR__ . '/_fixtures/corrupted_composer.json'
         );
 

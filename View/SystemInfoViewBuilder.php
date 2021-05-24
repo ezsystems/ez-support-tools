@@ -6,6 +6,7 @@ namespace EzSystems\EzSupportToolsBundle\View;
 
 use eZ\Publish\Core\MVC\Symfony\View\Builder\ViewBuilder;
 use eZ\Publish\Core\MVC\Symfony\View\Configurator;
+use EzSystems\EzSupportToolsBundle\SystemInfo\Exception\SystemInfoException;
 use EzSystems\EzSupportToolsBundle\SystemInfo\SystemInfoCollectorRegistry;
 use EzSystems\EzSupportToolsBundle\SystemInfo\Value\InvalidSystemInfo;
 
@@ -41,7 +42,7 @@ class SystemInfoViewBuilder implements ViewBuilder
 
         try {
             $collectedData = $collector->collect();
-        } catch (\Exception $e) {
+        } catch (SystemInfoException $e) {
             $collectedData = new InvalidSystemInfo();
             $collectedData->errorMessage = $e->getMessage();
         }
