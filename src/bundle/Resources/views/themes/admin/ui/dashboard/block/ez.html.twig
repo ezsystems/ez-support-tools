@@ -14,7 +14,7 @@
     {% if not ez.release %}
         {% set severity = 1 %}
         <div class="alert alert-warning mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
-            <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+            <svg class="ibexa-icon ibexa-icon--small-medium ibexa-icon--light">
                 <use xlink:href="{{ ez_icon_path('system-information') }}"></use>
             </svg>
             <div class="ez-alert__content">
@@ -29,7 +29,7 @@
         {% set severity = 1 %}
         {% set badge = 'Development' %}
         <div class="alert alert-warning mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
-            <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+            <svg class="ibexa-icon ibexa-icon--small-medium ibexa-icon--light">
                 <use xlink:href="{{ ez_icon_path('system-information') }}"></use>
             </svg>
             <div class="ez-alert__content">
@@ -48,7 +48,7 @@
         {% if ez.isEndOfLife %}
             {% set severity = 2 %}
             <div class="alert alert-danger mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
-                <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+                <svg class="ibexa-icon ibexa-icon--small-medium ibexa-icon--light">
                     <use xlink:href="{{ ez_icon_path('system-information') }}"></use>
                 </svg>
                 <div class="ez-alert__content">
@@ -56,7 +56,7 @@
         {% elseif ez.isEndOfMaintenance %}
             {% set severity = 1 %}
             <div class="alert alert-warning mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
-                <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+                <svg class="ibexa-icon ibexa-icon--small-medium ibexa-icon--light">
                     <use xlink:href="{{ ez_icon_path('system-information') }}"></use>
                 </svg>
                 <div class="ez-alert__content">
@@ -64,7 +64,7 @@
         {% else %}
             {% set severity = 0 %}
             <div class="alert alert-info mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
-                <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+                <svg class="ibexa-icon ibexa-icon--small-medium ibexa-icon--light">
                     <use xlink:href="{{ ez_icon_path('system-information') }}"></use>
                 </svg>
                 <div class="ez-alert__content">
@@ -85,7 +85,7 @@
             {# In the future with retrival of info from updates.ez.no we can detect missing (public) security fixes and then let this become an error #}
             {% set severity = 1 %}
             <div class="alert alert-warning mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
-                <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+                <svg class="ibexa-icon ibexa-icon--small-medium ibexa-icon--light">
                     <use xlink:href="{{ ez_icon_path('system-information') }}"></use>
                 </svg>
                 <div class="ez-alert__content">
@@ -115,7 +115,7 @@
         {% else  %}
             {% set severity = 0 %}
             <div class="alert alert-info mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
-                <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+                <svg class="ibexa-icon ibexa-icon--small-medium ibexa-icon--light">
                     <use xlink:href="{{ ez_icon_path('system-information') }}"></use>
                 </svg>
                 <div class="ez-alert__content">
@@ -135,7 +135,7 @@
         {% set severity = 1 %}
         {% set badge = 'End of Life' %}
         <div class="alert alert-warning mb-0 mt-3 ez-alert ez-alert--icon" role="alert">
-            <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+            <svg class="ibexa-icon ibexa-icon--small-medium ibexa-icon--light">
                 <use xlink:href="{{ ez_icon_path('system-information') }}"></use>
             </svg>
             <div class="ez-alert__content">
@@ -162,7 +162,7 @@
     {% if status %}
         <a class="badge badge-{{ levels[severity] }} ez-badge ez-badge--round ez-badge--icon" data-toggle="collapse" href="#systemInfoCollapse">
             {{ badge }}
-            <svg class="ez-icon ez-icon--small-medium ez-icon--light">
+            <svg class="ibexa-icon ibexa-icon--small-medium ibexa-icon--light">
                 <use xlink:href="{{ ez_icon_path('system-information') }}"></use>
             </svg>
         </a>
