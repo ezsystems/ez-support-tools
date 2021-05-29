@@ -123,6 +123,7 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
     public function testCollectLockFileCorrupted(): void
     {
         $composerCollectorCorrupted = new JsonComposerLockSystemInfoCollector(
+            $this->versionStabilityChecker,
             __DIR__ . '/_fixtures/corrupted_composer.lock',
             __DIR__ . '/_fixtures/composer.json'
         );
@@ -137,6 +138,7 @@ class JsonComposerLockSystemInfoCollectorTest extends TestCase
     public function testCollectJsonFileCorrupted(): void
     {
         $composerCollectorCorrupted = new JsonComposerLockSystemInfoCollector(
+            $this->versionStabilityChecker,
             __DIR__ . '/_fixtures/composer.lock',
             __DIR__ . '/_fixtures/corrupted_composer.json'
         );
