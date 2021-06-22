@@ -21,3 +21,7 @@
 {% block content %}
     {{ ez_render_component_group('systeminfo-tab-groups') }}
 {% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('ezplatform-admin-ui-tabs-js', null, 'ezplatform') }}
+{% endblock %}
