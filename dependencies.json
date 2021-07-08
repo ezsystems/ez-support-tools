@@ -1,0 +1,8 @@
+[
+    {
+        "requirement": "dev-IBX-397-Implement-the-new-design-for-Content-item-editing-screen as 3.0.x-dev",
+        "repositoryUrl": "https://github.com/lucasOsti/ezplatform-admin-ui",
+        "package": "ezsystems/ezplatform-admin-ui",
+        "privateRepository": false
+    }
+]
