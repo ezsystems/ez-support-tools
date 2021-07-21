@@ -6,9 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzSupportTools\VersionStability;
+namespace EzSystems\EzSupportTools\Tests\VersionStability;
 
 use EzSystems\EzSupportTools\Value\Stability;
+use EzSystems\EzSupportTools\VersionStability\ComposerVersionStabilityChecker;
 use PHPUnit\Framework\TestCase;
 
 final class VersionStabilityCheckerTest extends TestCase
