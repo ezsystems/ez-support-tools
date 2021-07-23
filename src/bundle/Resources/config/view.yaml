@@ -39,12 +39,3 @@ services:
             $innerConfigurableMatcherFactory: '@support_tools.view.matcher_factory.dynamically_configured.inner'
             $configResolver: '@ezpublish.config.resolver'
             $parameterName: system_info_view
-
-    EzSystems\EzSupportTools\Component\Dashboard\EzInfoTwigComponent:
-        autowire: true
-        arguments:
-            $template: '@@ezdesign/ui/dashboard/block/ez.html.twig'
-            $ibexaSystemInfo: "@=service('support_tools.system_info.collector.system.ibexa').collect()"
-            $urlList: '%ibexa.system_info.ibexa_url_list%'
-        tags:
-            - { name: ezplatform.admin_ui.component, group: 'dashboard-blocks', priority: 200 }
