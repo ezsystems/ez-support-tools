@@ -25,38 +25,37 @@
 <section class="ez-fieldgroup">
     <h2 class="ez-fieldgroup__name">{{ 'packages'|trans|desc('Packages') }}</h2>
     <div class="ez-fieldgroup__content">
-        <div class="ez-table-header">
-            <div class="ez-table-header__headline">
-                {{ 'packages'|trans|desc('Packages') }}
-            </div>
-        </div>
-        <table class="table table-hover ez-table">
-            <thead>
-            <tr>
-                {% if info.packages is empty %}
-                    {{ 'packages.empty'|trans|desc('No packages installed.') }}
+        {% set body_rows = [] %}
+        {% for package in info.packages %}
+            {% set col_name %}
+                {% if package.homepage is empty %}
+                    {{ package.name }}
                 {% else %}
-                    <th>{{ 'packages.name'|trans|desc('Name') }}</th>
-                    <th>{{ 'packages.version'|trans|desc('Version') }}</th>
+                    <a href="{{ package.homepage }}" target="_blank">{{ package.name }}</a>
                 {% endif %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for package in info.packages %}
-                <tr>
-                    {% if package.homepage is empty %}
-                        <td>{{ package.name }}</td>
-                    {% else %}
-                        <td><a href="{{ package.homepage }}" target="_blank">{{ package.name }}</a></td>
-                    {% endif %}
-                    <td>{{ package.version }} {{ package.stability }}
-                        <span>({{ package.dateTime|ez_full_datetime }}
-                            , {{ package.reference | slice(0, 5) }})
-                        </span>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+            {% endset %}
+
+            {% set col_version %}
+                {{ package.version }} {{ package.stability }}
+                <span>({{ package.dateTime|ez_full_datetime }}
+                    , {{ package.reference | slice(0, 5) }})
+                </span>
+            {% endset %}
+
+            {% set body_rows = body_rows|merge([{ cols: [
+                { content: col_name },
+                { content: col_version },
+            ] }]) %}
+        {% endfor %}
+
+        {% include '@ezdesign/ui/component/table/table.html.twig' with {
+            headline: 'packages'|trans|desc('Packages'),
+            head_cols: [
+                { content: 'packages.name'|trans|desc('Name') },
+                { content: 'packages.version'|trans|desc('Version') },
+            ],
+            body_rows: body_rows,
+            empty_table_info_text: 'packages.empty'|trans|desc('No packages installed.'),
+        } %}
     </div>
 </section>
