@@ -31,7 +31,9 @@
                 {% if package.homepage is empty %}
                     {{ package.name }}
                 {% else %}
-                    <a href="{{ package.homepage }}" target="_blank">{{ package.name }}</a>
+                    <a href="{{ package.homepage }}" target="_blank">
+                        {{ package.name }}
+                    </a>
                 {% endif %}
             {% endset %}
 
