@@ -48,30 +48,22 @@
 <section class="ez-fieldgroup">
     <h2 class="ez-fieldgroup__name">{{ 'bundles'|trans|desc('Bundles') }}</h2>
     <div class="ez-fieldgroup__content">
-        <div class="ez-table-header">
-            <div class="ez-table-header__headline">
-                {{ 'bundles'|trans|desc('Bundles') }}
-            </div>
-        </div>
-        <table class="table table-hover ez-table">
-            <thead>
-            <tr>
-                {% if info.bundles is empty %}
-                    {{ 'symfony_kernel.bundles.empty'|trans|desc('No bundles installed.') }}
-                {% else %}
-                    <th>{{ 'symfony_kernel.name'|trans|desc('Name') }}</th>
-                    <th>{{ 'symfony_kernel.path'|trans|desc('Path') }}</th>
-                {% endif %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for bundle, namespace in info.bundles %}
-                <tr>
-                    <td>{{ bundle }}</td>
-                    <td>{{ namespace }}</span></td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        {% set body_rows = [] %}
+        {% for bundle, namespace in info.bundles %}
+            {% set body_rows = body_rows|merge([{ cols: [
+                { content: bundle },
+                { content: namespace },
+            ] }]) %}
+        {% endfor %}
+
+        {% include '@ezdesign/ui/component/table/table.html.twig' with {
+            headline: 'bundles'|trans|desc('Bundles'),
+            head_cols: [
+                { content: 'symfony_kernel.name'|trans|desc('Name') },
+                { content: 'symfony_kernel.path'|trans|desc('Path') },
+            ],
+            body_rows: body_rows,
+            empty_table_info_text: 'symfony_kernel.bundles.empty'|trans|desc('No bundles installed.'),
+        } %}
     </div>
 </section>
