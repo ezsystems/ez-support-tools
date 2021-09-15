@@ -48,7 +48,6 @@ before_script:
 
 script:
     - if [ "${UNIT_TESTS}" != "" ] ; then php vendor/bin/phpunit ; fi
-    - if [ "$CHECK_CS" != "" ]; then ./vendor/bin/check_cs.sh; fi
     - if [ "${BEHAT_OPTS}" != "" ] ; then cd "$HOME/build/project"; docker-compose exec --user www-data app sh -c "vendor/bin/ezbehat ${BEHAT_OPTS}" ; fi
 
 after_failure:
@@ -60,4 +59,4 @@ after_failure:
   - docker ps -s
 
 after_script:
-  - if [ "${BEHAT_OPTS}" != "" ] ; then vendor/bin/ezreport ; fi
+  - vendor/bin/ezreport
