@@ -9,12 +9,6 @@ matrix:
     fast_finish: true
     include:
         - php: 7.3
-          name: "Code style"
-          env: CHECK_CS=true
-        - php: 7.3
-          name: "Unit tests"
-          env: UNIT_TESTS=true 
-        - php: 7.3
           name: "System information browser tests"
           env:     
             - APP_ENV=behat
@@ -47,7 +41,6 @@ before_script:
     - if [ "${BEHAT_OPTS}" != "" ]; then ./vendor/bin/prepare_project_edition.sh oss ${PROJECT_VERSION} ${COMPOSE_FILE} ; fi
 
 script:
-    - if [ "${UNIT_TESTS}" != "" ] ; then php vendor/bin/phpunit ; fi
     - if [ "${BEHAT_OPTS}" != "" ] ; then cd "$HOME/build/project"; docker-compose exec --user www-data app sh -c "vendor/bin/ezbehat ${BEHAT_OPTS}" ; fi
 
 after_failure:
