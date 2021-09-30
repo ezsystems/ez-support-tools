@@ -47,11 +47,11 @@ jobs:
           dependency-versions: "highest"
           composer-options: "--prefer-dist --no-progress --no-suggest ${{ matrix.composer_options }}"
 
-      - name: Run test suite
-        run: composer run-script --timeout=600 test
-
       - name: Setup problem matchers for PHPUnit
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Run test suite
+        run: composer run-script --timeout=600 test
 
       - name: Run code style check
         run: composer run-script check-cs -- --format=checkstyle | cs2pr
