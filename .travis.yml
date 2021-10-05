@@ -15,7 +15,7 @@ matrix:
         - php: 7.2
         - php: 7.3
 
-#A test only on matching branches (+ Pull requests)
+# test only on matching branches (+ Pull requests)
 branches:
     only:
         - master
@@ -23,12 +23,12 @@ branches:
 
 before_script:
     - travis_retry composer selfupdate
-    #A Avoid memory issues on composer install
+    # Avoid memory issues on composer install
     - phpenv config-rm xdebug.ini
-    #A Disable expired certificate
+    # Disable expired certificate
     - sed -i '/mozilla\/DST_Root_CA_X3.crt/ s/./!&/' /etc/ca-certificates.conf \ && update-ca-certificates --verbose
     - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-    #A Install packages
+    # Install packages
     - travis_retry composer install --prefer-dist --no-interaction
 
 script:
