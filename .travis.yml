@@ -1,4 +1,4 @@
-dist: focal
+dist: trusty
 sudo: required
 
 language: php
@@ -15,7 +15,7 @@ matrix:
         - php: 7.2
         - php: 7.3
 
-# test only on matching branches (+ Pull requests)
+#A test only on matching branches (+ Pull requests)
 branches:
     only:
         - master
@@ -23,10 +23,12 @@ branches:
 
 before_script:
     - travis_retry composer selfupdate
-    # Avoid memory issues on composer install
+    #A Avoid memory issues on composer install
     - phpenv config-rm xdebug.ini
+    #A Disable expired certificate
+    - sed -i '/mozilla\/DST_Root_CA_X3.crt/ s/./!&/' /etc/ca-certificates.conf \ && update-ca-certificates --verbose
     - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-    # Install packages
+    #A Install packages
     - travis_retry composer install --prefer-dist --no-interaction
 
 script:
