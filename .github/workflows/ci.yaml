@@ -34,7 +34,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           coverage: none
-          extensions: redis
+          extensions: pdo_sqlite, gd
           tools: cs2pr
 
       - uses: "ramsey/composer-install@v1"
