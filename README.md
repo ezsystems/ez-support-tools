@@ -1,4 +1,4 @@
-# Ibexa Support Tools
+# Ibexa System Info
 
 This package is part of [Ibexa DXP](https://ibexa.co).
 
