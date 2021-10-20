@@ -45,8 +45,8 @@
             {% endset %}
 
             {% set body_rows = body_rows|merge([{ cols: [
-                { content: col_name },
-                { content: col_version },
+                { content: col_name, raw: true },
+                { content: col_version, raw: true },
             ] }]) %}
         {% endfor %}
 
