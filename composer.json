@@ -11,11 +11,11 @@
     ],
     "require": {
         "php": ">=7.1",
-        "ezsystems/ezpublish-kernel": "^7.5@dev",
+        "ezsystems/ezpublish-kernel": "^7.5",
         "ocramius/proxy-manager": "~1.0 || ~2.0",
         "symfony/proxy-manager-bridge": "^2.8.40 || ^3.4.11",
         "zetacomponents/system-information": "^1.1.1",
-        "ezsystems/ezplatform-admin-ui": "^1.5@dev"
+        "ezsystems/ezplatform-admin-ui": "^1.5"
     },
     "require-dev": {
         "ezsystems/ezplatform-code-style": "^0.1.0",
