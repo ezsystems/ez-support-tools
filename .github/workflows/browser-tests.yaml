@@ -1,0 +1,19 @@
+name: Browser tests
+
+on:
+    push:
+        branches:
+            - main
+            - '[0-9]+.[0-9]+'
+    pull_request: ~
+
+jobs:
+    system-info:
+        name: "System Information browser tests"
+        uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
+        with:
+            project-edition: 'oss'
+            project-version: '^3.3.x-dev'
+            test-suite:  '--profile=browser --suite=admin-ui --tags=@systemInformation'
+        secrets:
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
