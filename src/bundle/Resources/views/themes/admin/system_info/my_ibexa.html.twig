@@ -31,13 +31,13 @@
                     <tr class="ez-table__row">
                         <td class="ez-table__cell">{{ 'ibexa.eom'|trans|desc('End of Maintenance') }}*</td>
                         <td class="ez-table__cell">
-                            {{ info.endOfMaintenanceDate is empty ? '' : info.endOfMaintenanceDate|date('F Y') }}
+                            {{ info.endOfMaintenanceDate is empty ? '' : info.endOfMaintenanceDate|date('F Y', false) }}
                         </td>
                     </tr>
                     <tr class="ez-table__row">
                         <td class="ez-table__cell">{{ 'ibexa.eol'|trans|desc('End of Life') }}*</td>
                         <td class="ez-table__cell">
-                            {{ info.endOfLifeDate is empty ? '' : info.endOfLifeDate|date('F Y') }}
+                            {{ info.endOfLifeDate is empty ? '' : info.endOfLifeDate|date('F Y', false) }}
                         </td>
                     </tr>
                     <tr class="ez-table__row">
